@@ -1,7 +1,20 @@
-export default function Home() {
+import { Authenticator } from '@aws-amplify/ui-react';
+import { Amplify } from 'aws-amplify';
+import outputs from '@/amplify_outputs.json';
+import '@aws-amplify/ui-react/styles.css';
+
+Amplify.configure(outputs);
+
+export default function Home({ Component, pageProps }) {
   return (
-    <>
-      Placeholder
-    </>
+    <Authenticator>
+      {({ signOut, user }) => (
+        <main>
+          <h1>Hello {user?.username}</h1>
+          <button onClick={signOut}>Sign out</button>
+          <Component {...pageProps} />
+        </main>
+      )}
+    </Authenticator>
   );
 }
