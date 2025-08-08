@@ -1,4 +1,4 @@
-import AuthenticatorWrapper from "./AuthenticatorWrapper";
+import AuthenticatorWrapper from "./auth/AuthenticatorWrapper";
 import "@aws-amplify/ui-react/styles.css";
 
 export const metadata = {
