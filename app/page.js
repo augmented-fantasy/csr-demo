@@ -40,7 +40,11 @@ Amplify.configure(outputs);
         </Button>
         </div>
       </Stack>
-      <CustomersTable rows={users} onUpdate={updateUser} onDelete={deleteUser}/>
+      <CustomersTable
+        rows={users}
+        onUpdate={(user) => updateUser(user, setUsers)}
+        onDelete={(user) => deleteUser(user, setUsers)}
+      />
     </Stack>
     </main>
   );

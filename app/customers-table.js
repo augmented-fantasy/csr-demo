@@ -47,7 +47,7 @@ const CustomersTable = ({ rows = [], onUpdate, onDelete  }) => {
                   </TableCell>
                   <TableCell>
                     <Stack sx={{ alignItems: 'center' }} direction="row" spacing={2}>
-                      <Avatar src={`/assets/avatar-${row?.avatar}.png`} />
+                      <Avatar src={`/assets/avatar-${row?.avatar || "8"}.png`} />
                       <Typography variant="subtitle2">{row.name}</Typography>
                     </Stack>
                   </TableCell>

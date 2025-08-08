@@ -33,18 +33,18 @@ export const listUsers = (setUsers) => {
     });
   }
 
-  export const updateUser = async (user) => {
+  export const updateUser = async (user, setUsers) => {
     const newName = window.prompt("Enter new name for user", user.name);
     if (!newName) return;
     await client.models.User.update({
       id: user.id,
       name: newName,
     });
-    listUsers();
+    listUsers(setUsers);
   }
 
-  export const deleteUser = async (user) => {
+  export const deleteUser = async (user, setUsers) => {
     if (!window.confirm(`Delete user ${user.name}?`)) return;
     await client.models.User.delete({ id: user.id });
-    listUsers();
+    listUsers(setUsers);
   }
