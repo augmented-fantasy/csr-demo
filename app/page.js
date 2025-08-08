@@ -58,19 +58,19 @@ import { useEffect, useState } from "react";
 export default function App() {
   const [users, setUsers] = useState([]);
 
-  function listTodos() {
-    client.models.Users.observeQuery().subscribe({
+  function listUsers() {
+    client.models.User.observeQuery().subscribe({
       next: (data) => setUsers([...data.items]),
     });
   }
 
   useEffect(() => {
-    listTodos();
+    listUsers();
   }, []);
 
   function createUser() {
     client.models.User.create({
-      content: window.prompt("Enter new user name"),
+      name: window.prompt("Enter new user name"),
     });
   }
 
