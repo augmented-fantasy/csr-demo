@@ -5,6 +5,7 @@
 - **Authentication**: Setup with Amazon Cognito for secure user authentication.
 - **API**: Ready-to-use GraphQL endpoint with AWS AppSync.
 - **Database**: Real-time database powered by Amazon DynamoDB.
+- **MUI Template**: [Material Design](https://mui.com/material-ui/) UI.
 
 ## Getting Started
 
