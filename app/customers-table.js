@@ -14,7 +14,7 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-export function CustomersTable({ rows = [], onUpdate, onDelete  }) {
+const CustomersTable = ({ rows = [], onUpdate, onDelete  }) => {
 
   return (
     <Card>
@@ -67,3 +67,5 @@ export function CustomersTable({ rows = [], onUpdate, onDelete  }) {
     </Card>
   );
 }
+
+export default CustomersTable;

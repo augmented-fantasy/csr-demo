@@ -8,12 +8,12 @@ import { generateClient } from "aws-amplify/data";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { CustomersTable } from './customers-table'
+import CustomersTable from './customers-table';
 
 Amplify.configure(outputs);
 const client = generateClient()
 
-export default function App() {
+ const App = () => {
   const [users, setUsers] = useState([]);
   const { signOut } = useAuthenticator((context) => [context.user, context.signOut]);
 
@@ -74,3 +74,5 @@ export default function App() {
     </main>
   );
 }
+
+export default App;

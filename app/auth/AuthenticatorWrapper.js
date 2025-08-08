@@ -2,8 +2,10 @@
 
 import { Authenticator } from "@aws-amplify/ui-react";
 
-export default function AuthenticatorWrapper({ children }) {
+const AuthenticatorWrapper = ({ children }) => {
   return (
     <Authenticator>{children}</Authenticator>
   )
 }
+
+export default AuthenticatorWrapper;

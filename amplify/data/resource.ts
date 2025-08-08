@@ -1,6 +1,5 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
-// Define database schema for a User model
 const schema = a.schema({
   User: a
     .model({

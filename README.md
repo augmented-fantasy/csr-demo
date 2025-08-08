@@ -2,23 +2,23 @@
 
 ## Features
 
-- **Authentication**: Setup with Amazon Cognito for secure user authentication.
+- **Auth**: Setup with Amazon Cognito for secure user authentication.
 - **API**: Ready-to-use GraphQL endpoint with AWS AppSync.
-- **Database**: Real-time database powered by Amazon DynamoDB.
-- **MUI Template**: [Material Design](https://mui.com/material-ui/) UI.
+- **DB**: Real-time database powered by Amazon DynamoDB.
+- **MUI**: [Material Design](https://mui.com/material-ui/) UI.
+- **TS**: Full TypeScript support
+- **IaC**: AWS backend fully captured as 'infrastructure as code' within the `/amplify` folder
 
 ## Getting Started
 
 `npm i`: Installs dependencies.
 
-`npm run dev`: Starts the development server.
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run dev`: Starts the development server. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ### Additional scripts
 
-`npm run build`: Builds the application for production.
+`build`: Builds the application for production.
 
-`npm run start` Starts the production server.
+`start` Starts the production server.
 
-`npm run lint`: Runs ESLint.
+`lint`: Runs ESLint.
