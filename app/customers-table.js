@@ -13,6 +13,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { mapSubscriptions } from "./utilities";
 
 const CustomersTable = ({ rows = [], onUpdate, onDelete  }) => {
 
@@ -33,7 +34,7 @@ const CustomersTable = ({ rows = [], onUpdate, onDelete  }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, idx) => {
+            {rows.map((row) => {
               return (
                 <TableRow hover key={row?.id}>
                   <TableCell>
@@ -46,7 +47,7 @@ const CustomersTable = ({ rows = [], onUpdate, onDelete  }) => {
                   </TableCell>
                   <TableCell>
                     <Stack sx={{ alignItems: 'center' }} direction="row" spacing={2}>
-                      <Avatar src={`/assets/avatar-${idx+1}.png`} />
+                      <Avatar src={`/assets/avatar-${row?.avatar}.png`} />
                       <Typography variant="subtitle2">{row.name}</Typography>
                     </Stack>
                   </TableCell>
@@ -55,7 +56,7 @@ const CustomersTable = ({ rows = [], onUpdate, onDelete  }) => {
                     {row?.street} {row?.city} {row?.state}, {row?.country}
                   </TableCell>
                   <TableCell>{row?.phone}</TableCell>
-                  <TableCell>{row?.subscriptions}</TableCell>
+                  <TableCell>{mapSubscriptions(row?.subscriptions)}</TableCell>
                   <TableCell>{row?.purchaseHistory}</TableCell>
                 </TableRow>
               );

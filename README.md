@@ -2,22 +2,24 @@
 
 ## Features
 
+- **NEXT**: Next.js React SPA framework.
 - **CDN**: Hosted on AWS edge server content distribution network.
 - **WAF**: Web application firewall enabled.
-- **IaC**: AWS backend fully captured as Infrastructure-as-Code within the `/amplify` folder
+- **SSL**: Secure socket layer encrypts data in transit.
+- **IaC**: AWS backend fully captured as Infrastructure-as-Code within the `/amplify` folder.
 - **Auth**: Amazon Cognito user pool integration for secure user authentication.
 - **DB**: Real-time NoSQL database powered by Amazon DynamoDB.
 - **API**: Ready-to-use GraphQL endpoint with AWS AppSync.
 - **HOC**: AWS Amplify Higher-Order Components for React.
 - **MUI**: Material Design UI with Emotion as its default CSS-in-JS styling library.
-- **TS**: Full TypeScript support
 - **CICD**: Continuous integration / continuous deployment pipeline connected to GitHub `main` branch.
+- **TS**: Full TypeScript support.
 
 ## Getting Started
 
 Install dependencies: `npm i`
 
-Copy the `amplify_outputs.json` file to the root folder of your project to connect to AWS backend resources.
+Copy the `amplify_outputs.json` file to the root folder of your project to connect to existing AWS backend resources.
 
 Start the development server: `npm run dev` Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

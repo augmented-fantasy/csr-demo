@@ -11,8 +11,8 @@ const schema = a.schema({
       country: a.string(),
       phone: a.string(),
       avatar: a.string(),
-      subscriptions: a.string(),
-      purchaseHistory: a.string()
+      subscriptions: a.enum(["MONTHLY", "PUNCH", "NONE"]),
+      purchaseHistory: a.string().array()
     })
     .authorization((allow) => [allow.publicApiKey()]),
 });

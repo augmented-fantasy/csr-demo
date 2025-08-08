@@ -4,49 +4,20 @@ import React, { useEffect, useState } from 'react';
 import { Amplify } from 'aws-amplify';
 import outputs from '@/amplify_outputs.json';
 import { useAuthenticator } from '@aws-amplify/ui-react';
-import { generateClient } from "aws-amplify/data";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import CustomersTable from './customers-table';
+import { listUsers, createUser, updateUser, deleteUser } from "./utilities";
 
 Amplify.configure(outputs);
-const client = generateClient()
 
  const App = () => {
   const [users, setUsers] = useState([]);
   const { signOut } = useAuthenticator((context) => [context.user, context.signOut]);
 
-  const listUsers = () => {
-    client.models.User.observeQuery().subscribe({
-      next: (data) => setUsers([...data.items]),
-    });
-  }
-
-  const createUser = () => {
-    client.models.User.create({
-      name: window.prompt("Enter new user name"),
-    });
-  }
-
-  const updateUser = async (user) => {
-    const newName = window.prompt("Enter new name for user", user.name);
-    if (!newName) return;
-    await client.models.User.update({
-      id: user.id,
-      name: newName,
-    });
-    listUsers();
-  }
-
-  const deleteUser = async (user) => {
-    if (!window.confirm(`Delete user ${user.name}?`)) return;
-    await client.models.User.delete({ id: user.id });
-    listUsers();
-  }
-
   useEffect(() => {
-    listUsers();
+    listUsers(setUsers);
   }, []);
 
   return (

@@ -1,0 +1,50 @@
+import { subscriptionTypes } from "./constants";
+import { generateClient } from "aws-amplify/data";
+
+const client = generateClient()
+
+export const mapSubscriptions = (membership) => {
+  let subscription = null;
+  switch (membership) {
+    case 'MONTHLY':
+      subscription = subscriptionTypes['MONTHLY'];
+      break;
+    case 'PUNCH':
+      subscription = subscriptionTypes['PUNCH'];
+      break;
+    case 'NONE':
+      subscription = subscriptionTypes['NONE'];
+      break;
+    default:
+      return null;
+  }
+  return subscription;
+}
+
+export const listUsers = (setUsers) => {
+    client.models.User.observeQuery().subscribe({
+      next: (data) => setUsers([...data.items]),
+    });
+  }
+
+  export const createUser = () => {
+    client.models.User.create({
+      name: window.prompt("Enter new user name"),
+    });
+  }
+
+  export const updateUser = async (user) => {
+    const newName = window.prompt("Enter new name for user", user.name);
+    if (!newName) return;
+    await client.models.User.update({
+      id: user.id,
+      name: newName,
+    });
+    listUsers();
+  }
+
+  export const deleteUser = async (user) => {
+    if (!window.confirm(`Delete user ${user.name}?`)) return;
+    await client.models.User.delete({ id: user.id });
+    listUsers();
+  }
