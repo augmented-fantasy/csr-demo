@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -14,10 +14,22 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { mapSubscriptions } from "./utilities";
+import UserPopover from './popover';
 
-const CustomersTable = ({ rows = [], onUpdate, onDelete  }) => {
-
+const CustomersTable = ({ 
+  rows = [], 
+  onUpdate, 
+  onDelete, 
+  onClose, 
+  signOut, 
+  open, 
+  setUsers,
+  selectedUser,
+  setSelectedUser,
+  handleOpen
+}) => {
   return (
+    <>
     <Card>
       <Box sx={{ overflowX: 'auto' }}>
         <Table sx={{ minWidth: '800px' }}>
@@ -38,10 +50,13 @@ const CustomersTable = ({ rows = [], onUpdate, onDelete  }) => {
               return (
                 <TableRow hover key={row?.id}>
                   <TableCell>
-                    <Button size="small" color="primary" onClick={() => onUpdate?.(row)}>
+                    <Button size="small" color="primary" onClick={() => {
+                      setSelectedUser(row)
+                      handleOpen()
+                    }}>
                       Update
                     </Button>
-                    <Button size="small" color="error" onClick={() => onDelete?.(row)}>
+                    <Button size="small" color="error" onClick={() => onDelete?.(row, setUsers)}>
                       Delete
                     </Button>
                   </TableCell>
@@ -66,6 +81,8 @@ const CustomersTable = ({ rows = [], onUpdate, onDelete  }) => {
       </Box>
       <Divider />
     </Card>
+    <UserPopover onClose={onClose} open={open} signOut={signOut} selectedUser={selectedUser} onUpdate={onUpdate}  />
+    </>
   );
 }
 

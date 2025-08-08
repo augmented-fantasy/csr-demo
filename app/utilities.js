@@ -37,11 +37,9 @@ export const listUsers = (setUsers) => {
   }
 
   export const updateUser = async (user, setUsers) => {
-    const newName = window.prompt("Enter new name for user", user.name);
-    if (!newName) return;
     await client.models.User.update({
       id: user.id,
-      name: newName,
+      name: user.name,
     });
     listUsers(setUsers);
   }
