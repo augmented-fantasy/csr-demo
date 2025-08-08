@@ -15,7 +15,11 @@ import { listUsers, createUser, updateUser, deleteUser } from "./utilities";
     setOpen(true);
   }, []);
 
-  const handleClose = useCallback(() => {
+  const handleClose = useCallback((event, reason) => {
+    console.log(reason)
+    if (reason === 'backdropClick' && (!event || event.target == null)) {
+      return;
+    }
     setOpen(false);
   }, []);
 

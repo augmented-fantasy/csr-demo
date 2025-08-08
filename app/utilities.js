@@ -30,22 +30,29 @@ export const listUsers = (setUsers) => {
     });
   }
 
-  export const createUser = () => {
-    client.models.User.create({
-      name: window.prompt("Enter new user name"),
-    });
-  }
+export const createUser = () => {
+  client.models.User.create({
+    name: window.prompt("Enter new user name"),
+  });
+}
 
-  export const updateUser = async (user, setUsers) => {
-    await client.models.User.update({
-      id: user.id,
-      name: user.name,
-    });
-    listUsers(setUsers);
-  }
+export const updateUser = async (updatedUser, setUsers) => {
+  await client.models.User.update({
+    id: updatedUser?.id,
+    name: updatedUser?.name,
+    email: updatedUser?.email,
+    street: updatedUser?.street,
+    city: updatedUser?.city,
+    state: updatedUser?.state,
+    country: updatedUser?.country,
+    phone: updatedUser?.phone,
+    avatar: updatedUser?.avatar
+  });
+  listUsers(setUsers);
+}
 
-  export const deleteUser = async (user, setUsers) => {
-    if (!window.confirm(`Delete user ${user.name}?`)) return;
-    await client.models.User.delete({ id: user.id });
-    listUsers(setUsers);
-  }
+export const deleteUser = async (user, setUsers) => {
+  if (!window.confirm(`Delete user ${user.name}?`)) return;
+  await client.models.User.delete({ id: user.id });
+  listUsers(setUsers);
+}
