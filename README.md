@@ -2,18 +2,24 @@
 
 ## Features
 
-- **Auth**: Setup with Amazon Cognito for secure user authentication.
+- **CDN**: Hosted on AWS edge server content distribution network.
+- **WAF**: Web application firewall enabled.
+- **IaC**: AWS backend fully captured as Infrastructure-as-Code within the `/amplify` folder
+- **Auth**: Amazon Cognito user pool integration for secure user authentication.
+- **DB**: Real-time NoSQL database powered by Amazon DynamoDB.
 - **API**: Ready-to-use GraphQL endpoint with AWS AppSync.
-- **DB**: Real-time database powered by Amazon DynamoDB.
-- **MUI**: [Material Design](https://mui.com/material-ui/) UI.
+- **HOC**: AWS Amplify Higher-Order Components for React.
+- **MUI**: Material Design UI with Emotion as its default CSS-in-JS styling library.
 - **TS**: Full TypeScript support
-- **IaC**: AWS backend fully captured as 'infrastructure as code' within the `/amplify` folder
+- **CICD**: Continuous integration / continuous deployment pipeline connected to GitHub `main` branch.
 
 ## Getting Started
 
-`npm i`: Installs dependencies.
+Install dependencies: `npm i`
 
-`npm run dev`: Starts the development server. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Copy the `amplify_outputs.json` file to the root folder of your project to connect to AWS backend resources.
+
+Start the development server: `npm run dev` Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ### Additional scripts
 
