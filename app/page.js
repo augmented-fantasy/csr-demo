@@ -1,17 +1,21 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { Amplify } from 'aws-amplify';
-import { useAuthenticator } from '@aws-amplify/ui-react';
-import { generateClient } from "aws-amplify/data"; // Data client for CRUDL requests
 import outputs from '@/amplify_outputs.json';
-import "@aws-amplify/ui-react/styles.css";
+import { useAuthenticator } from '@aws-amplify/ui-react';
+import { generateClient } from "aws-amplify/data";
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { CustomersTable } from './customers-table'
 
 Amplify.configure(outputs);
 const client = generateClient()
 
 export default function App() {
   const [users, setUsers] = useState([]);
+  const { signOut } = useAuthenticator((context) => [context.user, context.signOut]);
 
   const listUsers = () => {
     client.models.User.observeQuery().subscribe({
@@ -29,18 +33,28 @@ export default function App() {
     listUsers();
   }, []);
 
-  const { user, signOut } = useAuthenticator((context) => [context.user, context.signOut]);
   return (
     <main>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <button onClick={createUser}>Add User</button>
-        <button onClick={signOut}>Logout</button>
+        <Button variant="contained" onClick={signOut}>
+            Logout
+        </Button>
       </div>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.name} {user.email}</li>
-        ))}
-      </ul>
+      <Stack spacing={3}>
+      <Stack direction="row" spacing={3}>
+        <Stack spacing={1} sx={{ flex: '1 1 auto' }}>
+          <Typography variant="h4">Customers</Typography>
+          <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+          </Stack>
+        </Stack>
+        <div>
+          <Button variant="contained" onClick={createUser}>
+            Add User
+        </Button>
+        </div>
+      </Stack>
+      <CustomersTable rows={users}/>
+    </Stack>
     </main>
   );
 }
