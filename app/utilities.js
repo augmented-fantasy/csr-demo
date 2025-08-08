@@ -1,6 +1,9 @@
-import { subscriptionTypes } from "./constants";
 import { generateClient } from "aws-amplify/data";
+import { Amplify } from 'aws-amplify';
+import outputs from '@/amplify_outputs.json';
+import { subscriptionTypes } from "./constants";
 
+Amplify.configure(outputs);
 const client = generateClient()
 
 export const mapSubscriptions = (membership) => {
