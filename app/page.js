@@ -23,11 +23,28 @@ export default function App() {
     });
   }
 
+
   const createUser = () => {
     client.models.User.create({
       name: window.prompt("Enter new user name"),
     });
-  }
+  };
+
+  const updateUser = async (user) => {
+    const newName = window.prompt("Enter new name for user", user.name);
+    if (!newName) return;
+    await client.models.User.update({
+      id: user.id,
+      name: newName,
+    });
+    listUsers();
+  };
+
+  const deleteUser = async (user) => {
+    if (!window.confirm(`Delete user ${user.name}?`)) return;
+    await client.models.User.delete({ id: user.id });
+    listUsers();
+  };
 
   useEffect(() => {
     listUsers();
@@ -53,7 +70,7 @@ export default function App() {
         </Button>
         </div>
       </Stack>
-      <CustomersTable rows={users}/>
+      <CustomersTable rows={users} onUpdate={updateUser} onDelete={deleteUser}/>
     </Stack>
     </main>
   );

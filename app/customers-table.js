@@ -13,7 +13,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 
-export function CustomersTable({ rows = [] }) {
+import Button from '@mui/material/Button';
+
+export function CustomersTable({ rows = [], onUpdate, onDelete }) {
 
   return (
     <Card>
@@ -33,19 +35,26 @@ export function CustomersTable({ rows = [] }) {
           </TableHead>
           <TableBody>
             {rows.map((row, idx) => {
+              console.log(row)
               return (
-                <TableRow hover key={row.id}>
+                <TableRow hover key={row?.id}>
                   <TableCell>
+                    <Button size="small" color="primary" onClick={() => onUpdate?.(row)}>
+                      Update
+                    </Button>
+                    <Button size="small" color="error" onClick={() => onDelete?.(row)}>
+                      Delete
+                    </Button>
                   </TableCell>
                   <TableCell>
                     <Stack sx={{ alignItems: 'center' }} direction="row" spacing={2}>
-                      <Avatar src={`/assets/avatar-${idx+1}.png`} />
+                      <Avatar src={`/assets/avatar-${idx < 11 ? idx + 1 : 0}.png`} />
                       <Typography variant="subtitle2">{row.name}</Typography>
                     </Stack>
                   </TableCell>
-                  <TableCell>{row.email}</TableCell>
+                  <TableCell>{row?.email}</TableCell>
                   <TableCell>
-                    {row?.city}, {row?.state}, {row?.country}
+                    {row?.street} {row?.city} {row?.state}, {row?.country}
                   </TableCell>
                   <TableCell>{row?.phone}</TableCell>
                   <TableCell>{row?.subscriptions}</TableCell>
