@@ -1,11 +1,12 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
 const schema = a.schema({
-  User: a.model({
-      name: a.string(),
-      email: a.string()
+  User: a
+    .model({
+      email: a.string(),
+      name: a.string()
     })
-    .authorization(allow => [allow.publicApiKey()])
+    .authorization((allow) => [allow.publicApiKey()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
@@ -19,4 +20,3 @@ export const data = defineData({
     },
   },
 });
-

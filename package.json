@@ -1,6 +1,6 @@
 {
-  "name": "amp-demo",
-  "version": "1.0.0",
+  "name": "amp-csr",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,17 +11,21 @@
   "dependencies": {
     "@aws-amplify/ui-react": "^6.5.5",
     "aws-amplify": "^6.6.6",
-    "next": "15.4.6",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "next": "14.2.10",
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "@aws-amplify/backend": "^1.16.1",
-    "@aws-amplify/backend-cli": "^1.8.0",
+    "@aws-amplify/backend": "^1.5.1",
+    "@aws-amplify/backend-cli": "^1.3.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "aws-cdk": "^2",
     "aws-cdk-lib": "^2",
-    "@eslint/eslintrc": "^3",
-    "eslint": "^9",
-    "eslint-config-next": "15.4.6"
+    "constructs": "^10.3.0",
+    "esbuild": "^0.23.1",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.2"
   }
 }
