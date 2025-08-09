@@ -22,12 +22,10 @@ const CustomersTable = ({
   handleOpen
 }) => {
 
-  const [sortModel, setSortModel] = useState([
-      {
-        field: 'yourColumnField',
-        sort: 'asc'
-      },
-    ]);
+  const [sortModel, setSortModel] = useState([{
+    field: 'name',
+    sort: 'asc'
+  }]);
 
   const columns = [
     { field: 'actions',
@@ -61,7 +59,7 @@ const CustomersTable = ({
     { field: 'email', headerName: 'Email', width: 250, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : '' },
     { field: 'location',
       headerName: 'Location',
-      width: 260,
+      width: 300,
       renderCell: (params) => (
         <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
           {`${params.row.address?.street || ''} ${params.row.address?.city || ''} ${params.row.address?.state || ''}, ${params.row.address?.country || ''}`}
@@ -72,7 +70,20 @@ const CustomersTable = ({
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
-    { field: 'phone', headerName: 'Phone', width: 140, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''}
+    { field: 'phone', headerName: 'Phone', width: 140, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''},
+    { field: 'purchases',
+      headerName: 'Purchases',
+      width: 90,
+      renderCell: (params) => (
+        <Box sx={{ ml: '30px' }}>
+          {params?.row?.purchases?.date?.length || 0}
+        </Box>
+      ),
+      sortable: false,
+      filterable: false,
+      disableColumnMenu: true,
+      cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
+    }
   ];
 
   return (
@@ -83,7 +94,7 @@ const CustomersTable = ({
           opacity: 0.7;
         }
       `}</style>
-      <Box sx={{ height: '100%', width: '1040px' }}>
+      <Box sx={{ height: '100%', width: '1200px' }}>
         <DataGrid
         sx={{
           [`& .${gridClasses.cell}:focus`]: {
