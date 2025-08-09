@@ -85,28 +85,28 @@ const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
                   <Grid>
                     <FormControl fullWidth>
                       <InputLabel>Street Address</InputLabel>
-                      <OutlinedInput defaultValue={selectedUser?.Location?.street} label="Street Address" name="street" />
+                      <OutlinedInput defaultValue={selectedUser?.address?.street} label="Street Address" name="street" />
                     </FormControl>
                   </Grid>
 
                   <Grid>
                     <FormControl fullWidth>
                       <InputLabel>City</InputLabel>
-                      <OutlinedInput defaultValue={selectedUser?.Location?.city} label="City" name="city" />
+                      <OutlinedInput defaultValue={selectedUser?.address?.city} label="City" name="city" />
                     </FormControl>
                   </Grid>
 
                   <Grid>
                     <FormControl fullWidth>
                       <InputLabel>State</InputLabel>
-                      <OutlinedInput defaultValue={selectedUser?.Location?.state} label="State" name="state" />
+                      <OutlinedInput defaultValue={selectedUser?.address?.state} label="State" name="state" />
                     </FormControl>
                   </Grid>
 
                   <Grid>
                     <FormControl fullWidth>
                       <InputLabel>Country</InputLabel>
-                      <OutlinedInput defaultValue={selectedUser?.Location?.country} label="Country" name="country" />
+                      <OutlinedInput defaultValue={selectedUser?.address?.country} label="Country" name="country" />
                     </FormControl>
                   </Grid>
 
