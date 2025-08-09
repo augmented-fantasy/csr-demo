@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import { DataGrid, gridClasses } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { mapSubscriptions, mapPurchases } from "../utils/Utilities";
+import { mapSubscriptions } from "../utils/Utilities";
 import UserPopover from './Popover';
 
 const CustomersTable = ({ 
