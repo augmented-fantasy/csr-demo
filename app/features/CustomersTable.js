@@ -65,7 +65,7 @@ const CustomersTable = ({
       width: 350,
       renderCell: (params) => (
         <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-          {`${params.row.street || ''} ${params.row.city || ''} ${params.row.state || ''}, ${params.row.country || ''}`}
+          {`${params.row.Location?.street || ''} ${params.row.Location?.city || ''} ${params.row.Location?.state || ''}, ${params.row.Location?.country || ''}`}
         </Box>
       ),
       sortable: false,

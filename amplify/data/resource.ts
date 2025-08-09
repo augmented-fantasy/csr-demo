@@ -5,11 +5,7 @@ const schema = a.schema({
     .model({
       name: a.string(),
       email: a.string(),
-      street: a.string(),
-      city: a.string(),
-      state: a.string(),
-      country: a.string(),
-      phone: a.string(),
+      phone: a.phone(),
       avatar: a.string(),
       subscriptions: a.enum(["MONTHLY", "PUNCH", "NONE"]),
       purchaseHistory: a.string().array(),
