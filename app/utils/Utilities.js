@@ -19,12 +19,28 @@ export const getAvatar = () => {
 
 export const mapSubscriptions = (purchases) => {
   let color = 'primary';
-  const items = purchases?.vehicle?.map((purchase, idx) => (
-    <Stack key={idx} direction="row" justifyContent="space-between">
-      <b>{purchases.date[0]}</b> {purchases.vehicle[0]}
-      <Chip sx={{ width: '100px', mb: '5px' }} color={color} label={purchases.product[0]} size="small"/>
-    </Stack>
-  ))
+  let value = "";
+  const items = purchases?.vehicle?.map((purchase, idx) => {
+    switch (purchases?.subscription[idx]) {
+      case 0:
+        color = 'primary';
+        value = purchases?.product[0] || "";
+        break;
+      case 1:
+        color = 'secondary';
+        value = purchases?.product[1] || "";
+        break;
+      default:
+        color = 'default';
+        value = purchases?.product[2] || "";
+    }
+    return (
+      <Stack key={idx} direction="row" justifyContent="space-between">
+        <b>{purchases.date[idx]}</b> {purchases.vehicle[idx]}
+        <Chip sx={{ width: '100px', mb: '5px' }} color={color} label={value} size="small"/>
+      </Stack>
+    );
+  });
   return items
 }
 
