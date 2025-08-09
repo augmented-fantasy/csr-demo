@@ -12,7 +12,7 @@ import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import { getAvatar, setupCenterPosition, mapSubscriptions } from '../utils/Utilities';
+import { getAvatar, setupCenterPosition, mapSubscriptions, mapPurchases } from '../utils/Utilities';
 
 const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
@@ -32,8 +32,8 @@ const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
       >
         <Stack direction="row" spacing={3} sx={{ m: 4 }}>
         {/* Avatar Container */}
-          <Stack sx={{ m: 4, flex: 1 }}>
-            <Card>
+          <Stack sx={{ m: 4, flex: 1}}>
+            <Card sx={{ height: '100%' }}>
               <CardContent>
                 <Stack 
                   spacing={2} 
@@ -53,6 +53,10 @@ const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
                     </Typography>
                   </Stack>
                 </Stack>
+                <Stack direction="column" justifyContent="space-between" sx={{ pt: '50px' }}>
+                <Typography variant="h7">Purchase History</Typography>
+                {mapPurchases(selectedUser?.purchaseHistory, selectedUser?.subscriptions)}
+              </Stack>
               </CardContent>
             </Card>
           </Stack>

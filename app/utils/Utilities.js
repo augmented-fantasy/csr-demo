@@ -3,12 +3,27 @@ import { Amplify } from 'aws-amplify';
 import outputs from '@/amplify_outputs.json';
 import { subscriptionTypes } from "./Constants";
 import Chip from '@mui/material/Chip';
+import Button from '@mui/material/Button';
 
 Amplify.configure(outputs);
 const client = generateClient()
 
+const onPurchaseClick = (subscriptions) => {
+  alert("You clicked on: " + subscriptions);
+}
+
 export const getAvatar = () => {
   return (Math.floor(Math.random() * 11) + 1).toString();
+}
+
+export const mapPurchases = (purchases, subscriptions) => {
+  return (
+    <div>
+      {purchases?.map((purchase, idx) => (
+        <Button onClick={() => onPurchaseClick(subscriptions)} key={idx}>{purchase}</Button>
+      ))}
+    </div>
+  );
 }
 
 export const mapSubscriptions = (membership) => {
@@ -69,7 +84,7 @@ export const deleteUser = async (user, setUsers) => {
 }
 
 export const setupCenterPosition = (setCenterPosition) => {
-  function handleResize() {
+  const handleResize = () => {
     setCenterPosition({
       top: window.innerHeight / 2 - 275,
       left: window.innerWidth / 2 - 450,

@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import { DataGrid, gridClasses } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { mapSubscriptions } from "../utils/Utilities";
+import { mapSubscriptions, mapPurchases } from "../utils/Utilities";
 import UserPopover from './Popover';
 
 const CustomersTable = ({ 
@@ -86,8 +86,7 @@ const CustomersTable = ({
       filterable: false,
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
-    },
-    { field: 'purchaseHistory', headerName: 'Purchase History', width: 180, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : '' }
+    }
   ];
 
   return (
@@ -98,7 +97,7 @@ const CustomersTable = ({
           opacity: 0.7;
         }
       `}</style>
-      <Box sx={{ height: '100%', width: '1500px' }}>
+      <Box sx={{ height: '100%', width: '1325px' }}>
         <DataGrid
         sx={{
           [`& .${gridClasses.cell}:focus`]: {
@@ -132,7 +131,7 @@ const CustomersTable = ({
         />
       </Box>
       <Divider />
-      <UserPopover onClose={onClose} open={open} signOut={signOut} selectedUser={selectedUser} onUpdate={onUpdate}  />
+      <UserPopover onClose={onClose} open={open} signOut={signOut} selectedUser={selectedUser} onUpdate={onUpdate} />
     </>
   );
 }

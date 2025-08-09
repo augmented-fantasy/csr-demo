@@ -12,7 +12,13 @@ const schema = a.schema({
       phone: a.string(),
       avatar: a.string(),
       subscriptions: a.enum(["MONTHLY", "PUNCH", "NONE"]),
-      purchaseHistory: a.string().array()
+      purchaseHistory: a.string().array(),
+      Location: a.customType({
+        street: a.string().default('1500 Dry Run Creek'),
+        city: a.string().default('Los Angeles'),
+        state: a.string().default('CA'),
+        country: a.string().default('US')
+      }),
     })
     .authorization((allow) => [allow.publicApiKey()]),
 });
