@@ -16,7 +16,6 @@ import { listUsers, createUser, updateUser, deleteUser } from "./utilities";
   }, []);
 
   const handleClose = useCallback((event, reason) => {
-    console.log(reason)
     if (reason === 'backdropClick' && (!event || event.target == null)) {
       return;
     }
@@ -60,7 +59,6 @@ import { listUsers, createUser, updateUser, deleteUser } from "./utilities";
         onUpdate={updateUser}
         onDelete={deleteUser}
         onClose={handleClose}
-        signOut={signOut}
         open={open}
         setUsers={setUsers}
         setSelectedUser={setSelectedUser}
