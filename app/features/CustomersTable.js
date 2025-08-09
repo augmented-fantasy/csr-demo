@@ -1,16 +1,14 @@
 'use client';
 
-import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import { DataGrid } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { mapSubscriptions } from "./utilities";
-import UserPopover from './popover';
+import { mapSubscriptions } from "../utils/Utilities";
+import UserPopover from './Popover';
 
 const CustomersTable = ({ 
   rows = [], 
@@ -83,25 +81,23 @@ const CustomersTable = ({
 
   return (
     <>
-
-        <Box sx={{ height: '100%', width: '1500px' }}>
-          <DataGrid
-            showToolbar
-            disableColumnFilter
-            rows={rows}
-            columns={columns}
-            pageSize={10}
-            rowsPerPageOptions={[10, 25, 50]}
-            disableSelectionOnClick
-            onRowClick={(params) => {
-              setSelectedUser(params.row);
-              handleOpen();
-            }}
-            getRowId={row => row.id}
-          />
-        </Box>
-        <Divider />
-
+      <Box sx={{ height: '100%', width: '1500px' }}>
+        <DataGrid
+          showToolbar
+          disableColumnFilter
+          rows={rows}
+          columns={columns}
+          pageSize={10}
+          rowsPerPageOptions={[10, 25, 50]}
+          disableSelectionOnClick
+          onRowClick={(params) => {
+            setSelectedUser(params.row);
+            handleOpen();
+          }}
+          getRowId={row => row.id}
+        />
+      </Box>
+      <Divider />
       <UserPopover onClose={onClose} open={open} signOut={signOut} selectedUser={selectedUser} onUpdate={onUpdate}  />
     </>
   );

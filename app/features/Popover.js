@@ -12,7 +12,7 @@ import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import { getAvatar, setupCenterPosition } from './utilities';
+import { getAvatar, setupCenterPosition } from '../utils/Utilities';
 
 const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });

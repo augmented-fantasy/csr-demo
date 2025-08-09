@@ -1,12 +1,12 @@
 "use client"
 
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import CustomersTable from './customers-table';
-import { listUsers, createUser, updateUser, deleteUser } from "./utilities";
+import CustomersTable from './features/CustomersTable';
+import { listUsers, createUser, updateUser, deleteUser } from "./utils/Utilities";
 
  const App = () => {
   const [open, setOpen] = useState(false);
@@ -20,10 +20,6 @@ import { listUsers, createUser, updateUser, deleteUser } from "./utilities";
       return;
     }
     setOpen(false);
-  }, []);
-
-  const handleToggle = useCallback(() => {
-    setOpen((prevState) => !prevState);
   }, []);
 
   const [users, setUsers] = useState([]);
