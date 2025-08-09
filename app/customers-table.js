@@ -48,15 +48,18 @@ const CustomersTable = ({
           <TableBody>
             {rows.map((row) => {
               return (
-                <TableRow hover key={row?.id}>
+                <TableRow hover key={row?.id} onClick={() => {
+                  setSelectedUser(row)
+                  handleOpen()
+                }}>
                   <TableCell>
-                    <Button size="small" color="primary" onClick={() => {
+                    <Button disabled={open ? true : false} size="small" color={"primary"} onClick={() => {
                       setSelectedUser(row)
                       handleOpen()
                     }}>
                       Update
                     </Button>
-                    <Button size="small" color="error" onClick={() => onDelete?.(row, setUsers)}>
+                    <Button disabled={open ? true : false} size="small" color={"error"} onClick={() => onDelete?.(row, setUsers)}>
                       Delete
                     </Button>
                   </TableCell>

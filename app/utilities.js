@@ -6,6 +6,10 @@ import { subscriptionTypes } from "./constants";
 Amplify.configure(outputs);
 const client = generateClient()
 
+export const getAvatar = () => {
+  return (Math.floor(Math.random() * 11) + 1).toString();
+}
+
 export const mapSubscriptions = (membership) => {
   let subscription = null;
   switch (membership) {
@@ -28,11 +32,12 @@ export const listUsers = (setUsers) => {
     client.models.User.observeQuery().subscribe({
       next: (data) => setUsers([...data.items]),
     });
-  }
+}
 
 export const createUser = () => {
   client.models.User.create({
     name: window.prompt("Enter new user name"),
+    avatar: getAvatar()
   });
 }
 
@@ -55,4 +60,16 @@ export const deleteUser = async (user, setUsers) => {
   if (!window.confirm(`Delete user ${user.name}?`)) return;
   await client.models.User.delete({ id: user.id });
   listUsers(setUsers);
+}
+
+export const setupCenterPosition = (setCenterPosition) => {
+  function handleResize() {
+    setCenterPosition({
+      top: window.innerHeight / 2 - 275,
+      left: window.innerWidth / 2 - 450,
+    });
+  }
+  handleResize();
+  window.addEventListener('resize', handleResize);
+  return () => window.removeEventListener('resize', handleResize);
 }

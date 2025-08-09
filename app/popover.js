@@ -12,35 +12,26 @@ import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import Select from '@mui/material/Select';
+import { getAvatar, setupCenterPosition } from './utilities';
 
-const UserPopover = ({ onClose, open, signOut, selectedUser, onUpdate }) => {
+const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
 
   useEffect(() => {
-    function updateCenter() {
-      setCenterPosition({
-        top: window.innerHeight / 2 - 200,
-        left: window.innerWidth / 2 - 450,
-      });
-    }
-    updateCenter();
-    window.addEventListener('resize', updateCenter);
-    return () => window.removeEventListener('resize', updateCenter);
+    setupCenterPosition(setCenterPosition);
   }, []);
 
   return (
     <>
       <Popover
-        // sx={{ pointerEvents: 'none' }}
-        // disableEnforceFocus={true}
         anchorReference="anchorPosition"
         anchorPosition={centerPosition}
         onClose={onClose}
         open={open}
-        slotProps={{ paper: { sx: { width: '900px', height: '465px'} } }}
+        slotProps={{ paper: { sx: { width: '900px', height: '550px'} } }}
       >
         <Stack direction="row" spacing={3} sx={{ m: 4 }}>
+        {/* Avatar Container */}
           <Stack sx={{ m: 4, flex: 1 }}>
             <Card>
               <CardContent>
@@ -50,7 +41,7 @@ const UserPopover = ({ onClose, open, signOut, selectedUser, onUpdate }) => {
                     alignItems: 'center'
                   }}>
                   <div>
-                    <Avatar src={`/assets/avatar-${selectedUser?.avatar || "8"}.png`} sx={{ height: '80px', width: '80px' }} />
+                    <Avatar src={`/assets/avatar-${selectedUser?.avatar || getAvatar()}.png`} sx={{ height: '80px', width: '80px' }} />
                   </div>
                   <Stack spacing={1} sx={{ textAlign: 'center' }}>
                     <Typography variant="h5">{selectedUser?.name}</Typography>
@@ -58,16 +49,17 @@ const UserPopover = ({ onClose, open, signOut, selectedUser, onUpdate }) => {
                       {selectedUser?.street}
                     </Typography>
                     <Typography color="text.secondary" variant="body2">
-                      {selectedUser?.city} {selectedUser?.country}
+                      {selectedUser?.city} {selectedUser?.state} {selectedUser?.country}
                     </Typography>
                   </Stack>
                 </Stack>
               </CardContent>
             </Card>
           </Stack>
+        {/* Input Container */}
           <Stack sx={{ flex: 2 }}>
             <Card>
-              <CardHeader subheader="The information can be edited" title="Profile" />
+              <CardHeader subheader="This information can be edited." title="Customer Profile" />
               <Divider />
               <CardContent>
                 <Grid container spacing={3}>
@@ -95,6 +87,13 @@ const UserPopover = ({ onClose, open, signOut, selectedUser, onUpdate }) => {
 
                   <Grid>
                     <FormControl fullWidth>
+                      <InputLabel>City</InputLabel>
+                      <OutlinedInput defaultValue={selectedUser?.city} label="City" name="city" />
+                    </FormControl>
+                  </Grid>
+
+                  <Grid>
+                    <FormControl fullWidth>
                       <InputLabel>State</InputLabel>
                       <OutlinedInput defaultValue={selectedUser?.state} label="State" name="state" />
                     </FormControl>
@@ -114,28 +113,12 @@ const UserPopover = ({ onClose, open, signOut, selectedUser, onUpdate }) => {
                     </FormControl>
                   </Grid>
 
-                  {/* <Grid
-                    item
-                    md={6}
-                    xs={12}
-                  >
-                    <FormControl fullWidth>
-                      <InputLabel>State</InputLabel>
-                      <Select defaultValue={selectedUser?.state} label="State" name="state" variant="outlined">
-                        {states.map((option) => (
-                          <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Grid> */}
-
                 </Grid>
               </CardContent>
             </Card>
           </Stack>
         </Stack>
+        {/* Button Container */}
         <Stack direction="row" justifyContent="space-between" sx={{ m: 2 }}>
           <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
             Cancel
