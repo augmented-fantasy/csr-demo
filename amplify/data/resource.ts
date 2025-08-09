@@ -7,27 +7,19 @@ const schema = a.schema({
     email: a.email(),
     phone: a.phone(),
     avatar: a.integer(),
-    vehicles: a.string().array(),
     address: a.customType({
       street: a.string(),
       city: a.string(),
       state: a.string(),
       country: a.string()
+    }),
+    purchases: a.customType({
+      vehicle: a.string().array(),
+      date: a.date().array(),
+      product: a.string().array()
     })
   })
     .authorization((allow) => [allow.publicApiKey()]),
-  Purchases: a.model({
-    id: a.id().required(),
-    user: a.ref('User'),
-    dates: a.date().array(),
-    type: a.enum(["MONTHLY", "PUNCH", "NONE"])
-  })
-    .authorization((allow) => [allow.publicApiKey()]),
-  Products: a.model({
-    id: a.id().required(),
-    purchases: a.ref('Purchases'),
-  })
-    .authorization((allow) => [allow.publicApiKey()])
 });
 
 export type Schema = ClientSchema<typeof schema>;
