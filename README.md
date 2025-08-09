@@ -6,7 +6,7 @@
 - **CDN**: Hosted on AWS edge server content distribution network.
 - **WAF**: Web application firewall enabled.
 - **SSL**: Secure socket layer encrypts data in transit.
-- **IaC**: AWS backend fully captured as Infrastructure-as-Code within the `/amplify` folder.
+- **IaC**: AWS backend fully captured as Infrastructure-as-Code within the `/amplify` folder and `amplify_outputs.json` file.
 - **Auth**: Amazon Cognito user pool integration for secure user authentication.
 - **DB**: Real-time NoSQL database powered by Amazon DynamoDB.
 - **API**: Ready-to-use GraphQL endpoint with AWS AppSync.

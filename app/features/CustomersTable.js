@@ -1,5 +1,5 @@
 'use client';
-
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -22,6 +22,13 @@ const CustomersTable = ({
   setSelectedUser,
   handleOpen
 }) => {
+
+  const [sortModel, setSortModel] = useState([
+      {
+        field: 'yourColumnField',
+        sort: 'asc'
+      },
+    ]);
 
   const columns = [
     { field: 'actions',
@@ -107,6 +114,8 @@ const CustomersTable = ({
             outline: 'none',
           },
         }}
+          sortModel={sortModel}
+          onSortModelChange={setSortModel}
           showToolbar
           disableColumnFilter
           rows={rows}
