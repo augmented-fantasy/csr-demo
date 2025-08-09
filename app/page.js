@@ -36,8 +36,7 @@ import { GetUsers, SubscribeToUserChange } from "./utils/Utilities";
 
   useEffect(() => {
     if (subscriptionData && subscriptionData.onCreateUser) {
-      // setUsers((prevUsers) => [...prevUsers, subscriptionData.onCreateUser]);
-      console.log(subscriptionData.onCreateUser);
+      setUsers((prevUsers) => [...prevUsers, subscriptionData.onCreateUser]);
     }
   }, [subscriptionData]);
 

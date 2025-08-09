@@ -1,5 +1,5 @@
-import React from 'react';
 import Providers from './auth/Providers';
+import "@aws-amplify/ui-react/styles.css";
 
 export const metadata = {
   title: "AMP CSR Portal",

@@ -2,9 +2,9 @@ import { generateClient } from "aws-amplify/data";
 import { Amplify } from 'aws-amplify';
 import { useQuery, useSubscription, gql } from '@apollo/client';
 import outputs from '@/amplify_outputs.json';
-import { GET_USERS, ON_CREATE_USER } from "./Constants";
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import { GET_USERS, ON_CREATE_USER } from "./Constants";
 
 Amplify.configure(outputs);
 const client = generateClient()
