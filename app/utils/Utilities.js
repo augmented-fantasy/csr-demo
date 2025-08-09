@@ -30,7 +30,8 @@ export const mapSubscriptions = (membership) => {
       return null;
   }
   return (
-    <Chip color={color} label={subscription} size="small" />
+    <Chip sx={{ width: '135px'}}
+            color={color} label={subscription} size="small" />
   )
 }
 
