@@ -1,21 +1,19 @@
-import AuthenticatorWrapper from "./auth/AuthenticatorWrapper";
-import "@aws-amplify/ui-react/styles.css";
+import React from 'react';
+import Providers from './auth/Providers';
 
 export const metadata = {
   title: "AMP CSR Portal",
   description: "Demo application for AMP CSR Portal",
 };
 
-const RootLayout = ({ children }) => {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <AuthenticatorWrapper>
+        <Providers>
           {children}
-        </AuthenticatorWrapper>
+        </Providers>
       </body>
     </html>
   );
 }
-
-export default RootLayout
