@@ -14,10 +14,10 @@ const schema = a.schema({
       subscriptions: a.enum(["MONTHLY", "PUNCH", "NONE"]),
       purchaseHistory: a.string().array(),
       Location: a.customType({
-        street: a.string().default('1500 Dry Run Creek'),
-        city: a.string().default('Los Angeles'),
-        state: a.string().default('CA'),
-        country: a.string().default('US')
+        street: a.string(),
+        city: a.string(),
+        state: a.string(),
+        country: a.string()
       }),
     })
     .authorization((allow) => [allow.publicApiKey()]),
