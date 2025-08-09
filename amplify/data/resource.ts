@@ -14,18 +14,20 @@ const schema = a.schema({
       state: a.string(),
       country: a.string()
     })
-  }),
+  })
+    .authorization((allow) => [allow.publicApiKey()]),
   Purchases: a.model({
     id: a.id().required(),
     user: a.ref('User'),
     dates: a.date().array(),
     type: a.enum(["MONTHLY", "PUNCH", "NONE"])
-  }),
+  })
+    .authorization((allow) => [allow.publicApiKey()]),
   Products: a.model({
     id: a.id().required(),
     purchases: a.ref('Purchases'),
   })
-    .authorization((allow) => [allow.publicApiKey()]),
+    .authorization((allow) => [allow.publicApiKey()])
 });
 
 export type Schema = ClientSchema<typeof schema>;
