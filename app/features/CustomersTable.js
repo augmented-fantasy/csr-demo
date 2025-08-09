@@ -7,7 +7,6 @@ import Stack from '@mui/material/Stack';
 import { DataGrid, gridClasses } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { mapSubscriptions } from "../utils/Utilities";
 import UserPopover from './Popover';
 
 const CustomersTable = ({ 
@@ -62,7 +61,7 @@ const CustomersTable = ({
     { field: 'email', headerName: 'Email', width: 250, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : '' },
     { field: 'location',
       headerName: 'Location',
-      width: 350,
+      width: 260,
       renderCell: (params) => (
         <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
           {`${params.row.address?.street || ''} ${params.row.address?.city || ''} ${params.row.address?.state || ''}, ${params.row.address?.country || ''}`}
@@ -73,20 +72,7 @@ const CustomersTable = ({
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
-    { field: 'phone', headerName: 'Phone', width: 140, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''},
-    { field: 'subscriptions',
-      headerName: 'Subscriptions',
-      width: 160,
-      renderCell: (params) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-          {mapSubscriptions(params.row.subscriptions)}
-        </Box>
-      ),
-      sortable: false,
-      filterable: false,
-      disableColumnMenu: true,
-      cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
-    }
+    { field: 'phone', headerName: 'Phone', width: 140, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''}
   ];
 
   return (
@@ -97,7 +83,7 @@ const CustomersTable = ({
           opacity: 0.7;
         }
       `}</style>
-      <Box sx={{ height: '100%', width: '1325px' }}>
+      <Box sx={{ height: '100%', width: '1040px' }}>
         <DataGrid
         sx={{
           [`& .${gridClasses.cell}:focus`]: {

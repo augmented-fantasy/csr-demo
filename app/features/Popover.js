@@ -33,7 +33,7 @@ const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
         <Stack direction="row" spacing={3} sx={{ m: 4 }}>
         {/* Avatar Container */}
           <Stack sx={{ m: 4, flex: 1}}>
-            <Card sx={{ height: '100%' }}>
+            <Card sx={{ height: '100%', width: '310px' }}>
               <CardContent>
                 <Stack 
                   spacing={2} 
@@ -46,17 +46,17 @@ const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
                   <Stack spacing={1} sx={{ textAlign: 'center' }}>
                     <Typography variant="h5">{selectedUser?.name}</Typography>
                     <Typography color="text.secondary" variant="body2">
-                      {selectedUser?.street}
+                      {selectedUser?.address?.street}
                     </Typography>
                     <Typography color="text.secondary" variant="body2">
-                      {selectedUser?.city} {selectedUser?.state} {selectedUser?.country}
+                      {selectedUser?.address?.city} {selectedUser?.address?.state} {selectedUser?.address?.country}
                     </Typography>
                   </Stack>
                 </Stack>
-                <Stack direction="column" justifyContent="space-between" sx={{ pt: '50px' }}>
-                <Typography variant="h7">Purchase History</Typography>
-                {mapPurchases(selectedUser?.purchaseHistory, selectedUser?.subscriptions)}
-              </Stack>
+                <Stack direction="column" justifyContent="space-between" sx={{ pt: '30px' }}>
+                  <Typography sx={{ pb: '10px' }}variant="h6">Purchase History</Typography>
+                  {mapSubscriptions(selectedUser?.purchases)}
+                </Stack>
               </CardContent>
             </Card>
           </Stack>
@@ -115,13 +115,6 @@ const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
                       <InputLabel>Phone number</InputLabel>
                       <OutlinedInput defaultValue={selectedUser?.phone} label="Phone number" name="phone" type="tel" />
                     </FormControl>
-                  </Grid>
-
-                  <Grid>
-                    <Stack direction="column" justifyContent="space-between" >
-                      <Typography variant="caption">Subscriptions</Typography>
-                      {mapSubscriptions(selectedUser?.subscriptions)}
-                    </Stack>
                   </Grid>
 
                 </Grid>

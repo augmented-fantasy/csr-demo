@@ -4,6 +4,7 @@ import outputs from '@/amplify_outputs.json';
 import { subscriptionTypes } from "./Constants";
 import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 Amplify.configure(outputs);
 const client = generateClient()
@@ -16,37 +17,15 @@ export const getAvatar = () => {
   return (Math.floor(Math.random() * 11) + 1).toString();
 }
 
-export const mapPurchases = (purchases, subscriptions) => {
-  return (
-    <div>
-      {purchases?.map((purchase, idx) => (
-        <Button onClick={() => onPurchaseClick(subscriptions)} key={idx}>{purchase}</Button>
-      ))}
-    </div>
-  );
-}
-
-export const mapSubscriptions = (membership) => {
-  let subscription = null;
-  let color = 'default';
-  switch (membership) {
-    case 'MONTHLY':
-      subscription = subscriptionTypes['MONTHLY'];
-      color = 'primary';
-      break;
-    case 'PUNCH':
-      subscription = subscriptionTypes['PUNCH'];
-      color = 'secondary';
-      break;
-    case 'NONE':
-      subscription = subscriptionTypes['NONE'];
-      break;
-    default:
-      return null;
-  }
-  return (
-    <Chip sx={{ width: '135px'}} color={color} label={subscription} size="small" />
-  )
+export const mapSubscriptions = (purchases) => {
+  let color = 'primary';
+  const items = purchases?.vehicle?.map((purchase, idx) => (
+    <Stack key={idx} direction="row" justifyContent="space-between">
+      <b>{purchases.date[0]}</b> {purchases.vehicle[0]}
+      <Chip sx={{ width: '100px', mb: '5px' }} color={color} label={purchases.product[0]} size="small"/>
+    </Stack>
+  ))
+  return items
 }
 
 export const listUsers = (setUsers) => {

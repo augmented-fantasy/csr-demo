@@ -16,6 +16,7 @@ const schema = a.schema({
     purchases: a.customType({
       vehicle: a.string().array(),
       date: a.date().array(),
+      subscription: a.string().array(),
       product: a.string().array()
     })
   })
