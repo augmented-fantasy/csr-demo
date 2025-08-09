@@ -36,7 +36,7 @@ const CustomersTable = ({
       sortable: false,
       filterable: false,
       disableColumnMenu: true,
-      cellClassName: 'MuiDataGrid-cell--disabled',
+      cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
     { field: 'name',
       headerName: 'Name',
@@ -50,9 +50,9 @@ const CustomersTable = ({
       sortable: true,
       filterable: false,
       disableColumnMenu: true,
-      cellClassName: 'MuiDataGrid-cell--disabled',
+      cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
-    { field: 'email', headerName: 'Email', width: 250, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: 'MuiDataGrid-cell--disabled', },
+    { field: 'email', headerName: 'Email', width: 250, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : '' },
     { field: 'location',
       headerName: 'Location',
       width: 350,
@@ -64,9 +64,9 @@ const CustomersTable = ({
       sortable: false,
       filterable: false,
       disableColumnMenu: true,
-      cellClassName: 'MuiDataGrid-cell--disabled',
+      cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
-    { field: 'phone', headerName: 'Phone', width: 140, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: 'MuiDataGrid-cell--disabled', },
+    { field: 'phone', headerName: 'Phone', width: 140, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''},
     { field: 'subscriptions',
       headerName: 'Subscriptions',
       width: 160,
@@ -78,13 +78,19 @@ const CustomersTable = ({
       sortable: false,
       filterable: false,
       disableColumnMenu: true,
-      cellClassName: 'MuiDataGrid-cell--disabled',
+      cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
-    { field: 'purchaseHistory', headerName: 'Purchase History', width: 180, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: 'MuiDataGrid-cell--disabled', },
+    { field: 'purchaseHistory', headerName: 'Purchase History', width: 180, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : '' }
   ];
 
   return (
-    <>
+    <><style>{`
+        .MuiDataGrid-cell--disabled {
+          pointer-events: none !important;
+          color: #bdbdbd !important;
+          opacity: 0.7;
+        }
+      `}</style>
       <Box sx={{ height: '100%', width: '1500px' }}>
         <DataGrid
         sx={{
