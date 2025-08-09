@@ -6,10 +6,16 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import CustomersTable from './features/CustomersTable';
-import { listUsers, createUser, updateUser, deleteUser } from "./utils/Utilities";
+import { createUser, updateUser, deleteUser } from "./utils/Utilities";
+import { GetUsers, SubscribeToUserChange } from "./utils/Utilities";
 
  const App = () => {
   const [open, setOpen] = useState(false);
+  const userList = GetUsers();
+  const { data: subscriptionData } = SubscribeToUserChange();
+  const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const { signOut } = useAuthenticator((context) => [context.user, context.signOut]);
 
   const handleOpen = useCallback(() => {
     setOpen(true);
@@ -22,13 +28,18 @@ import { listUsers, createUser, updateUser, deleteUser } from "./utils/Utilities
     setOpen(false);
   }, []);
 
-  const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const { signOut } = useAuthenticator((context) => [context.user, context.signOut]);
+  useEffect(() => {
+    if (userList) {
+      setUsers(userList.listUsers.items);
+    }
+  }, [userList]);
 
   useEffect(() => {
-    listUsers(setUsers);
-  }, []);
+    if (subscriptionData && subscriptionData.onCreateUser) {
+      // setUsers((prevUsers) => [...prevUsers, subscriptionData.onCreateUser]);
+      console.log(subscriptionData.onCreateUser);
+    }
+  }, [subscriptionData]);
 
   return (
     <main>

@@ -1,13 +1,22 @@
 import { generateClient } from "aws-amplify/data";
 import { Amplify } from 'aws-amplify';
+import { useQuery, useSubscription, gql } from '@apollo/client';
 import outputs from '@/amplify_outputs.json';
-import { subscriptionTypes } from "./Constants";
+import { GET_USERS, ON_CREATE_USER } from "./Constants";
 import Chip from '@mui/material/Chip';
-import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
 Amplify.configure(outputs);
 const client = generateClient()
+
+export const GetUsers = () => {
+  const { data } = useQuery(GET_USERS);
+  return (data);
+}
+
+export const SubscribeToUserChange = () => {
+  return useSubscription(ON_CREATE_USER);
+}
 
 const onPurchaseClick = (subscriptions) => {
   alert("You clicked on: " + subscriptions);
@@ -89,3 +98,27 @@ export const setupCenterPosition = (setCenterPosition) => {
   window.addEventListener('resize', handleResize);
   return () => window.removeEventListener('resize', handleResize);
 }
+
+export const ADD_NEW_USER = gql`
+  mutation AddNewUser($input: CreateUserInput!) {
+    createUser(input: $input) {
+      address {
+        city
+        country
+        state
+        street
+      }
+      avatar
+      email
+      id
+      name
+      phone
+      purchases {
+        date
+        product
+        subscription
+        vehicle
+      }
+    }
+  }
+`;
