@@ -12,7 +12,7 @@ import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import { getAvatar, setupCenterPosition } from '../utils/Utilities';
+import { getAvatar, setupCenterPosition, mapSubscriptions } from '../utils/Utilities';
 
 const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
@@ -111,6 +111,13 @@ const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
                       <InputLabel>Phone number</InputLabel>
                       <OutlinedInput defaultValue={selectedUser?.phone} label="Phone number" name="phone" type="tel" />
                     </FormControl>
+                  </Grid>
+
+                  <Grid>
+                    <Stack direction="column" justifyContent="space-between" >
+                      <Typography variant="caption">Subscriptions</Typography>
+                      {mapSubscriptions(selectedUser?.subscriptions)}
+                    </Stack>
                   </Grid>
 
                 </Grid>

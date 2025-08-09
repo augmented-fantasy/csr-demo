@@ -2,6 +2,7 @@ import { generateClient } from "aws-amplify/data";
 import { Amplify } from 'aws-amplify';
 import outputs from '@/amplify_outputs.json';
 import { subscriptionTypes } from "./Constants";
+import Chip from '@mui/material/Chip';
 
 Amplify.configure(outputs);
 const client = generateClient()
@@ -12,12 +13,15 @@ export const getAvatar = () => {
 
 export const mapSubscriptions = (membership) => {
   let subscription = null;
+  let color = 'default';
   switch (membership) {
     case 'MONTHLY':
       subscription = subscriptionTypes['MONTHLY'];
+      color = 'primary';
       break;
     case 'PUNCH':
       subscription = subscriptionTypes['PUNCH'];
+      color = 'secondary';
       break;
     case 'NONE':
       subscription = subscriptionTypes['NONE'];
@@ -25,7 +29,9 @@ export const mapSubscriptions = (membership) => {
     default:
       return null;
   }
-  return subscription;
+  return (
+    <Chip color={color} label={subscription} size="small" />
+  )
 }
 
 export const listUsers = (setUsers) => {

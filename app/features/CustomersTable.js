@@ -4,7 +4,7 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, gridClasses } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { mapSubscriptions } from "../utils/Utilities";
@@ -36,6 +36,7 @@ const CustomersTable = ({
       sortable: false,
       filterable: false,
       disableColumnMenu: true,
+      cellClassName: 'MuiDataGrid-cell--disabled',
     },
     { field: 'name',
       headerName: 'Name',
@@ -49,8 +50,9 @@ const CustomersTable = ({
       sortable: true,
       filterable: false,
       disableColumnMenu: true,
+      cellClassName: 'MuiDataGrid-cell--disabled',
     },
-    { field: 'email', headerName: 'Email', width: 250, sortable: false, filterable: false, disableColumnMenu: true, },
+    { field: 'email', headerName: 'Email', width: 250, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: 'MuiDataGrid-cell--disabled', },
     { field: 'location',
       headerName: 'Location',
       width: 350,
@@ -62,8 +64,9 @@ const CustomersTable = ({
       sortable: false,
       filterable: false,
       disableColumnMenu: true,
+      cellClassName: 'MuiDataGrid-cell--disabled',
     },
-    { field: 'phone', headerName: 'Phone', width: 140, sortable: false, filterable: false, disableColumnMenu: true, },
+    { field: 'phone', headerName: 'Phone', width: 140, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: 'MuiDataGrid-cell--disabled', },
     { field: 'subscriptions',
       headerName: 'Subscriptions',
       width: 160,
@@ -75,14 +78,29 @@ const CustomersTable = ({
       sortable: false,
       filterable: false,
       disableColumnMenu: true,
+      cellClassName: 'MuiDataGrid-cell--disabled',
     },
-    { field: 'purchaseHistory', headerName: 'Purchase History', width: 180, sortable: false, filterable: false, disableColumnMenu: true, },
+    { field: 'purchaseHistory', headerName: 'Purchase History', width: 180, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: 'MuiDataGrid-cell--disabled', },
   ];
 
   return (
     <>
       <Box sx={{ height: '100%', width: '1500px' }}>
         <DataGrid
+        sx={{
+          [`& .${gridClasses.cell}:focus`]: {
+            outline: 'none',
+          },
+          [`& .${gridClasses.cell}:focus-within`]: {
+            outline: 'none',
+          },
+          [`& .${gridClasses.columnHeader}:focus`]: {
+            outline: 'none',
+          },
+          [`& .${gridClasses.columnHeader}:focus-within`]: {
+            outline: 'none',
+          },
+        }}
           showToolbar
           disableColumnFilter
           rows={rows}
@@ -90,6 +108,7 @@ const CustomersTable = ({
           pageSize={10}
           rowsPerPageOptions={[10, 25, 50]}
           disableSelectionOnClick
+          disableRowSelectionOnClick
           onRowClick={(params) => {
             setSelectedUser(params.row);
             handleOpen();
