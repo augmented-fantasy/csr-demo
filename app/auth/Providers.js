@@ -12,13 +12,14 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { createClient } from 'graphql-ws';
 
+const graphqlEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT;
+const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+
 const getWebSocketUrl = (graphqlEndpoint) => {
   const url = new URL(graphqlEndpoint);
   return `wss://${url.hostname.replace('appsync-api', 'appsync-realtime-api')}/graphql`;
 };
 
-const graphqlEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT;
-const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 const websocketUrl = getWebSocketUrl(graphqlEndpoint);
 
 const httpLink = new HttpLink({

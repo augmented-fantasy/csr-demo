@@ -30,7 +30,6 @@ export const ON_CREATE_USER = gql`
   }
 `;
 
-// GraphQL Queries
 export const GET_USERS = gql`
   query GetUsers {
     listUsers {
@@ -55,4 +54,27 @@ export const GET_USERS = gql`
             }
         }
     }
+}`;
+
+export const ADD_NEW_USER = gql`
+  mutation AddUser($input: CreateUserInput!) {
+    createUser(input: $input) {
+      address {
+        city
+        country
+        state
+      street
+    }
+    avatar
+    email
+    id
+    name
+    phone
+    purchases {
+      date
+      product
+      subscription
+      vehicle
+    }
+  }
 }`;

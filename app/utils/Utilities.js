@@ -1,6 +1,6 @@
 import { generateClient } from "aws-amplify/data";
 import { Amplify } from 'aws-amplify';
-import { useQuery, useSubscription, gql } from '@apollo/client';
+import { useQuery, useSubscription } from '@apollo/client';
 import outputs from '@/amplify_outputs.json';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
@@ -59,12 +59,7 @@ export const listUsers = (setUsers) => {
     });
 }
 
-export const createUser = () => {
-  client.models.User.create({
-    name: window.prompt("Enter new user name"),
-    avatar: getAvatar()
-  });
-}
+// Remove createUser hook usage from here. Use ADD_NEW_USER with useMutation in your component.
 
 export const updateUser = async (updatedUser, setUsers) => {
   await client.models.User.update({
@@ -99,26 +94,24 @@ export const setupCenterPosition = (setCenterPosition) => {
   return () => window.removeEventListener('resize', handleResize);
 }
 
-export const ADD_NEW_USER = gql`
-  mutation AddNewUser($input: CreateUserInput!) {
-    createUser(input: $input) {
-      address {
-        city
-        country
-        state
-        street
-      }
-      avatar
-      email
-      id
-      name
-      phone
-      purchases {
-        date
-        product
-        subscription
-        vehicle
-      }
+export const createUser = async (setUsers) => {
+  const name = window.prompt("Enter new user name");
+  if (!name) return;
+  try {
+    const { data } = await addNewUser({
+      variables: {
+        input: {
+          name,
+          avatar: Math.floor(Math.random() * 11) + 1,
+          // TODO add other required fields as needed
+        },
+      },
+    });
+    if (data?.createUser) {
+      setUsers((prev) => [...prev, data.createUser]);
     }
+  } catch (err) {
+    alert('Failed to add user');
+    console.error(err);
   }
-`;
+}

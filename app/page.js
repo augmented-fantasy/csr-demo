@@ -6,15 +6,18 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import CustomersTable from './features/CustomersTable';
-import { createUser, updateUser, deleteUser } from "./utils/Utilities";
+import { updateUser, deleteUser } from "./utils/Utilities";
 import { GetUsers, SubscribeToUserChange } from "./utils/Utilities";
+import { ADD_NEW_USER } from "./utils/Constants";
+import { useMutation } from '@apollo/client';
 
  const App = () => {
   const [open, setOpen] = useState(false);
-  const userList = GetUsers();
-  const { data: subscriptionData } = SubscribeToUserChange();
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
+  const userList = GetUsers();
+  const [addNewUser] = useMutation(ADD_NEW_USER);
+  /* const { data: test } = SubscribeToUserChange(); */
   const { signOut } = useAuthenticator((context) => [context.user, context.signOut]);
 
   const handleOpen = useCallback(() => {
@@ -34,11 +37,12 @@ import { GetUsers, SubscribeToUserChange } from "./utils/Utilities";
     }
   }, [userList]);
 
-  useEffect(() => {
-    if (subscriptionData && subscriptionData.onCreateUser) {
-      setUsers((prevUsers) => [...prevUsers, subscriptionData.onCreateUser]);
+  /* useEffect(() => {
+    if (test && test.data.createUser) {
+      setUsers((prevUsers) => [...prevUsers, test.data.createUser]);
+      console.log(test);
     }
-  }, [subscriptionData]);
+  }, [test]); */
 
   return (
     <main>
@@ -55,7 +59,30 @@ import { GetUsers, SubscribeToUserChange } from "./utils/Utilities";
           </Stack>
         </Stack>
         <div>
-          <Button variant="contained" onClick={createUser}>
+          <Button
+            variant="contained"
+            onClick={async () => {
+              const name = window.prompt("Enter new user name");
+              if (!name) return;
+              try {
+                const { data } = await addNewUser({
+                  variables: {
+                    input: {
+                      name,
+                      avatar: Math.floor(Math.random() * 11) + 1,
+                      // Add other required fields as needed
+                    },
+                  },
+                });
+                if (data?.createUser) {
+                  setUsers((prev) => [...prev, data.createUser]);
+                }
+              } catch (err) {
+                alert('Failed to add user');
+                console.error(err);
+              }
+            }}
+          >
             Add User
           </Button>
         </div>
