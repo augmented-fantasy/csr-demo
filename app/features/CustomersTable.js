@@ -92,20 +92,20 @@ const CustomersTable = ({
       `}</style>
       <Box sx={{ height: '100%', width: '1200px' }}>
         <DataGrid
-        sx={{
-          [`& .${gridClasses.cell}:focus`]: {
-            outline: 'none',
-          },
-          [`& .${gridClasses.cell}:focus-within`]: {
-            outline: 'none',
-          },
-          [`& .${gridClasses.columnHeader}:focus`]: {
-            outline: 'none',
-          },
-          [`& .${gridClasses.columnHeader}:focus-within`]: {
-            outline: 'none',
-          },
-        }}
+          sx={{
+            [`& .${gridClasses.cell}:focus`]: {
+              outline: 'none',
+            },
+            [`& .${gridClasses.cell}:focus-within`]: {
+              outline: 'none',
+            },
+            [`& .${gridClasses.columnHeader}:focus`]: {
+              outline: 'none',
+            },
+            [`& .${gridClasses.columnHeader}:focus-within`]: {
+              outline: 'none',
+            },
+          }}
           showToolbar
           disableColumnFilter
           rows={rows}
@@ -122,7 +122,12 @@ const CustomersTable = ({
         />
       </Box>
       <Divider />
-      <UserPopover onClose={onClose} open={open} signOut={signOut} selectedUser={selectedUser} updateUser={updateUser} />
+      <UserPopover 
+        onClose={onClose} 
+        open={open} 
+        signOut={signOut} 
+        selectedUser={selectedUser} 
+        updateUser={updateUser} />
     </>
   );
 }

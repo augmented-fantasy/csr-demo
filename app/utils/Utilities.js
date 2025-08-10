@@ -102,11 +102,11 @@ export const deleteUser = async (user, setUsers) => {
   await client.models.User.delete({ id: user.id });
 }
 
-export const setupCenterPosition = (setCenterPosition) => {
+export const setupCenterPosition = (setCenterPosition, width, height) => {
   const handleResize = () => {
     setCenterPosition({
-      top: window.innerHeight / 2 - 275,
-      left: window.innerWidth / 2 - 450,
+      top: window.innerHeight / 2 - height,
+      left: window.innerWidth / 2 - width
     });
   }
   handleResize();
@@ -114,22 +114,29 @@ export const setupCenterPosition = (setCenterPosition) => {
   return () => window.removeEventListener('resize', handleResize);
 }
 
-export const createUser = async (addNewUser, setUsers) => {
-  const name = window.prompt("Enter new user name");
-  if (!name) return;
+export const createUser = async (addNewUser, formValues, close) => {
+  if (!formValues?.name) {
+    alert('Name is required');
+    return;
+  }
   try {
-    const { data } = await addNewUser({
+    await addNewUser({
       variables: {
         input: {
-          name,
-          avatar: Math.floor(Math.random() * 11) + 1,
-          // Add other required fields as needed
+          name: formValues.name,
+          avatar: formValues.avatar ? parseInt(formValues.avatar, 10) : Math.floor(Math.random() * 11) + 1,
+          email: formValues.email || undefined,
+          phone: formValues.phone || undefined,
+          address: {
+            street: formValues.street || undefined,
+            city: formValues.city || undefined,
+            state: formValues.state || undefined,
+            country: formValues.country || undefined,
+          }
         },
       },
     });
-    if (data?.createUser) {
-      setUsers(sortData(prev => [...prev, data.createUser]));
-    }
+    close();
   } catch (err) {
     alert('Failed to add user');
     console.error(err);
