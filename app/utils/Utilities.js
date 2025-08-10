@@ -18,10 +18,6 @@ export const SubscribeToUserChange = () => {
   return useSubscription(ON_CREATE_USER);
 }
 
-const onPurchaseClick = (subscriptions) => {
-  alert("You clicked on: " + subscriptions);
-}
-
 export const getAvatar = () => {
   return (Math.floor(Math.random() * 11) + 1).toString();
 }

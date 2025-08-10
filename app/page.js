@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import CustomersTable from './features/CustomersTable';
 import { updateUser, deleteUser } from "./utils/Utilities";
-import { GetUsers, SubscribeToUserChange } from "./utils/Utilities";
+import { GetUsers } from "./utils/Utilities";
 import { ADD_NEW_USER } from "./utils/Constants";
 import { useMutation } from '@apollo/client';
 

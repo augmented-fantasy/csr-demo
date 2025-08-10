@@ -19,7 +19,7 @@
 
 Install dependencies: `npm i`
 
-Copy the `amplify_outputs.json` file to the root folder of your project to connect to existing AWS backend resources.
+Copy the `amplify_outputs.json` and `.env` files to the root folder of your project.
 
 Start the development server: `npm run dev` Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
