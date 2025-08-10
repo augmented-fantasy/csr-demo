@@ -1,21 +1,25 @@
 ## AMP Demo CSR Portal
 
-## Features
-
+### Frontend Features
 - **NEXT**: Next.js React SPA framework.
+- **Live Data**: Websocket subscription for live data updates.
+- **GraphQL**: GraphQL based data queries and mutations.
+- **MUI**: Material Design UI with Emotion CSS-in-JS styling library.
+- **HOC**: AWS Amplify Higher-Order Components for React.
+- **TS**: Full TypeScript support.
+
+### Backend Features
+
 - **CDN**: Hosted on AWS edge server content distribution network.
 - **WAF**: Web application firewall enabled.
 - **SSL**: Secure socket layer encrypts data in transit.
 - **IaC**: AWS backend fully captured as Infrastructure-as-Code within the `/amplify` folder and `amplify_outputs.json` file.
 - **Auth**: Amazon Cognito user pool integration for secure user authentication.
 - **DB**: Real-time NoSQL database powered by Amazon DynamoDB.
-- **API**: Ready-to-use GraphQL endpoint with AWS AppSync.
-- **HOC**: AWS Amplify Higher-Order Components for React.
-- **MUI**: Material Design UI with Emotion as its default CSS-in-JS styling library.
+- **API**: GraphQL endpoint with AWS AppSync.
 - **CICD**: Continuous integration / continuous deployment pipeline connected to GitHub `main` branch.
-- **TS**: Full TypeScript support.
 
-## Getting Started
+### Getting Started
 
 Install dependencies: `npm i`
 

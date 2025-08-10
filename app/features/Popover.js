@@ -13,6 +13,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { getAvatar, setupCenterPosition, mapSubscriptions } from '../utils/Utilities';
+import * as Constants from '../utils/Constants';
 
 const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
@@ -31,7 +32,7 @@ const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
         slotProps={{ paper: { sx: { width: '900px', height: '550px'} } }}
       >
         <Stack direction="row" spacing={3} sx={{ m: 4 }}>
-        {/* Avatar Container */}
+        
           <Stack sx={{ m: 4, flex: 1}}>
             <Card sx={{ height: '100%', width: '310px' }}>
               <CardContent>
@@ -54,13 +55,13 @@ const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
                   </Stack>
                 </Stack>
                 <Stack direction="column" justifyContent="space-between" sx={{ pt: '30px' }}>
-                  <Typography sx={{ pb: '10px' }}variant="h6">Purchase History</Typography>
+                  <Typography sx={{ pb: '10px' }}variant="h6">{Constants.UI_TEXT.PURCHASES}</Typography>
                   {mapSubscriptions(selectedUser?.purchases)}
                 </Stack>
               </CardContent>
             </Card>
           </Stack>
-        {/* Input Container */}
+
           <Stack sx={{ flex: 2 }}>
             <Card>
               <CardHeader subheader="This information can be edited." title="Customer Profile" />
@@ -70,49 +71,49 @@ const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
                   
                   <Grid>
                     <FormControl fullWidth required>
-                      <InputLabel>Name</InputLabel>
+                      <InputLabel>{Constants.UI_TEXT.NAME}</InputLabel>
                       <OutlinedInput defaultValue={selectedUser?.name} label="Name" name="name" />
                     </FormControl>
                   </Grid>
 
                   <Grid>
                     <FormControl fullWidth required>
-                      <InputLabel>Email address</InputLabel>
+                      <InputLabel>{Constants.UI_TEXT.EMAIL}</InputLabel>
                       <OutlinedInput defaultValue={selectedUser?.email} label="Email address" name="email" />
                     </FormControl>
                   </Grid>
 
                   <Grid>
                     <FormControl fullWidth>
-                      <InputLabel>Street Address</InputLabel>
+                      <InputLabel>{Constants.UI_TEXT.ADDRESS}</InputLabel>
                       <OutlinedInput defaultValue={selectedUser?.address?.street} label="Street Address" name="street" />
                     </FormControl>
                   </Grid>
 
                   <Grid>
                     <FormControl fullWidth>
-                      <InputLabel>City</InputLabel>
+                      <InputLabel>{Constants.UI_TEXT.CITY}</InputLabel>
                       <OutlinedInput defaultValue={selectedUser?.address?.city} label="City" name="city" />
                     </FormControl>
                   </Grid>
 
                   <Grid>
                     <FormControl fullWidth>
-                      <InputLabel>State</InputLabel>
+                      <InputLabel>{Constants.UI_TEXT.STATE}</InputLabel>
                       <OutlinedInput defaultValue={selectedUser?.address?.state} label="State" name="state" />
                     </FormControl>
                   </Grid>
 
                   <Grid>
                     <FormControl fullWidth>
-                      <InputLabel>Country</InputLabel>
+                      <InputLabel>{Constants.UI_TEXT.COUNTRY}</InputLabel>
                       <OutlinedInput defaultValue={selectedUser?.address?.country} label="Country" name="country" />
                     </FormControl>
                   </Grid>
 
                   <Grid>
                     <FormControl fullWidth>
-                      <InputLabel>Phone number</InputLabel>
+                      <InputLabel>{Constants.UI_TEXT.PHONE}</InputLabel>
                       <OutlinedInput defaultValue={selectedUser?.phone} label="Phone number" name="phone" type="tel" />
                     </FormControl>
                   </Grid>
@@ -122,13 +123,13 @@ const UserPopover = ({ onClose, open, selectedUser, onUpdate }) => {
             </Card>
           </Stack>
         </Stack>
-        {/* Button Container */}
+        
         <Stack direction="row" justifyContent="space-between" sx={{ m: 2 }}>
           <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
-            Cancel
+            {Constants.BUTTONS.CANCEL}
           </Button>
           <Button variant="contained" onClick={() => onUpdate(selectedUser, setUsers)} sx={{ width: 120 }}>
-            Save
+            {Constants.BUTTONS.SAVE}
           </Button>
         </Stack>
       </Popover>

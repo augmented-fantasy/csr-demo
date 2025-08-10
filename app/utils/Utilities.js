@@ -5,14 +5,20 @@ import outputs from '@/amplify_outputs.json';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import { GET_USERS, ON_CREATE_USER } from "./Constants";
+import {
+  ApolloClient,
+  InMemoryCache,
+  HttpLink,
+  split,
+} from '@apollo/client';
+import { getMainDefinition } from '@apollo/client/utilities';
+import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
+import { createClient } from 'graphql-ws';
 
+const graphqlEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT;
+const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 Amplify.configure(outputs);
 const client = generateClient()
-
-export const GetUsers = () => {
-  const { data } = useQuery(GET_USERS);
-  return (data);
-}
 
 export const SubscribeToUserChange = () => {
   return useSubscription(ON_CREATE_USER);
@@ -49,13 +55,16 @@ export const mapSubscriptions = (purchases) => {
   return items
 }
 
-export const listUsers = (setUsers) => {
-    client.models.User.observeQuery().subscribe({
-      next: (data) => setUsers([...data.items]),
-    });
+export const sortData = (items) => {
+  if (!Array.isArray(items)) return [];
+  return [...items].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 }
 
-// Remove createUser hook usage from here. Use ADD_NEW_USER with useMutation in your component.
+export const listUsers = (setUsers) => {
+    client.models.User.observeQuery().subscribe({
+      next: (data) => setUsers(sortData([...data.items])),
+    });
+}
 
 export const updateUser = async (updatedUser, setUsers) => {
   await client.models.User.update({
@@ -69,13 +78,11 @@ export const updateUser = async (updatedUser, setUsers) => {
     phone: updatedUser?.phone,
     avatar: updatedUser?.avatar
   });
-  listUsers(setUsers);
 }
 
 export const deleteUser = async (user, setUsers) => {
   if (!window.confirm(`Delete user ${user.name}?`)) return;
   await client.models.User.delete({ id: user.id });
-  listUsers(setUsers);
 }
 
 export const setupCenterPosition = (setCenterPosition) => {
@@ -90,7 +97,7 @@ export const setupCenterPosition = (setCenterPosition) => {
   return () => window.removeEventListener('resize', handleResize);
 }
 
-export const createUser = async (setUsers) => {
+export const createUser = async (addNewUser, setUsers) => {
   const name = window.prompt("Enter new user name");
   if (!name) return;
   try {
@@ -99,15 +106,59 @@ export const createUser = async (setUsers) => {
         input: {
           name,
           avatar: Math.floor(Math.random() * 11) + 1,
-          // TODO add other required fields as needed
+          // Add other required fields as needed
         },
       },
     });
     if (data?.createUser) {
-      setUsers((prev) => [...prev, data.createUser]);
+      setUsers(sortData(prev => [...prev, data.createUser]));
     }
   } catch (err) {
     alert('Failed to add user');
     console.error(err);
   }
 }
+
+export const getWebSocketUrl = (graphqlEndpoint) => {
+  const url = new URL(graphqlEndpoint);
+  return `wss://${url.hostname.replace('appsync-api', 'appsync-realtime-api')}/graphql`;
+};
+
+const websocketUrl = getWebSocketUrl(graphqlEndpoint);
+
+const httpLink = new HttpLink({
+  uri: graphqlEndpoint,
+  headers: {
+    'x-api-key': apiKey,
+  },
+});
+
+const wsLink = new GraphQLWsLink(
+  createClient({
+    uri: websocketUrl,
+    connectionParams: {
+      'x-api-key': apiKey,
+    },
+  })
+);
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink
+);
+
+export const wsClient = new ApolloClient({
+  uri: process.env.NEXT_PUBLIC_API_ENDPOINT,
+  link: splitLink,
+  cache: new InMemoryCache(),
+  headers: {
+    'x-api-key': process.env.NEXT_PUBLIC_API_KEY,
+  }
+});

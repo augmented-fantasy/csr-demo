@@ -8,6 +8,7 @@ import { DataGrid, gridClasses } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import UserPopover from './Popover';
+import * as Constants from '../utils/Constants';
 
 const CustomersTable = ({ 
   rows = [], 
@@ -22,19 +23,14 @@ const CustomersTable = ({
   handleOpen
 }) => {
 
-  const [sortModel, setSortModel] = useState([{
-    field: 'name',
-    sort: 'asc'
-  }]);
-
   const columns = [
     { field: 'actions',
       headerName: '',
       width: 160,
       renderCell: (params) => (
         <>
-          <Button disabled={open ? true : false} size="small" color="primary" onClick={e => { e.stopPropagation(); setSelectedUser(params.row); handleOpen(); }}>Update</Button>
-          <Button disabled={open ? true : false} size="small" color="error" onClick={e => { e.stopPropagation(); onDelete?.(params.row, setUsers); }}>Delete</Button>
+          <Button disabled={open ? true : false} size="small" color="primary" onClick={e => { e.stopPropagation(); setSelectedUser(params.row); handleOpen(); }}>{Constants.BUTTONS.UPDATE}</Button>
+          <Button disabled={open ? true : false} size="small" color="error" onClick={e => { e.stopPropagation(); onDelete?.(params.row, setUsers); }}>{Constants.BUTTONS.DELETE}</Button>
         </>
       ),
       sortable: false,
@@ -110,8 +106,6 @@ const CustomersTable = ({
             outline: 'none',
           },
         }}
-          sortModel={sortModel}
-          onSortModelChange={setSortModel}
           showToolbar
           disableColumnFilter
           rows={rows}

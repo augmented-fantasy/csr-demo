@@ -6,18 +6,16 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import CustomersTable from './features/CustomersTable';
-import { updateUser, deleteUser } from "./utils/Utilities";
-import { GetUsers } from "./utils/Utilities";
+import { updateUser, deleteUser, createUser, listUsers } from "./utils/Utilities";
 import { ADD_NEW_USER } from "./utils/Constants";
 import { useMutation } from '@apollo/client';
+import * as Constants from './utils/Constants';
 
  const App = () => {
   const [open, setOpen] = useState(false);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
-  const userList = GetUsers();
   const [addNewUser] = useMutation(ADD_NEW_USER);
-  /* const { data: test } = SubscribeToUserChange(); */
   const { signOut } = useAuthenticator((context) => [context.user, context.signOut]);
 
   const handleOpen = useCallback(() => {
@@ -32,23 +30,17 @@ import { useMutation } from '@apollo/client';
   }, []);
 
   useEffect(() => {
-    if (userList) {
-      setUsers(userList.listUsers.items);
-    }
-  }, [userList]);
-
-  /* useEffect(() => {
-    if (test && test.data.createUser) {
-      setUsers((prevUsers) => [...prevUsers, test.data.createUser]);
-      console.log(test);
-    }
-  }, [test]); */
+    const unsubscribe = listUsers(setUsers);
+    return () => {
+      if (typeof unsubscribe === 'function') unsubscribe();
+    };
+  }, []);
 
   return (
     <main>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Button variant="contained" onClick={signOut}>
-            Logout
+            {Constants.BUTTONS.LOGOUT}
         </Button>
       </div>
       <Stack spacing={3}>
@@ -61,29 +53,8 @@ import { useMutation } from '@apollo/client';
         <div>
           <Button
             variant="contained"
-            onClick={async () => {
-              const name = window.prompt("Enter new user name");
-              if (!name) return;
-              try {
-                const { data } = await addNewUser({
-                  variables: {
-                    input: {
-                      name,
-                      avatar: Math.floor(Math.random() * 11) + 1,
-                      // Add other required fields as needed
-                    },
-                  },
-                });
-                if (data?.createUser) {
-                  setUsers((prev) => [...prev, data.createUser]);
-                }
-              } catch (err) {
-                alert('Failed to add user');
-                console.error(err);
-              }
-            }}
-          >
-            Add User
+            onClick={() => createUser(addNewUser, setUsers)}>
+            {Constants.BUTTONS.ADD}
           </Button>
         </div>
       </Stack>
