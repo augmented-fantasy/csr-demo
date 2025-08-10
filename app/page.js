@@ -60,7 +60,7 @@ import * as Constants from './utils/Constants';
       </Stack>
       <CustomersTable
         rows={users}
-        onUpdate={updateUser}
+        updateUser={updateUser}
         onDelete={deleteUser}
         onClose={handleClose}
         open={open}

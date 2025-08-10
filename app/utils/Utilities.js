@@ -1,10 +1,10 @@
 import { generateClient } from "aws-amplify/data";
 import { Amplify } from 'aws-amplify';
-import { useQuery, useSubscription } from '@apollo/client';
+import { useSubscription } from '@apollo/client';
 import outputs from '@/amplify_outputs.json';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import { GET_USERS, ON_CREATE_USER } from "./Constants";
+import { ON_CREATE_USER } from "./Constants";
 import {
   ApolloClient,
   InMemoryCache,
@@ -14,6 +14,7 @@ import {
 import { getMainDefinition } from '@apollo/client/utilities';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { createClient } from 'graphql-ws';
+import * as Constants from '../utils/Constants';
 
 const graphqlEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT;
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -35,15 +36,19 @@ export const mapSubscriptions = (purchases) => {
     switch (purchases?.subscription[idx]) {
       case 0:
         color = 'primary';
-        value = purchases?.product[0] || "";
+        value = Constants.SUBSCRIPTIONS.MONTHLY || "";
         break;
       case 1:
         color = 'secondary';
-        value = purchases?.product[1] || "";
+        value = Constants.SUBSCRIPTIONS.PUNCH || "";
+        break;
+      case 2:
+        color = 'warning';
+        value = Constants.SUBSCRIPTIONS.SINGLE|| "";
         break;
       default:
         color = 'default';
-        value = purchases?.product[2] || "";
+        value = Constants.SUBSCRIPTIONS.NONE || "";
     }
     return (
       <Stack key={idx} direction="row" justifyContent="space-between">
@@ -60,24 +65,36 @@ export const sortData = (items) => {
   return [...items].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 }
 
+export const handleInputChanges = (setForm) => (event) => {
+  if (!event || !event.target) return;
+  const { name, value } = event.target;
+  setForm(prev => ({ ...prev, [name]: value }));
+};
+
 export const listUsers = (setUsers) => {
     client.models.User.observeQuery().subscribe({
       next: (data) => setUsers(sortData([...data.items])),
     });
 }
 
-export const updateUser = async (updatedUser, setUsers) => {
-  await client.models.User.update({
-    id: updatedUser?.id,
-    name: updatedUser?.name,
-    email: updatedUser?.email,
-    street: updatedUser?.street,
-    city: updatedUser?.city,
-    state: updatedUser?.state,
-    country: updatedUser?.country,
-    phone: updatedUser?.phone,
-    avatar: updatedUser?.avatar
-  });
+export const updateUser = async (formValues) => {
+  try {
+    await client.models.User.update({
+      id: formValues.id,
+      name: formValues.name,
+      email: formValues.email,
+      phone: formValues.phone,
+      avatar: formValues.avatar ? parseInt(formValues.avatar, 10) : undefined,
+      address: {
+        street: formValues.street,
+        city: formValues.city,
+        state: formValues.state,
+        country: formValues.country,
+      }
+    });
+  } catch (e) {
+    console.error('Failed to update user', e);
+  }
 }
 
 export const deleteUser = async (user, setUsers) => {

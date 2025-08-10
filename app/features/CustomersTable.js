@@ -12,7 +12,7 @@ import * as Constants from '../utils/Constants';
 
 const CustomersTable = ({ 
   rows = [], 
-  onUpdate, 
+  updateUser, 
   onDelete, 
   onClose, 
   signOut, 
@@ -122,7 +122,7 @@ const CustomersTable = ({
         />
       </Box>
       <Divider />
-      <UserPopover onClose={onClose} open={open} signOut={signOut} selectedUser={selectedUser} onUpdate={onUpdate} />
+      <UserPopover onClose={onClose} open={open} signOut={signOut} selectedUser={selectedUser} updateUser={updateUser} />
     </>
   );
 }
