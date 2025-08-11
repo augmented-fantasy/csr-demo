@@ -5,7 +5,6 @@
 - **Live Data**: Websocket subscription for live data updates.
 - **GraphQL**: GraphQL based data queries and mutations.
 - **MUI**: Material Design UI with Emotion CSS-in-JS styling library.
-- **HOC**: AWS Amplify Higher-Order Components for React.
 - **TS**: Full TypeScript support.
 
 ### Backend Features

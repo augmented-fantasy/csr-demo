@@ -50,34 +50,35 @@ export const ON_CREATE_USER = gql`
         vehicle
       }
     }
-  }
-`;
+  }`
+;
 
 export const GET_USERS = gql`
   query GetUsers {
     listUsers {
-        items {
-            name
-            avatar
-            createdAt
-            email
-            id
-            phone
-            purchases {
-                date
-                product
-                subscription
-                vehicle
-            }
-            address {
-                city
-                country
-                state
-                street
-            }
+      items {
+        name
+        avatar
+        createdAt
+        email
+        id
+        phone
+        purchases {
+          date
+          product
+          subscription
+          vehicle
         }
+        address {
+          city
+          country
+          state
+          street
+        }
+      }
     }
-}`;
+  }`
+;
 
 export const ADD_NEW_USER = gql`
   mutation AddUser($input: CreateUserInput!) {
@@ -102,5 +103,5 @@ export const ADD_NEW_USER = gql`
         vehicle
       }
     }
-  }
-`;
+  }`
+;

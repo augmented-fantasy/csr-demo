@@ -1,44 +1,43 @@
 "use client"
 
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import CustomersTable from './features/CustomersTable';
+import CustomersTable from './features/Customers';
 import { updateUser, deleteUser, listUsers } from "./utils/Utilities";
 import * as Constants from './utils/Constants';
 import UserDetails from './features/UserDetails';
+import Box from '@mui/material/Box'
+import MuiDrawer from '@mui/material/Drawer';
+import MuiAppBar from '@mui/material/AppBar';
+import { useTheme } from '@mui/material/styles';
+import Toolbar from '@mui/material/Toolbar';
 
  const App = () => {
+  const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const { signOut } = useAuthenticator((context) => [context.user, context.signOut]);
 
-  const handleOpen = useCallback(() => {
+  const handleOpen = () => {
     setOpen(true);
-  }, []);
+  };
 
-  const handleOpenEdit = useCallback(() => {
+  const handleOpenEdit = () => {
     setOpenEdit(true);
-  }, []);
+  };
 
-
-  const handleClose = useCallback((event, reason) => {
-    if (reason === 'backdropClick' && (!event || event.target == null)) {
-      return;
-    }
+  const handleClose = (e) => {
     setOpen(false);
-  }, []);
+  };
 
-  const handleCloseEdit = useCallback((event, reason) => {
-    /* if (reason === 'backdropClick' && (!event || event.target == null)) {
-      return;
-    } */
+  const handleCloseEdit = (e) => {
     setOpenEdit(false);
-  }, []);
+  };
 
   useEffect(() => {
     const unsubscribe = listUsers(setUsers);
@@ -48,45 +47,75 @@ import UserDetails from './features/UserDetails';
   }, []);
 
   return (
-    <main>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Button variant="contained" onClick={signOut}>
-            {Constants.BUTTONS.LOGOUT}
-        </Button>
-      </div>
-      <Stack spacing={3}>
-      <Stack direction="row" spacing={3}>
-        <Stack spacing={1} sx={{ flex: '1 1 auto' }}>
-          <Typography variant="h4">{Constants.UI_TEXT.CUSTOMERS}</Typography>
-          <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', width: '100vw', maxWidth: '100%' }}>
+      <MuiAppBar
+        sx={{
+          zIndex: theme.zIndex.drawer + 1,
+          backgroundColor: '#000'
+        }}
+      >
+        <Toolbar sx={{ justifyContent: 'center' }}>
+          <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ textAlign: 'center', width: '100%' }}>
+            AMP CUSTOMER SERVICE ADMIN PORTAL
+          </Typography>
+        </Toolbar>
+      </MuiAppBar>
+      <MuiDrawer
+        variant="permanent"
+        sx={{
+          '& .MuiDrawer-paper': {
+            position: 'relative',
+            whiteSpace: 'nowrap',
+            width: 250,
+            backgroundColor: '#123081ff'
+          },
+        }}>
+      </MuiDrawer>
+      <Box
+        id="main-content"
+        sx={{
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh',
+          width: '100%',
+          pl: `20px`,
+          pt: `${theme.spacing(8)}`,
+          boxSizing: 'border-box'
+        }}
+      >
+        <Box
+          sx={{
+            flex: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <Stack spacing={4} alignItems="stretch" sx={{ width: '100%', maxWidth: 1200 }}>
+            <Stack direction="row" justifyContent="space-between" alignItems="center">
+              <Typography variant="h4">{Constants.UI_TEXT.CUSTOMERS}</Typography>
+              <Stack direction="row" spacing={2}>
+                <Button variant="contained" onClick={handleOpenEdit}>{Constants.BUTTONS.ADD}</Button>
+                <Button variant="outlined" onClick={signOut}>{Constants.BUTTONS.LOGOUT}</Button>
+              </Stack>
+            </Stack>
+            <CustomersTable
+              rows={users}
+              updateUser={updateUser}
+              onDelete={deleteUser}
+              onClose={handleClose}
+              open={open}
+              setUsers={setUsers}
+              setSelectedUser={setSelectedUser}
+              selectedUser={selectedUser}
+              handleOpen={handleOpen}
+            />
           </Stack>
-        </Stack>
-        <div>
-          <Button
-            variant="contained"
-            onClick={handleOpenEdit}>
-            {Constants.BUTTONS.ADD}
-          </Button>
-        </div>
-      </Stack>
-      <CustomersTable
-        rows={users}
-        updateUser={updateUser}
-        onDelete={deleteUser}
-        onClose={handleClose}
-        open={open}
-        setUsers={setUsers}
-        setSelectedUser={setSelectedUser}
-        selectedUser={selectedUser}
-        handleOpen={handleOpen}
-      />
-    </Stack>
-    <UserDetails 
-      onClose={handleCloseEdit} 
-      open={openEdit} 
-      signOut={signOut}
-    />
-    </main>
+        </Box>
+      </Box>
+      <UserDetails onClose={handleCloseEdit} open={openEdit} signOut={signOut} />
+    </Box>
   );
 }
 
