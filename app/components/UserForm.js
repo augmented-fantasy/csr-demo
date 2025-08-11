@@ -17,7 +17,7 @@ import { createUser } from "../utils/Utilities";
 import { ADD_NEW_USER } from "../utils/Constants";
 import { useMutation } from '@apollo/client';
 
-const UserDetails = ({ onClose, open }) => {
+const UserForm = ({ onClose, open }) => {
   const [width, height] = [300, 250];
   const [addNewUser] = useMutation(ADD_NEW_USER);
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
@@ -38,10 +38,19 @@ const UserDetails = ({ onClose, open }) => {
     setupCenterPosition(setCenterPosition, width, height);
   }, []);
 
-  // Reset form when modal opens
   useEffect(() => {
     if (open) {
-      setFormValues({ id: '', name: '', email: '', street: '', city: '', state: '', country: '', phone: '', avatar: '' });
+      setFormValues({ 
+        id: '', 
+        name: '', 
+        email: '', 
+        street: '', 
+        city: '', 
+        state: '', 
+        country: '', 
+        phone: '', 
+        avatar: '' 
+      });
     }
   }, [open]);
 
@@ -121,7 +130,10 @@ const UserDetails = ({ onClose, open }) => {
           <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
             {Constants.BUTTONS.CANCEL}
           </Button>
-          <Button variant="contained" onClick={async () => { await createUser(addNewUser, formValues, onClose); }} sx={{ width: 120 }}>
+          <Button 
+            variant="contained" 
+            onClick={async () => { await createUser(addNewUser, formValues, onClose); }} 
+            sx={{ width: 120 }}>
             {Constants.BUTTONS.SAVE}
           </Button>
         </Stack>
@@ -130,4 +142,4 @@ const UserDetails = ({ onClose, open }) => {
   );
 }
 
-export default UserDetails;
+export default UserForm;

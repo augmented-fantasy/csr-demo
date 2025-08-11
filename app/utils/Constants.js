@@ -27,7 +27,8 @@ export const UI_TEXT = {
   "STATE": "State",
   "COUNTRY": "Country",
   "PURCHASES": "Purchase History",
-  "ADD_NEW_USER": "Add New User"
+  "ADD_NEW_USER": "Add New User",
+  "CLICK_TO_VIEW_EDIT": "Click to View / Edit"
 }
 
 export const ON_CREATE_USER = gql`

@@ -91,7 +91,7 @@ import Toolbar from '@mui/material/Toolbar';
             justifyContent: 'center',
           }}
         >
-          <Stack spacing={4} alignItems="stretch" sx={{ width: '100%', maxWidth: 1200 }}>
+          <Stack spacing={4} alignItems="stretch" sx={{ pt: '20px', width: '100%', maxWidth: 1200 }}>
             <Stack direction="row" justifyContent="space-between" alignItems="center">
               <Typography variant="h4">{Constants.UI_TEXT.CUSTOMERS}</Typography>
               <Stack direction="row" spacing={2}>

@@ -13,12 +13,17 @@ const schema = a.schema({
       state: a.string(),
       country: a.string()
     }),
-    purchases: a.customType({
-      vehicle: a.string().array(),
-      date: a.date().array(),
-      subscription: a.integer().array(),
-      product: a.string().array()
-  })
+    purchases: a.hasMany('Purchases', 'userId'),
+  }),
+
+  Purchases: a.model({
+    id: a.id().required(),
+    vehicle: a.string(),
+    date: a.date(),
+    subscription: a.integer(),
+    product: a.string(),
+    userId: a.id().required(),
+    user: a.belongsTo('User', 'userId'),
   })
     .authorization((allow) => [allow.publicApiKey()]),
 });

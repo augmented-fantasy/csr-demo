@@ -11,11 +11,10 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import * as Constants from '../utils/Constants';
 import { mapSubscriptions, getAvatar } from '../utils/Utilities';
 
-const UserInfo = ({ selectedUser, formValues, handleChange, updateUser, onClose }) => {
+const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases }) => {
   return (
     <>
       <Stack direction="row" spacing={3} sx={{ m: 4 }}>
@@ -36,15 +35,17 @@ const UserInfo = ({ selectedUser, formValues, handleChange, updateUser, onClose 
                   </Typography>
                 </Stack>
               </Stack>
-              <Stack direction="row" justifyContent="space-between" sx={{ pt: '20px' }}>
+
+              <Stack onClick={() => openPurchases(true)} direction="row" justifyContent="space-between" sx={{ pt: '20px' }}>
                 <Typography variant="h6">{Constants.UI_TEXT.PURCHASES}</Typography>
-                <Typography variant="h6" color={'error'}>Click to View / Edit</Typography>
+                <Typography variant="h6" color={'error'}>{Constants.UI_TEXT.CLICK_TO_VIEW_EDIT}</Typography>
               </Stack>
               <Stack direction="column" justifyContent="space-between" sx={{ pt: '20px' }}>
                 <Box sx={{ maxHeight: 130, overflowY: 'auto', pr: 1 }}>
                   {mapSubscriptions(selectedUser?.purchases)}
                 </Box>
               </Stack>
+
             </CardContent>
           </Card>
         </Stack>

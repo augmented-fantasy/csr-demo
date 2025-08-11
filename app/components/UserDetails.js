@@ -5,9 +5,11 @@ import Button from '@mui/material/Button';
 import { setupCenterPosition, handleInputChanges } from '../utils/Utilities';
 import * as Constants from '../utils/Constants';
 import UserInfo from './UserInfo';
+import PurchasesInfo from './PurchasesInfo';
 
-const UserPopover = ({ onClose, open, selectedUser, updateUser }) => {
+const UserDetails = ({ onClose, open, selectedUser, updateUser }) => {
   const [width, height] = [485, 250];
+  const [openPurchases, setOpenPurchases] = useState(false);
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
   const [formValues, setFormValues] = useState({
     id: '', 
@@ -51,15 +53,16 @@ const UserPopover = ({ onClose, open, selectedUser, updateUser }) => {
         open={open}
         slotProps={{ paper: { sx: { width: '975px', height: '550px'} } }}
       >
+        {!openPurchases ? 
         <>
           <UserInfo 
             selectedUser={selectedUser} 
             formValues={formValues} 
             handleChange={handleChange} 
             updateUser={updateUser} 
-            onClose={onClose}
+            openPurchases={setOpenPurchases}
           />
-          
+
           <Stack direction="row" justifyContent="space-between" sx={{ ml: 4, mr: 4 }}>
             <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
               {Constants.BUTTONS.CANCEL}
@@ -69,10 +72,16 @@ const UserPopover = ({ onClose, open, selectedUser, updateUser }) => {
             </Button>
           </Stack>
         </>
-
+        :
+        <PurchasesInfo 
+          selectedUser={selectedUser} 
+          formValues={formValues} 
+          handleChange={handleChange} 
+          updateUser={updateUser} 
+        /> }
       </Popover>
     </>
   );
 }
 
-export default UserPopover;
+export default UserDetails;
