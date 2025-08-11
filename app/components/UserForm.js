@@ -36,7 +36,7 @@ const UserForm = ({ onClose, open }) => {
 
   useEffect(() => {
     setupCenterPosition(setCenterPosition, width, height);
-  }, []);
+  }, [width, height]);
 
   useEffect(() => {
     if (open) {

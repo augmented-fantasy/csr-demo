@@ -26,7 +26,7 @@ const UserDetails = ({ onClose, open, selectedUser, updateUser }) => {
 
   useEffect(() => {
     setupCenterPosition(setCenterPosition, width, height);
-  }, []);
+  }, [width, height]);
 
   useEffect(() => {
     if (selectedUser) {

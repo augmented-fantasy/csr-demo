@@ -29,35 +29,22 @@ export const getAvatar = () => {
   return (Math.floor(Math.random() * 11) + 1).toString();
 }
 
-export const mapSubscriptions = (purchases) => {
+export const mapSubscriptions = (purchase) => {
   let color = 'primary';
-  let value = "";
-  const items = purchases?.vehicle?.map((purchase, idx) => {
-    switch (purchases?.subscription[idx]) {
-      case 0:
-        color = 'primary';
-        value = Constants.SUBSCRIPTIONS.MONTHLY || "";
+  switch (purchase?.product) {
+    case Constants.SUBSCRIPTIONS.MONTHLY:
+      color = 'primary';
         break;
-      case 1:
-        color = 'secondary';
-        value = Constants.SUBSCRIPTIONS.PUNCH || "";
-        break;
-      case 2:
-        color = 'warning';
-        value = Constants.SUBSCRIPTIONS.SINGLE|| "";
-        break;
+    case Constants.SUBSCRIPTIONS.PUNCH:
+      color = 'secondary';
+      break;
+    case Constants.SUBSCRIPTIONS.SINGLE:
+      color = 'warning';
+      break;
       default:
         color = 'default';
-        value = Constants.SUBSCRIPTIONS.NONE || "";
     }
-    return (
-      <Stack key={idx} direction="row" justifyContent="space-between">
-        <b>{purchases.date[idx]}</b> {purchases.vehicle[idx]}
-        <Chip sx={{ width: '100px', mb: '5px' }} color={color} label={value} size="small"/>
-      </Stack>
-    );
-  });
-  return items
+    return color;
 }
 
 export const sortData = (items) => {

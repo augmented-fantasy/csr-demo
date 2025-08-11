@@ -12,29 +12,14 @@ const PurchasesInfo = ({ selectedUser, formValues, updateUser, onClose }) => {
         { field: 'amount', headerName: 'Amount', width: 110 },
     ];
 
-    const rowsArray = selectedUser.purchases.vehicle.map((purchase, index) => ({
-        id: index,
-        ...purchase,
-    }));
-
-    const rows2 = rowsArray.reduce((acc, _, index) => {
-        acc[index] = {
-            id: index, // Add unique id
-            vehicle: selectedUser.purchases.vehicle[index],
-        };
-        return acc;
-    }, {});
-
-    const { id, vehicle } = rows2;
-
-    console.log(rows2)
+    const rows = selectedUser;
   
     return (
     <>
     <Stack direction="row" spacing={3} sx={{ m: 4 }}>
         <Stack sx={{ m: 4, flex: 1, height: '425px'}}>
             <DataGrid
-                rows={rows2}
+                rows={rows}
                 columns={columns}
                 pageSize={5}
                 rowsPerPageOptions={[5, 10, 20]}

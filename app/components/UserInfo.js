@@ -12,9 +12,11 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import * as Constants from '../utils/Constants';
-import { mapSubscriptions, getAvatar } from '../utils/Utilities';
+import { getAvatar, mapSubscriptions } from '../utils/Utilities';
+import Chip from '@mui/material/Chip';
 
 const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases }) => {
+  console.log(selectedUser);
   return (
     <>
       <Stack direction="row" spacing={3} sx={{ m: 4 }}>
@@ -42,7 +44,12 @@ const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases }) => 
               </Stack>
               <Stack direction="column" justifyContent="space-between" sx={{ pt: '20px' }}>
                 <Box sx={{ maxHeight: 130, overflowY: 'auto', pr: 1 }}>
-                  {mapSubscriptions(selectedUser?.purchases)}
+                  {Array.isArray(selectedUser?.purchases) && selectedUser.purchases.map((purchase, idx) => (
+                    <Stack key={idx} direction="row" justifyContent="space-between">
+                      <b>{purchase.date}</b> {purchase.vehicle}
+                      <Chip sx={{ width: '100px', mb: '5px' }} color={mapSubscriptions(purchase)} label={purchase.value} size="small"/>
+                    </Stack>
+                  ))}
                 </Box>
               </Stack>
 

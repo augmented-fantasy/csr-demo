@@ -81,8 +81,6 @@ const CustomersList = ({
     }
   ];
 
-  console.log(rows);
-
   return (
     <><style>{`
         .MuiDataGrid-cell--disabled {

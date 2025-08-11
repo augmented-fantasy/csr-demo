@@ -21,8 +21,8 @@ const schema = a.schema({
     id: a.id().required(),
     vehicle: a.string(),
     date: a.date(),
-    subscription: a.integer(),
-    product: a.string(),
+    price: a.float(),
+    product: a.enum(["MONTHLY", "PUNCH", "SINGLE", "NONE"]),
     userId: a.id().required(),
     user: a.belongsTo('User', 'userId'),
   })

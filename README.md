@@ -16,7 +16,7 @@
 - **SSL**: Secure socket layer encrypts data in transit.
 - **IaC**: AWS backend fully captured as Infrastructure-as-Code within the `/amplify` folder and `amplify_outputs.json` file.
 - **Auth**: Amazon Cognito user pool integration for secure user authentication.
-- **DB**: Real-time NoSQL database powered by Amazon DynamoDB.
+- **DB**: Real-time NoSQL AWS DynamoDB with Users and Purchases tables with foreign key.
 - **API**: GraphQL endpoint with AWS AppSync.
 - **CICD**: Continuous integration / continuous deployment pipeline connected to GitHub `main` branch.
 

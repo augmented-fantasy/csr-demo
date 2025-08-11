@@ -56,7 +56,7 @@ export const ON_CREATE_USER = gql`
 ;
 
 export const GET_USERS = gql`
-  query GetUsers {
+  query {
     listUsers {
       items {
         name
@@ -66,16 +66,12 @@ export const GET_USERS = gql`
         id
         phone
         purchases {
-          date
-          product
-          subscription
-          vehicle
-        }
-        address {
-          city
-          country
-          state
-          street
+          items {
+            vehicle
+            date
+            subscription
+            product
+          }
         }
       }
     }
