@@ -77,16 +77,7 @@ export const updateUser = async (formValues) => {
         city: formValues.city,
         state: formValues.state,
         country: formValues.country,
-      },
-    purchases: {
-      items: {
-        date: '1-1-2025',
-        price: 0,
-        vehicle: '',
-        userId: formValues.id,
-        product: 'NONE'
       }
-    },
     });
   } catch (e) {
     console.error('Failed to update user', e);
