@@ -16,7 +16,6 @@ import { getAvatar, mapSubscriptions } from '../utils/Utilities';
 import Chip from '@mui/material/Chip';
 
 const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases }) => {
-  console.log(selectedUser);
   return (
     <>
       <Stack direction="row" spacing={3} sx={{ m: 4 }}>

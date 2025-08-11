@@ -14,6 +14,8 @@ import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import { useTheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
+import { useQuery, useSubscription } from '@apollo/client';
+import { GET_USERS, ON_CREATE_USER } from "./utils/Constants";
 
  const App = () => {
   const theme = useTheme();
@@ -21,6 +23,7 @@ import Toolbar from '@mui/material/Toolbar';
   const [openEdit, setOpenEdit] = useState(false);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
+  const { refetch } = useQuery(GET_USERS);
   const { signOut } = useAuthenticator((context) => [context.user, context.signOut]);
 
   const handleOpen = () => {
@@ -44,6 +47,18 @@ import Toolbar from '@mui/material/Toolbar';
     return () => {
       if (typeof unsubscribe === 'function') unsubscribe();
     };
+  }, []);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const { data } = await refetch();
+        setUsers(data.listUsers.items);
+      } catch (error) {
+        console.error('Failed to fetch users:', error);
+      }
+    };
+    fetchUsers();
   }, []);
 
   return (
@@ -96,8 +111,9 @@ import Toolbar from '@mui/material/Toolbar';
               <Typography variant="h4">{Constants.UI_TEXT.CUSTOMERS}</Typography>
               <Stack direction="row" spacing={2}>
                 <Button variant="contained" onClick={handleOpenEdit}>{Constants.BUTTONS.ADD}</Button>
+                <Button variant="contained" onClick={async () => { await refetch(); }}>TEST</Button>
                 <Button variant="outlined" onClick={signOut}>{Constants.BUTTONS.LOGOUT}</Button>
-              </Stack>
+              </Stack> 
             </Stack>
             <CustomersTable
               rows={users}

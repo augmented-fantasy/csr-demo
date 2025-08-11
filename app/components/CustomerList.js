@@ -126,7 +126,8 @@ const CustomersList = ({
         open={open} 
         signOut={signOut} 
         selectedUser={selectedUser} 
-        updateUser={updateUser} />
+        updateUser={updateUser} 
+      />
     </>
   );
 }

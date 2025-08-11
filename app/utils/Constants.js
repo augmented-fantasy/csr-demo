@@ -31,20 +31,52 @@ export const UI_TEXT = {
   "CLICK_TO_VIEW_EDIT": "Click to View / Edit"
 }
 
+
+
 export const ON_CREATE_USER = gql`
   subscription OnCreateUser {
     onCreateUser {
+      avatar
+      createdAt
+      email
+      id
+      name
+      phone
+      purchases {
+        items {
+          date
+          id
+          price
+          product
+          user {
+            avatar
+            email
+            id
+            name
+            phone
+            address {
+              city
+              country
+              state
+              street
+            }
+            purchases {
+              items {
+                date
+                price
+                product
+                vehicle
+              }
+            }
+          }
+        }
+      }
       address {
         city
         country
         state
         street
       }
-      avatar
-      email
-      id
-      name
-      phone
     }
   }`
 ;
@@ -59,6 +91,12 @@ export const GET_USERS = gql`
         email
         id
         phone
+        address {
+          city
+          country
+          state
+          street
+        }
         purchases {
           items {
             vehicle
