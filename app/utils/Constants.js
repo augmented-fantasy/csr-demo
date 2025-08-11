@@ -88,12 +88,6 @@ export const ADD_NEW_USER = gql`
         state
         street
       }
-      purchases {
-        date
-        product
-        subscription
-        vehicle
-      }
     }
   }`
 ;
