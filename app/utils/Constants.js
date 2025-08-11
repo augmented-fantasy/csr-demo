@@ -45,12 +45,6 @@ export const ON_CREATE_USER = gql`
       id
       name
       phone
-      purchases {
-        date
-        product
-        subscription
-        vehicle
-      }
     }
   }`
 ;
@@ -69,7 +63,7 @@ export const GET_USERS = gql`
           items {
             vehicle
             date
-            subscription
+            price
             product
           }
         }
