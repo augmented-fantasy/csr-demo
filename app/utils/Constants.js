@@ -17,16 +17,17 @@ export const BUTTONS = {
 }
 
 export const UI_TEXT = {
-    "CUSTOMERS": "Customers", 
-    "NAME": "Name",
-    "EMAIL": "Email",
-    "PHONE": "Phone Number",
-    "ADDRESS": "Street Address",
-    "CITY": "City",
-    "STATE": "State",
-    "COUNTRY": "Country",
-    "PURCHASES": "Purchase History",
-    "ADD_NEW_USER": "Add New User"
+  "SITE_TITLE": "AMP Customer Service Admin Portal",
+  "CUSTOMERS": "Customers", 
+  "NAME": "Name",
+  "EMAIL": "Email",
+  "PHONE": "Phone Number",
+  "ADDRESS": "Street Address",
+  "CITY": "City",
+  "STATE": "State",
+  "COUNTRY": "Country",
+  "PURCHASES": "Purchase History",
+  "ADD_NEW_USER": "Add New User"
 }
 
 export const ON_CREATE_USER = gql`

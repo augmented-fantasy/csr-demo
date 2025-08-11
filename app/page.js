@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -31,11 +31,11 @@ import Toolbar from '@mui/material/Toolbar';
     setOpenEdit(true);
   };
 
-  const handleClose = (e) => {
+  const handleClose = () => {
     setOpen(false);
   };
 
-  const handleCloseEdit = (e) => {
+  const handleCloseEdit = () => {
     setOpenEdit(false);
   };
 
@@ -56,7 +56,7 @@ import Toolbar from '@mui/material/Toolbar';
       >
         <Toolbar sx={{ justifyContent: 'center' }}>
           <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ textAlign: 'center', width: '100%' }}>
-            AMP CUSTOMER SERVICE ADMIN PORTAL
+            {Constants.UI_TEXT.SITE_TITLE}
           </Typography>
         </Toolbar>
       </MuiAppBar>
@@ -67,12 +67,11 @@ import Toolbar from '@mui/material/Toolbar';
             position: 'relative',
             whiteSpace: 'nowrap',
             width: 250,
-            backgroundColor: '#123081ff'
+            backgroundColor: theme.palette.primary.main
           },
         }}>
       </MuiDrawer>
       <Box
-        id="main-content"
         sx={{
           flexGrow: 1,
           display: 'flex',
@@ -88,7 +87,7 @@ import Toolbar from '@mui/material/Toolbar';
           sx={{
             flex: 1,
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'flex-start',
             justifyContent: 'center'
           }}
         >
@@ -96,7 +95,7 @@ import Toolbar from '@mui/material/Toolbar';
             <Stack direction="row" justifyContent="space-between" alignItems="center">
               <Typography variant="h4">{Constants.UI_TEXT.CUSTOMERS}</Typography>
               <Stack direction="row" spacing={2}>
-                <Button variant="contained" onClick={handleOpenEdit}>{Constants.BUTTONS.ADD}</Button>
+                <Button variant="contained" color="ff0000" onClick={handleOpenEdit}>{Constants.BUTTONS.ADD}</Button>
                 <Button variant="outlined" onClick={signOut}>{Constants.BUTTONS.LOGOUT}</Button>
               </Stack>
             </Stack>
