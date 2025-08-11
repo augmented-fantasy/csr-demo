@@ -14,7 +14,8 @@ const schema = a.schema({
       country: a.string()
     }),
     purchases: a.hasMany('Purchases', 'userId'),
-  }),
+  })
+  .authorization((allow) => [allow.publicApiKey()]),
 
   Purchases: a.model({
     id: a.id().required(),
@@ -25,7 +26,7 @@ const schema = a.schema({
     userId: a.id().required(),
     user: a.belongsTo('User', 'userId'),
   })
-    .authorization((allow) => [allow.publicApiKey()]),
+  .authorization((allow) => [allow.publicApiKey()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
