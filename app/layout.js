@@ -1,13 +1,13 @@
-import Providers from './auth/Providers';
-import "@aws-amplify/ui-react/styles.css";
+import Providers from './components/Providers';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import "@aws-amplify/ui-react/styles.css";
 
 export const metadata = {
   title: "AMP CSR Portal",
   description: "Demo application for AMP CSR Portal",
 };
 
-export default function RootLayout({ children }) {
+const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body>
@@ -26,3 +26,5 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+export default RootLayout;

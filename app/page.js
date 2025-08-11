@@ -5,10 +5,10 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import CustomersTable from './features/Customers';
+import CustomersTable from './components/CustomerList';
 import { updateUser, deleteUser, listUsers } from "./utils/Utilities";
 import * as Constants from './utils/Constants';
-import UserDetails from './features/UserDetails';
+import UserDetails from './components/UserForm';
 import Box from '@mui/material/Box'
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
@@ -88,14 +88,14 @@ import Toolbar from '@mui/material/Toolbar';
             flex: 1,
             display: 'flex',
             alignItems: 'flex-start',
-            justifyContent: 'center'
+            justifyContent: 'center',
           }}
         >
           <Stack spacing={4} alignItems="stretch" sx={{ width: '100%', maxWidth: 1200 }}>
             <Stack direction="row" justifyContent="space-between" alignItems="center">
               <Typography variant="h4">{Constants.UI_TEXT.CUSTOMERS}</Typography>
               <Stack direction="row" spacing={2}>
-                <Button variant="contained" color="ff0000" onClick={handleOpenEdit}>{Constants.BUTTONS.ADD}</Button>
+                <Button variant="contained" onClick={handleOpenEdit}>{Constants.BUTTONS.ADD}</Button>
                 <Button variant="outlined" onClick={signOut}>{Constants.BUTTONS.LOGOUT}</Button>
               </Stack>
             </Stack>

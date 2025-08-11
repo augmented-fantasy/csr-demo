@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import { DataGrid, gridClasses } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import UserPopover from './Popover';
+import UserPopover from './UserDetails';
 import * as Constants from '../utils/Constants';
 
 const CustomersTable = ({ 

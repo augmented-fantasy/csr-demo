@@ -8,17 +8,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#123081',
+      main: '#3d66d9ff',
       contrastText: '#ffffff'
-    }
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: 'none'
-        }
-      }
     }
   }
 });
