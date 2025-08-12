@@ -73,23 +73,16 @@ export const updateUser = async (formValues, refetch, setUsers) => {
         country: formValues.country,
       }
     });
-    const fetchUsers = async () => {
-      try {
-        const { data } = await refetch();
-        setUsers(data.listUsers.items);
-      } catch (error) {
-        console.error('Failed to fetch users:', error);
-      }
-    };
-    fetchUsers();
+    fetchUsers(refetch, setUsers);
   } catch (e) {
     console.error('Failed to update user', e);
   }
 }
 
-export const deleteUser = async (user, setUsers) => {
+export const deleteUser = async (user, setUsers, refetch) => {
   if (!window.confirm(`Delete user ${user.name}?`)) return;
   await client.models.User.delete({ id: user.id });
+  fetchUsers(refetch, setUsers);
 }
 
 export const setupCenterPosition = (setCenterPosition, width, height) => {
@@ -126,21 +119,22 @@ export const createUser = async (addNewUser, formValues, close, refetch, setUser
         },
       },
     });
+    fetchUsers(refetch, setUsers);
     close();
-    const fetchUsers = async () => {
-      try {
-        const { data } = await refetch();
-        setUsers(data.listUsers.items);
-      } catch (error) {
-        console.error('Failed to fetch users:', error);
-      }
-    };
-    fetchUsers();
   } catch (err) {
     alert('Failed to add user');
     console.error(err);
   }
 }
+
+export const fetchUsers = async (refetch, setUsers) => {
+  try {
+    const { data } = await refetch();
+    setUsers(data.listUsers.items);
+  } catch (error) {
+    console.error('Failed to fetch users:', error);
+  }
+};
 
 export const getWebSocketUrl = (graphqlEndpoint) => {
   const url = new URL(graphqlEndpoint);

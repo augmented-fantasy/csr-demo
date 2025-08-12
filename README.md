@@ -5,7 +5,6 @@
 - **View / Modify / Add / Remove**: Customer Purchases.
 - **NEXT**: Next.js React SPA framework.
 - **GraphQL**: GraphQL based data queries and mutations.
-- **Live Data**: Websocket data subscription for live updates.
 - **MUI**: Material Design UI with Emotion CSS-in-JS styling.
 - **TS**: Full TypeScript support.
 
@@ -16,7 +15,7 @@
 - **SSL**: Secure socket layer encrypts data in transit.
 - **IaC**: AWS backend fully captured as Infrastructure-as-Code within the `/amplify` folder and `amplify_outputs.json` file.
 - **Auth**: Amazon Cognito user pool integration for secure user authentication.
-- **DB**: Real-time NoSQL AWS DynamoDB with Users and Purchases tables with foreign key association.
+- **DB**: Real-time NoSQL AWS DynamoDB includes Users and Purchases tables with foreign key associations.
 - **API**: GraphQL endpoint with AWS AppSync.
 - **CICD**: Continuous integration / continuous deployment pipeline connected to GitHub `main` branch.
 

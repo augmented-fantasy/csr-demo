@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import CustomersTable from './components/CustomerList';
-import { updateUser, deleteUser } from "./utils/Utilities";
+import { updateUser, deleteUser, fetchUsers } from "./utils/Utilities";
 import * as Constants from './utils/Constants';
 import UserForm from './components/UserForm';
 import Box from '@mui/material/Box'
@@ -27,17 +27,8 @@ import { GET_USERS } from "./utils/Constants";
   const { signOut } = useAuthenticator((context) => [context.user, context.signOut]);
 
   const handleOpen = () => {
-    const fetchUsers = async () => {
-      try {
-        const { data } = await refetch();
-        setUsers(data.listUsers.items);
-        setOpen(true);
-      } catch (error) {
-        console.error('Failed to fetch users:', error);
-      }
-    };
-    fetchUsers();
-    
+      fetchUsers(refetch, setUsers);
+      setOpen(true);
   };
 
   const handleOpenEdit = () => {
@@ -53,15 +44,7 @@ import { GET_USERS } from "./utils/Constants";
   };
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const { data } = await refetch();
-        setUsers(data.listUsers.items);
-      } catch (error) {
-        console.error('Failed to fetch users:', error);
-      }
-    };
-    fetchUsers();
+    fetchUsers(refetch, setUsers);
   }, []);
 
   return (

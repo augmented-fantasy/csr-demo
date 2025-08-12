@@ -30,7 +30,7 @@ const CustomersList = ({
       renderCell: (params) => (
         <>
           <Button disabled={open ? true : false} size="small" color="primary" onClick={e => { e.stopPropagation(); setSelectedUser(params.row); handleOpen(); }}>{Constants.BUTTONS.UPDATE}</Button>
-          <Button disabled={open ? true : false} size="small" color="error" onClick={e => { e.stopPropagation(); onDelete?.(params.row, setUsers); }}>{Constants.BUTTONS.DELETE}</Button>
+          <Button disabled={open ? true : false} size="small" color="error" onClick={e => { e.stopPropagation(); onDelete?.(params.row, setUsers, refetch); }}>{Constants.BUTTONS.DELETE}</Button>
         </>
       ),
       sortable: false,
