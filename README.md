@@ -21,8 +21,6 @@
 
 TODO:
 - fix non-closing purchases panel
-- add pointer curson on edit purchases
-- add regex or type checks for fields
 - update number of purchases on customer table
 - add ability to edit purchases
 

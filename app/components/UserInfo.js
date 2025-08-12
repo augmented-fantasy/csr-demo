@@ -35,7 +35,7 @@ const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases }) => 
                 </Stack>
               </Stack>
 
-              <Stack onClick={() => openPurchases(true)} direction="row" justifyContent="space-between" sx={{ pt: '20px' }}>
+              <Stack onClick={() => openPurchases(true)} direction="row" justifyContent="space-between" sx={{ pt: '20px', cursor: 'pointer' }}>
                 <Typography variant="h6">{Constants.UI_TEXT.PURCHASES}</Typography>
                 <Typography variant="h6" color={'error'}>{Constants.UI_TEXT.CLICK_TO_VIEW_EDIT}</Typography>
               </Stack>
