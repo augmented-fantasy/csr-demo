@@ -59,15 +59,15 @@ export const updateUser = async (formValues, refetch, setUsers) => {
     await client.models.User.update({
       id: formValues.id,
       name: formValues.name,
-      email: formValues.email,
-      phone: formValues.phone,
+      email: formValues.email || undefined,
+      phone: formValues.phone || undefined,
       avatar: formValues.avatar ? parseInt(formValues.avatar, 10) : undefined,
-      loyalty: formValues.loyalty,
+      loyalty: formValues.loyalty || undefined,
       address: {
-        street: formValues.street,
-        city: formValues.city,
-        state: formValues.state,
-        country: formValues.country,
+        street: formValues.street || undefined,
+        city: formValues.city || undefined,
+        state: formValues.state || undefined,
+        country: formValues.country || undefined,
       }
     });
     fetchUsers(refetch, setUsers);
@@ -95,15 +95,9 @@ export const setupCenterPosition = (setCenterPosition, width, height) => {
 }
 
 export const createUser = async (addNewUser, formValues, close, refetch, setUsers) => {
-  if (!formValues?.name || 
-    !formValues?.email || 
-    !formValues?.phone || 
-    !formValues?.street || 
-    !formValues?.city || 
-    !formValues?.state || 
-    !formValues?.country
+  if (!formValues?.name
   ) {
-    alert('All fields are required.');
+    alert('Name is required.');
     return;
   }
   try {
@@ -120,7 +114,7 @@ export const createUser = async (addNewUser, formValues, close, refetch, setUser
             state: formValues.state,
             country: formValues.country,
           },
-          loyalty: formValues.loyalty || 0,
+          loyalty: formValues.loyalty,
         },
       },
     });

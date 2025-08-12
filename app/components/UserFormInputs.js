@@ -17,42 +17,42 @@ const UserFormInputs = ({ formValues, handleChange }) => {
       </Grid>
 
       <Grid>
-        <FormControl fullWidth required error={!formValues.email?.trim()}>
+        <FormControl fullWidth>
           <InputLabel>{Constants.UI_TEXT.EMAIL}</InputLabel>
           <OutlinedInput value={formValues.email} onChange={handleChange} label="Email address" name="email" />
         </FormControl>
       </Grid>
       
       <Grid>
-        <FormControl fullWidth required error={!formValues.street?.trim()}>
+        <FormControl fullWidth>
             <InputLabel>{Constants.UI_TEXT.ADDRESS}</InputLabel>
             <OutlinedInput value={formValues.street} onChange={handleChange} label="Street Address" name="street" />
         </FormControl>
       </Grid>
 
       <Grid>
-        <FormControl fullWidth required error={!formValues.city?.trim()}>
+        <FormControl fullWidth>
             <InputLabel>{Constants.UI_TEXT.CITY}</InputLabel>
             <OutlinedInput value={formValues.city} onChange={handleChange} label="City" name="city" />
         </FormControl>
       </Grid>
 
       <Grid>
-        <FormControl fullWidth required error={!formValues.state?.trim()}>
+        <FormControl fullWidth>
             <InputLabel>{Constants.UI_TEXT.STATE}</InputLabel>
             <OutlinedInput value={formValues.state} onChange={handleChange} label="State" name="state" />
         </FormControl>
         </Grid>
 
       <Grid>
-        <FormControl fullWidth required error={!formValues.country?.trim()}>
+        <FormControl fullWidth>
             <InputLabel>{Constants.UI_TEXT.COUNTRY}</InputLabel>
             <OutlinedInput value={formValues.country} onChange={handleChange} label="Country" name="country" />
         </FormControl>
         </Grid>
 
       <Grid>
-        <FormControl fullWidth required error={!formValues.phone?.trim() || !/^(\+\d{1,2}\s)?\d{3}[\s.-]\d{3}[\s.-]\d{4}$/.test(formValues.phone)}>
+        <FormControl fullWidth>
             <InputLabel>{Constants.UI_TEXT.PHONE}</InputLabel>
             <OutlinedInput value={formValues.phone} onChange={handleChange} label="Phone number" name="phone" type="tel" />
         </FormControl>

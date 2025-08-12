@@ -21,14 +21,14 @@ const UserForm = ({ onClose, open, refetch, setUsers }) => {
   const [formValues, setFormValues] = useState({
     id: '', 
     name: '', 
-    email: '', 
+    email: undefined,
     street: '', 
     city: '', 
     state: '', 
     country: '', 
-    phone: '', 
+    phone: undefined, 
     avatar: '',
-    loyalty: ''
+    loyalty: undefined
   });
   const handleChange = handleInputChanges(setFormValues);
 
@@ -41,14 +41,14 @@ const UserForm = ({ onClose, open, refetch, setUsers }) => {
       setFormValues({ 
         id: '', 
         name: '', 
-        email: '', 
+        email: undefined, 
         street: '', 
         city: '', 
         state: '', 
         country: '', 
-        phone: '', 
+        phone: undefined, 
         avatar: '',
-        loyalty: ''
+        loyalty: undefined, 
       });
     }
   }, [open]);
