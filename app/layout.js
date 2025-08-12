@@ -1,10 +1,11 @@
 import Providers from './components/Providers';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import "@aws-amplify/ui-react/styles.css";
+import * as Constants from './utils/Constants';
 
 export const metadata = {
-  title: "AMP CSR Portal",
-  description: "Demo application for AMP CSR Portal",
+  title: Constants.UI_TEXT.TITLE,
+  description: Constants.UI_TEXT.DESCRIPTION,
 };
 
 const RootLayout = ({ children }) => {

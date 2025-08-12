@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import * as Constants from '../utils/Constants';
 import { DataGrid } from '@mui/x-data-grid';
 
-const PurchasesInfo = ({ selectedUser, formValues, updateUser, onClose }) => {
+const PurchasesInfo = ({ selectedUser, onClose }) => {
    const columns = [
         { field: 'date', headerName: 'Date', width: 250 },
         { field: 'product', headerName: 'Product', width: 250},
@@ -36,9 +36,9 @@ const PurchasesInfo = ({ selectedUser, formValues, updateUser, onClose }) => {
     </Stack>
     <Stack direction="row" justifyContent="space-between" sx={{ ml: 4, mr: 4 }}>
         <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
-            {Constants.BUTTONS.CANCEL}
+            {Constants.BUTTONS.EXIT}
         </Button>
-        <Button variant="contained" onClick={() => { updateUser(formValues); onClose(); }} sx={{ width: 120 }}>
+        <Button variant="contained" sx={{ width: 120 }}>
             {Constants.BUTTONS.SAVE}
         </Button>
     </Stack>

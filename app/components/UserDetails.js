@@ -7,9 +7,18 @@ import * as Constants from '../utils/Constants';
 import UserInfo from './UserInfo';
 import PurchasesInfo from './PurchasesInfo';
 
-const UserDetails = ({ onClose, open, selectedUser, updateUser, refetch, setUsers }) => {
+const UserDetails = ({ 
+  onClose, 
+  open, 
+  selectedUser, 
+  updateUser, 
+  refetch, 
+  setUsers,
+  openPurchases,
+  setOpenPurchases
+}) => {
   const [width, height] = [485, 250];
-  const [openPurchases, setOpenPurchases] = useState(false);
+  
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
   const [formValues, setFormValues] = useState({
     id: '', 
@@ -65,7 +74,7 @@ const UserDetails = ({ onClose, open, selectedUser, updateUser, refetch, setUser
 
           <Stack direction="row" justifyContent="space-between" sx={{ ml: 4, mr: 4 }}>
             <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
-              {Constants.BUTTONS.CANCEL}
+              {Constants.BUTTONS.CLOSE}
             </Button>
             <Button variant="contained" onClick={() => { updateUser(formValues, refetch, setUsers); onClose(); }} sx={{ width: 120 }}>
               {Constants.BUTTONS.SAVE}
@@ -74,11 +83,10 @@ const UserDetails = ({ onClose, open, selectedUser, updateUser, refetch, setUser
         </>
         :
         <PurchasesInfo 
-          selectedUser={selectedUser} 
-          formValues={formValues} 
-          handleChange={handleChange} 
-          updateUser={updateUser} 
-        /> }
+          selectedUser={selectedUser}
+          onClose={() => setOpenPurchases(false)}
+        /> 
+        }
       </Popover>
     </>
   );

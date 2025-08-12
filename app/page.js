@@ -5,7 +5,7 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import CustomersTable from './components/CustomerList';
+import CustomerList from './components/CustomerList';
 import { updateUser, deleteUser, fetchUsers } from "./utils/Utilities";
 import * as Constants from './utils/Constants';
 import UserForm from './components/UserForm';
@@ -23,6 +23,7 @@ import { GET_USERS } from "./utils/Constants";
   const [openEdit, setOpenEdit] = useState(false);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [openPurchases, setOpenPurchases] = useState(false);
   const { refetch } = useQuery(GET_USERS);
   const { signOut } = useAuthenticator((context) => [context.user, context.signOut]);
 
@@ -36,6 +37,7 @@ import { GET_USERS } from "./utils/Constants";
   };
 
   const handleClose = () => {
+    setOpenPurchases(false);
     setOpen(false);
   };
 
@@ -100,7 +102,7 @@ import { GET_USERS } from "./utils/Constants";
                 <Button variant="outlined" onClick={signOut}>{Constants.BUTTONS.LOGOUT}</Button>
               </Stack> 
             </Stack>
-            <CustomersTable
+            <CustomerList
               rows={users}
               updateUser={updateUser}
               onDelete={deleteUser}
@@ -111,6 +113,8 @@ import { GET_USERS } from "./utils/Constants";
               selectedUser={selectedUser}
               handleOpen={handleOpen}
               refetch={refetch}
+              openPurchases={openPurchases}
+              setOpenPurchases={setOpenPurchases}
             />
           </Stack>
         </Box>

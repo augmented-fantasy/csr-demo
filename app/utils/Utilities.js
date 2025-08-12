@@ -133,7 +133,8 @@ export const createUser = async (addNewUser, formValues, close, refetch, setUser
 export const fetchUsers = async (refetch, setUsers) => {
   try {
     const { data } = await refetch();
-    setUsers(data.listUsers.items);
+    const sorted = sortData(data.listUsers.items);
+    setUsers(sorted);
   } catch (error) {
     console.error('Failed to fetch users:', error);
   }

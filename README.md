@@ -20,9 +20,8 @@
 - **CICD**: Continuous integration / continuous deployment pipeline connected to GitHub `main` branch.
 
 TODO:
-- fix non-closing purchases panel
-- update number of purchases on customer table
 - add ability to edit purchases
+- Add charts
 
 ### Getting Started
 

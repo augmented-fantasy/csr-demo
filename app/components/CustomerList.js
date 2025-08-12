@@ -20,7 +20,9 @@ const CustomersList = ({
   selectedUser,
   setSelectedUser,
   handleOpen,
-  refetch
+  refetch,
+  openPurchases,
+  setOpenPurchases
 }) => {
 
   const columns = [
@@ -72,7 +74,7 @@ const CustomersList = ({
       width: 90,
       renderCell: (params) => (
         <Box sx={{ ml: '30px' }}>
-          {params?.row?.purchases?.date?.length || 0}
+          {params?.row?.purchases?.items?.length || 0}
         </Box>
       ),
       sortable: false,
@@ -121,7 +123,6 @@ const CustomersList = ({
           getRowId={row => row.id}
         />
       </Box>
-      <Divider />
       <UserDetails 
         onClose={onClose} 
         open={open} 
@@ -130,6 +131,8 @@ const CustomersList = ({
         updateUser={updateUser} 
         setUsers={setUsers}
         refetch={refetch}
+        openPurchases={openPurchases}
+        setOpenPurchases={setOpenPurchases}
       />
     </>
   );
