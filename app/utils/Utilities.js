@@ -58,13 +58,7 @@ export const handleInputChanges = (setForm) => (event) => {
   setForm(prev => ({ ...prev, [name]: value }));
 };
 
-export const listUsers = (setUsers) => {
-    client.models.User.observeQuery().subscribe({
-      next: (data) => setUsers(sortData([...data.items])),
-    });
-}
-
-export const updateUser = async (formValues) => {
+export const updateUser = async (formValues, refetch, setUsers) => {
   try {
     await client.models.User.update({
       id: formValues.id,
@@ -79,6 +73,15 @@ export const updateUser = async (formValues) => {
         country: formValues.country,
       }
     });
+    const fetchUsers = async () => {
+      try {
+        const { data } = await refetch();
+        setUsers(data.listUsers.items);
+      } catch (error) {
+        console.error('Failed to fetch users:', error);
+      }
+    };
+    fetchUsers();
   } catch (e) {
     console.error('Failed to update user', e);
   }
@@ -101,7 +104,7 @@ export const setupCenterPosition = (setCenterPosition, width, height) => {
   return () => window.removeEventListener('resize', handleResize);
 }
 
-export const createUser = async (addNewUser, formValues, close) => {
+export const createUser = async (addNewUser, formValues, close, refetch, setUsers) => {
   if (!formValues?.name) {
     alert('Name is required');
     return;
@@ -124,6 +127,15 @@ export const createUser = async (addNewUser, formValues, close) => {
       },
     });
     close();
+    const fetchUsers = async () => {
+      try {
+        const { data } = await refetch();
+        setUsers(data.listUsers.items);
+      } catch (error) {
+        console.error('Failed to fetch users:', error);
+      }
+    };
+    fetchUsers();
   } catch (err) {
     alert('Failed to add user');
     console.error(err);

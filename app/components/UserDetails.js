@@ -7,7 +7,7 @@ import * as Constants from '../utils/Constants';
 import UserInfo from './UserInfo';
 import PurchasesInfo from './PurchasesInfo';
 
-const UserDetails = ({ onClose, open, selectedUser, updateUser }) => {
+const UserDetails = ({ onClose, open, selectedUser, updateUser, refetch, setUsers }) => {
   const [width, height] = [485, 250];
   const [openPurchases, setOpenPurchases] = useState(false);
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
@@ -67,7 +67,7 @@ const UserDetails = ({ onClose, open, selectedUser, updateUser }) => {
             <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
               {Constants.BUTTONS.CANCEL}
             </Button>
-            <Button variant="contained" onClick={() => { updateUser(formValues); onClose(); }} sx={{ width: 120 }}>
+            <Button variant="contained" onClick={() => { updateUser(formValues, refetch, setUsers); onClose(); }} sx={{ width: 120 }}>
               {Constants.BUTTONS.SAVE}
             </Button>
           </Stack>

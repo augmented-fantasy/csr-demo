@@ -19,7 +19,8 @@ const CustomersList = ({
   setUsers,
   selectedUser,
   setSelectedUser,
-  handleOpen
+  handleOpen,
+  refetch
 }) => {
 
   const columns = [
@@ -127,6 +128,8 @@ const CustomersList = ({
         signOut={signOut} 
         selectedUser={selectedUser} 
         updateUser={updateUser} 
+        setUsers={setUsers}
+        refetch={refetch}
       />
     </>
   );

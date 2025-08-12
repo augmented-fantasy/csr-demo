@@ -17,7 +17,7 @@ import { createUser } from "../utils/Utilities";
 import { ADD_NEW_USER } from "../utils/Constants";
 import { useMutation } from '@apollo/client';
 
-const UserForm = ({ onClose, open }) => {
+const UserForm = ({ onClose, open, refetch, setUsers }) => {
   const [width, height] = [300, 250];
   const [addNewUser] = useMutation(ADD_NEW_USER);
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
@@ -132,7 +132,7 @@ const UserForm = ({ onClose, open }) => {
           </Button>
           <Button 
             variant="contained" 
-            onClick={async () => { await createUser(addNewUser, formValues, onClose); }} 
+            onClick={async () => { await createUser(addNewUser, formValues, onClose, refetch, setUsers); }} 
             sx={{ width: 120 }}>
             {Constants.BUTTONS.SAVE}
           </Button>

@@ -6,16 +6,16 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import CustomersTable from './components/CustomerList';
-import { updateUser, deleteUser, listUsers } from "./utils/Utilities";
+import { updateUser, deleteUser } from "./utils/Utilities";
 import * as Constants from './utils/Constants';
-import UserDetails from './components/UserForm';
+import UserForm from './components/UserForm';
 import Box from '@mui/material/Box'
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import { useTheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
-import { useQuery, useSubscription } from '@apollo/client';
-import { GET_USERS, ON_CREATE_USER } from "./utils/Constants";
+import { useQuery } from '@apollo/client';
+import { GET_USERS } from "./utils/Constants";
 
  const App = () => {
   const theme = useTheme();
@@ -32,7 +32,6 @@ import { GET_USERS, ON_CREATE_USER } from "./utils/Constants";
         const { data } = await refetch();
         setUsers(data.listUsers.items);
         setOpen(true);
-        // console.log(users);
       } catch (error) {
         console.error('Failed to fetch users:', error);
       }
@@ -54,10 +53,6 @@ import { GET_USERS, ON_CREATE_USER } from "./utils/Constants";
   };
 
   useEffect(() => {
-    /* const unsubscribe = listUsers(setUsers);
-    return () => {
-      if (typeof unsubscribe === 'function') unsubscribe();
-    }; */
     const fetchUsers = async () => {
       try {
         const { data } = await refetch();
@@ -119,7 +114,6 @@ import { GET_USERS, ON_CREATE_USER } from "./utils/Constants";
               <Typography variant="h4">{Constants.UI_TEXT.CUSTOMERS}</Typography>
               <Stack direction="row" spacing={2}>
                 <Button variant="contained" onClick={handleOpenEdit}>{Constants.BUTTONS.ADD}</Button>
-                <Button variant="contained" onClick={async () => { await refetch(); }}>TEST</Button>
                 <Button variant="outlined" onClick={signOut}>{Constants.BUTTONS.LOGOUT}</Button>
               </Stack> 
             </Stack>
@@ -133,11 +127,12 @@ import { GET_USERS, ON_CREATE_USER } from "./utils/Constants";
               setSelectedUser={setSelectedUser}
               selectedUser={selectedUser}
               handleOpen={handleOpen}
+              refetch={refetch}
             />
           </Stack>
         </Box>
       </Box>
-      <UserDetails onClose={handleCloseEdit} open={openEdit} signOut={signOut} />
+      <UserForm onClose={handleCloseEdit} open={openEdit} signOut={signOut} refetch={refetch} setUsers={setUsers} />
     </Box>
   );
 }
