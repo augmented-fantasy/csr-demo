@@ -21,10 +21,6 @@ const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 Amplify.configure(outputs);
 const client = generateClient()
 
-export const SubscribeToUserChange = () => {
-  return useSubscription(ON_CREATE_USER);
-}
-
 export const getAvatar = () => {
   return (Math.floor(Math.random() * 11) + 1).toString();
 }
@@ -98,8 +94,15 @@ export const setupCenterPosition = (setCenterPosition, width, height) => {
 }
 
 export const createUser = async (addNewUser, formValues, close, refetch, setUsers) => {
-  if (!formValues?.name) {
-    alert('Name is required');
+  if (!formValues?.name || 
+    !formValues?.email || 
+    !formValues?.phone || 
+    !formValues?.street || 
+    !formValues?.city || 
+    !formValues?.state || 
+    !formValues?.country
+  ) {
+    alert('All fields are required.');
     return;
   }
   try {

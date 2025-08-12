@@ -6,10 +6,10 @@ import { DataGrid } from '@mui/x-data-grid';
 
 const PurchasesInfo = ({ selectedUser, formValues, updateUser, onClose }) => {
    const columns = [
-        { field: 'date', headerName: 'Date', width: 200 },
-        { field: 'product', headerName: 'Product', width: 200 },
-        { field: 'vehicle', headerName: 'Vehicle', width: 200 },
-        { field: 'price', headerName: 'Price', width: 200 },
+        { field: 'date', headerName: 'Date', width: 250 },
+        { field: 'product', headerName: 'Product', width: 250},
+        { field: 'vehicle', headerName: 'Vehicle', width: 250 },
+        { field: 'price', headerName: 'Price', width: 100 },
     ];
 
     const rows = selectedUser.purchases.items.map((purchase, idx) => ({
@@ -23,8 +23,9 @@ const PurchasesInfo = ({ selectedUser, formValues, updateUser, onClose }) => {
     return (
     <>
     <Stack direction="row" spacing={3} sx={{ m: 4 }}>
-        <Stack sx={{ m: 4, flex: 1, height: '425px'}}>
+        <Stack sx={{ m: 4, flex: 1, height: '425px', width: '100%' }}>
             <DataGrid
+                showToolbar
                 rows={rows}
                 columns={columns}
                 pageSize={5}

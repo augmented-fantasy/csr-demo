@@ -19,6 +19,13 @@
 - **API**: GraphQL endpoint with AWS AppSync.
 - **CICD**: Continuous integration / continuous deployment pipeline connected to GitHub `main` branch.
 
+TODO:
+- fix non-closing purchases panel
+- add pointer curson on edit purchases
+- add regex or type checks for fields
+- update number of purchases on customer table
+- add ability to edit purchases
+
 ### Getting Started
 
 Install dependencies: `npm i`
