@@ -31,7 +31,7 @@ export const getAvatar = () => {
 
 export const mapSubscriptions = (purchase) => {
   let color = 'primary';
-  switch (purchase?.product) {
+  switch (purchase) {
     case Constants.SUBSCRIPTIONS.MONTHLY:
       color = 'primary';
         break;

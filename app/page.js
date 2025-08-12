@@ -27,7 +27,18 @@ import { GET_USERS, ON_CREATE_USER } from "./utils/Constants";
   const { signOut } = useAuthenticator((context) => [context.user, context.signOut]);
 
   const handleOpen = () => {
-    setOpen(true);
+    const fetchUsers = async () => {
+      try {
+        const { data } = await refetch();
+        setUsers(data.listUsers.items);
+        setOpen(true);
+        // console.log(users);
+      } catch (error) {
+        console.error('Failed to fetch users:', error);
+      }
+    };
+    fetchUsers();
+    
   };
 
   const handleOpenEdit = () => {
@@ -43,13 +54,10 @@ import { GET_USERS, ON_CREATE_USER } from "./utils/Constants";
   };
 
   useEffect(() => {
-    const unsubscribe = listUsers(setUsers);
+    /* const unsubscribe = listUsers(setUsers);
     return () => {
       if (typeof unsubscribe === 'function') unsubscribe();
-    };
-  }, []);
-
-  useEffect(() => {
+    }; */
     const fetchUsers = async () => {
       try {
         const { data } = await refetch();

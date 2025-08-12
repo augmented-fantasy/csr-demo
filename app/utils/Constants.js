@@ -1,10 +1,10 @@
 import { gql } from '@apollo/client';
 
 export const SUBSCRIPTIONS = {
-    "MONTHLY": "Monthly Unlimited", 
-    "PUNCH": "Punch Pass", 
-    "SINGLE": "Single Wash",
-    "NONE": "None"
+    "MONTHLY": "MONTHLY", 
+    "PUNCH": "PUNCH", 
+    "SINGLE": "SINGLE",
+    "NONE": "NONE"
 }
 
 export const BUTTONS = {
@@ -30,8 +30,6 @@ export const UI_TEXT = {
   "ADD_NEW_USER": "Add New User",
   "CLICK_TO_VIEW_EDIT": "Click to View / Edit"
 }
-
-
 
 export const ON_CREATE_USER = gql`
   subscription OnCreateUser {

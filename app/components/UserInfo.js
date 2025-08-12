@@ -16,6 +16,7 @@ import { getAvatar, mapSubscriptions } from '../utils/Utilities';
 import Chip from '@mui/material/Chip';
 
 const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases }) => {
+
   return (
     <>
       <Stack direction="row" spacing={3} sx={{ m: 4 }}>
@@ -43,12 +44,14 @@ const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases }) => 
               </Stack>
               <Stack direction="column" justifyContent="space-between" sx={{ pt: '20px' }}>
                 <Box sx={{ maxHeight: 130, overflowY: 'auto', pr: 1 }}>
-                  {Array.isArray(selectedUser?.purchases) && selectedUser.purchases.map((purchase, idx) => (
+                  
+                  {selectedUser.purchases.items.map((purchase, idx) => (
                     <Stack key={idx} direction="row" justifyContent="space-between">
                       <b>{purchase.date}</b> {purchase.vehicle}
-                      <Chip sx={{ width: '100px', mb: '5px' }} color={mapSubscriptions(purchase)} label={purchase.value} size="small"/>
+                      <Chip sx={{ width: '100px', mb: '5px' }} color={mapSubscriptions(purchase.product)} label={purchase.product} size="small"/>
                     </Stack>
                   ))}
+
                 </Box>
               </Stack>
 
