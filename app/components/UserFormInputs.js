@@ -7,7 +7,6 @@ import * as Constants from '../utils/Constants';
 
 const UserFormInputs = ({ formValues, handleChange }) => {
 
-  console.log(formValues)
   return (
     <Grid container spacing={3}>
       <Grid>
@@ -53,7 +52,7 @@ const UserFormInputs = ({ formValues, handleChange }) => {
         </Grid>
 
       <Grid>
-        <FormControl fullWidth required error={!formValues.phone?.trim() || !/^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(formValues.phone)}>
+        <FormControl fullWidth required error={!formValues.phone?.trim() || !/^(\+\d{1,2}\s)?\d{3}[\s.-]\d{3}[\s.-]\d{4}$/.test(formValues.phone)}>
             <InputLabel>{Constants.UI_TEXT.PHONE}</InputLabel>
             <OutlinedInput value={formValues.phone} onChange={handleChange} label="Phone number" name="phone" type="tel" />
         </FormControl>

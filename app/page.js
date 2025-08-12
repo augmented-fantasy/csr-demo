@@ -96,9 +96,7 @@ import { GET_USERS } from "./utils/Constants";
           }}
         >
           <Stack spacing={4} alignItems="stretch" sx={{ pt: '20px', width: '100%', maxWidth: 1500 }}>
-
-              
-              <Stack direction="row" spacing={2}>
+              <Stack direction="row" spacing={2} justifyContent="flex-start">
                 <Typography variant="h4">{Constants.UI_TEXT.CUSTOMERS}</Typography>
                 <Button variant="contained" onClick={handleOpenEdit}>{Constants.BUTTONS.ADD}</Button>
                 <Button variant="outlined" onClick={signOut}>{Constants.BUTTONS.LOGOUT}</Button>

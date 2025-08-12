@@ -112,21 +112,22 @@ export const createUser = async (addNewUser, formValues, close, refetch, setUser
         input: {
           name: formValues.name,
           avatar: formValues.avatar ? parseInt(formValues.avatar, 10) : Math.floor(Math.random() * 11) + 1,
-          email: formValues.email || undefined,
-          phone: formValues.phone || undefined,
+          email: formValues.email,
+          phone: formValues.phone,
           address: {
-            street: formValues.street || undefined,
-            city: formValues.city || undefined,
-            state: formValues.state || undefined,
-            country: formValues.country || undefined,
-          }
+            street: formValues.street,
+            city: formValues.city,
+            state: formValues.state,
+            country: formValues.country,
+          },
+          loyalty: formValues.loyalty || 0,
         },
       },
     });
     fetchUsers(refetch, setUsers);
     close();
   } catch (err) {
-    alert('Failed to add user');
+    alert('Failed to add user: ' + (err.message === "Variable 'phone' has an invalid value." ? "Enter phone number format as 123-456-7890" : err.message));
     console.error(err);
   }
 }

@@ -90,7 +90,7 @@ const CustomersList = ({
       renderCell: (params) => (
         <Box sx={{ ml: '30px' }}>
           {params?.row?.loyalty && 
-          <Box sx={{ ml: '25px' }}>
+          <Box>
             <Chip color="primary" sx={{ width: '45px', mb: '5px' }} label={params?.row?.loyalty} size="small"/>
           </Box>
         }
@@ -111,7 +111,7 @@ const CustomersList = ({
           opacity: 0.7;
         }
       `}</style>
-      <Box sx={{ height: '100%', width: '1325px' }}>
+      <Box sx={{ height: '675px', width: '1350px' }}>
         <DataGrid
           sx={{
             [`& .${gridClasses.cell}:focus`]: {
