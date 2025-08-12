@@ -21,6 +21,7 @@ import { GET_USERS } from "./utils/Constants";
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
+  const [openSubscriptions, setOpenSubscriptions] = useState(false);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [openPurchases, setOpenPurchases] = useState(false);
@@ -115,6 +116,8 @@ import { GET_USERS } from "./utils/Constants";
               refetch={refetch}
               openPurchases={openPurchases}
               setOpenPurchases={setOpenPurchases}
+              openSubscriptions={openSubscriptions}
+              setOpenSubscriptions={setOpenSubscriptions}
             />
           </Stack>
         </Box>

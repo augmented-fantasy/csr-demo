@@ -5,7 +5,7 @@ import * as Constants from '../utils/Constants';
 import { DataGrid } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 
-const PurchasesInfo = ({ selectedUser, onClose }) => {
+const Subscriptions = ({ selectedUser, onClose }) => {
    const columns = [
         { field: 'date', headerName: 'Date', width: 250 },
         { field: 'product', headerName: 'Product', width: 250},
@@ -23,19 +23,19 @@ const PurchasesInfo = ({ selectedUser, onClose }) => {
 
     return (
     <>
-    <Typography variant="h6" sx={{ p: 2 }}>{Constants.UI_TEXT.PURCHASES}</Typography>
-    <Stack direction="row" spacing={3} sx={{ pb:"25px", pl: 4, pr: 4 }}>
+    <Typography variant="h6" sx={{ p: 2 }}>{Constants.UI_TEXT.SUBSCRIPTIONS}</Typography>
+        <Stack direction="row" spacing={3} sx={{ pb:"25px", pl: 4, pr: 4 }}>
         
-        <Stack sx={{ ml: 4, mr: 4, flex: 1, height: '400px', width: '100%' }}>
-            <DataGrid
-                showToolbar
-                rows={rows}
-                columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5, 10, 20]}
-                disableSelectionOnClick
-            />
-        </Stack>
+            <Stack sx={{ ml: 4, mr: 4, flex: 1, height: '400px', width: '100%' }}>
+                <DataGrid
+                    showToolbar
+                    rows={rows}
+                    columns={columns}
+                    pageSize={5}
+                    rowsPerPageOptions={[5, 10, 20]}
+                    disableSelectionOnClick
+                />
+            </Stack>
     </Stack>
     <Stack direction="row" justifyContent="space-between" sx={{ ml: 4, mr: 4 }}>
         <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
@@ -49,4 +49,4 @@ const PurchasesInfo = ({ selectedUser, onClose }) => {
   );
 };
 
-export default PurchasesInfo;
+export default Subscriptions;

@@ -13,7 +13,7 @@ import Chip from '@mui/material/Chip';
 import UserFormInputs from './UserFormInputs';
 import Button from '@mui/material/Button';
 
-const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases }) => {
+const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases, openSubscriptions }) => {
 
   return (
     <>
@@ -38,9 +38,9 @@ const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases }) => 
 
               {selectedUser?.purchases?.items.length != 0 &&
               <>
-                <Stack onClick={() => openPurchases(true)} direction="row" justifyContent="space-between" sx={{ pt: '20px', cursor: 'pointer' }}>
-                  <Typography variant="h6">{Constants.UI_TEXT.PURCHASES}</Typography>
-                  <Button size="small" color={'error'} variant="outlined">{Constants.UI_TEXT.CLICK_TO_VIEW_EDIT}</Button>
+                <Stack direction="row" justifyContent="space-between" sx={{ pt: '20px', cursor: 'pointer' }}>
+                  <Button onClick={() => openSubscriptions(true)}size="small" color={'error'} variant="outlined">{Constants.BUTTONS.SUBSCRIPTIONS}</Button>
+                  <Button onClick={() => openPurchases(true)}size="small" color={'error'} variant="outlined">{Constants.BUTTONS.PURCHASE_HISTORY}</Button>
                 </Stack>
                 <Stack direction="column" justifyContent="space-between" sx={{ pt: '20px' }}>
                   <Box sx={{ maxHeight: 130, overflowY: 'auto', pr: 1 }}>

@@ -14,7 +14,9 @@ export const BUTTONS = {
     "DELETE": "Delete",
     "EXIT": "Exit",
     "SAVE": "Save",
-    "CLOSE": "Close"
+    "CLOSE": "Close",
+    "PURCHASE_HISTORY": "PURCHASE HISTORY",
+    "SUBSCRIPTIONS": "EDIT SUBSCRIPTIONS"
 }
 
 export const UI_TEXT = {
@@ -29,11 +31,12 @@ export const UI_TEXT = {
   "COUNTRY": "Country",
   "PURCHASES": "Purchase History",
   "ADD_NEW_USER": "Add New User",
-  "CLICK_TO_VIEW_EDIT": "Click to View / Edit",
   "TITLE": "AMP CSR Portal",
   "DESCRIPTION": "Demo App for AMP CSR Portal",
   "FORM_HEADER": "This information can be edited.",
-  "CUSTOMER_PROFILE": "Customer Profile"
+  "CUSTOMER_PROFILE": "Customer Profile",
+  "SUBSCRIPTIONS": "Subscriptions",
+  "PURCHASES": "Purchases"
 }
 
 export const ON_CREATE_USER = gql`

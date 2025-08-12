@@ -22,7 +22,9 @@ const CustomersList = ({
   handleOpen,
   refetch,
   openPurchases,
-  setOpenPurchases
+  setOpenPurchases,
+  openSubscriptions,
+  setOpenSubscriptions
 }) => {
 
   const columns = [
@@ -133,6 +135,8 @@ const CustomersList = ({
         refetch={refetch}
         openPurchases={openPurchases}
         setOpenPurchases={setOpenPurchases}
+        openSubscriptions={openSubscriptions}
+        setOpenSubscriptions={setOpenSubscriptions}
       />
     </>
   );
