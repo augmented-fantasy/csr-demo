@@ -13,7 +13,9 @@ const schema = a.schema({
       state: a.string(),
       country: a.string()
     }),
+    loyalty: a.integer(),
     purchases: a.hasMany('Purchases', 'userId'),
+    subscriptions: a.hasMany('Subscriptions', 'userId'),
   })
   .authorization((allow) => [allow.publicApiKey()]),
 
@@ -23,6 +25,17 @@ const schema = a.schema({
     date: a.date(),
     price: a.float(),
     product: a.enum(["MONTHLY", "PUNCH", "SINGLE", "NONE"]),
+    userId: a.id().required(),
+    user: a.belongsTo('User', 'userId'),
+  })
+  .authorization((allow) => [allow.publicApiKey()]),
+
+  Subscriptions: a.model({
+    id: a.id().required(),
+    vehicle: a.string(),
+    date: a.date(),
+    price: a.float(),
+    product: a.enum(["MONTHLY", "ANNUAL", "LIFETIME"]),
     userId: a.id().required(),
     user: a.belongsTo('User', 'userId'),
   })
