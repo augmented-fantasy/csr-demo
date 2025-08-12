@@ -6,14 +6,20 @@ import { DataGrid } from '@mui/x-data-grid';
 
 const PurchasesInfo = ({ selectedUser, formValues, updateUser, onClose }) => {
    const columns = [
-        { field: '0', headerName: '0', width: 150 },
-        { field: '1', headerName: '1', width: 150 },
-        { field: '2', headerName: '2', width: 150 },
-        { field: 'amount', headerName: 'Amount', width: 110 },
+        { field: 'date', headerName: 'Date', width: 200 },
+        { field: 'product', headerName: 'Product', width: 200 },
+        { field: 'vehicle', headerName: 'Vehicle', width: 200 },
+        { field: 'price', headerName: 'Price', width: 200 },
     ];
 
-    const rows = selectedUser;
-  
+    const rows = selectedUser.purchases.items.map((purchase, idx) => ({
+      id: idx,
+      date: purchase.date,
+      product: purchase.product,
+      vehicle: purchase.vehicle,
+      price: purchase.price,
+    }));
+
     return (
     <>
     <Stack direction="row" spacing={3} sx={{ m: 4 }}>
@@ -26,15 +32,15 @@ const PurchasesInfo = ({ selectedUser, formValues, updateUser, onClose }) => {
                 disableSelectionOnClick
             />
         </Stack>
-        </Stack>
-        <Stack direction="row" justifyContent="space-between" sx={{ ml: 4, mr: 4 }}>
-            <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
-                {Constants.BUTTONS.CANCEL}
-            </Button>
-            <Button variant="contained" onClick={() => { updateUser(formValues); onClose(); }} sx={{ width: 120 }}>
-                {Constants.BUTTONS.SAVE}
-            </Button>
-        </Stack>
+    </Stack>
+    <Stack direction="row" justifyContent="space-between" sx={{ ml: 4, mr: 4 }}>
+        <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
+            {Constants.BUTTONS.CANCEL}
+        </Button>
+        <Button variant="contained" onClick={() => { updateUser(formValues); onClose(); }} sx={{ width: 120 }}>
+            {Constants.BUTTONS.SAVE}
+        </Button>
+    </Stack>
     </>
   );
 };
