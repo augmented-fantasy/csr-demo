@@ -28,8 +28,14 @@ export const getAvatar = () => {
 export const mapSubscriptions = (purchase) => {
   let color = 'primary';
   switch (purchase) {
-    case Constants.SUBSCRIPTIONS.MONTHLY:
+    case Constants.SUBSCRIPTIONS.LIFETIME:
       color = 'primary';
+        break;
+    case Constants.SUBSCRIPTIONS.ANNUAL:
+      color = 'success';
+        break;
+    case Constants.SUBSCRIPTIONS.MONTHLY:
+      color = 'info';
         break;
     case Constants.SUBSCRIPTIONS.PUNCH:
       color = 'secondary';
@@ -114,7 +120,7 @@ export const createUser = async (addNewUser, formValues, close, refetch, setUser
             state: formValues.state,
             country: formValues.country,
           },
-          loyalty: formValues.loyalty,
+          loyalty: formValues.loyalty || 0,
         },
       },
     });
@@ -183,3 +189,13 @@ export const wsClient = new ApolloClient({
     'x-api-key': process.env.NEXT_PUBLIC_API_KEY,
   }
 });
+
+export const createSubscription = (values) => {
+  client.models.Subscriptions.create({
+    userId: window.prompt("Enter user ID"),
+    product: window.prompt("Enter product"),
+    price: parseFloat(window.prompt("Enter price")),
+    vehicle: window.prompt("Enter vehicle"),
+    date: new Date().toISOString().split('T')[0]
+  });
+}

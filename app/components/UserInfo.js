@@ -36,24 +36,21 @@ const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases, openS
                 </Stack>
               </Stack>
 
-              {selectedUser?.purchases?.items.length != 0 &&
-              <>
                 <Stack direction="row" justifyContent="space-between" sx={{ pt: '20px', cursor: 'pointer' }}>
                   <Button onClick={() => openSubscriptions(true)}size="small" color='primary' variant="outlined">{Constants.BUTTONS.SUBSCRIPTIONS}</Button>
                   <Button onClick={() => openPurchases(true)}size="small" color='primary' variant="outlined">{Constants.BUTTONS.PURCHASE_HISTORY}</Button>
                 </Stack>
                 <Stack direction="column" justifyContent="space-between" sx={{ pt: '20px' }}>
                   <Box sx={{ maxHeight: 130, overflowY: 'auto', pr: 1 }}>
-                    {selectedUser.purchases.items.map((purchase, idx) => (
+                    {[...selectedUser?.purchases?.items, ...selectedUser?.subscriptions?.items].map((purchase, idx) => (
                       <Stack key={idx} direction="row" justifyContent="space-between">
                         <b>{purchase.date}</b> {purchase.vehicle}
                         <Chip sx={{ width: '100px', mb: '5px' }} color={mapSubscriptions(purchase.product)} label={purchase.product} size="small"/>
                       </Stack>
                     ))}
                   </Box>
-                </Stack>
-              </>
-              }
+                </Stack> 
+              
             </CardContent>
           </Card>
         </Stack>

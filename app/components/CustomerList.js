@@ -89,11 +89,9 @@ const CustomersList = ({
       width: 120,
       renderCell: (params) => (
         <Box sx={{ ml: '30px' }}>
-          {params?.row?.loyalty && 
           <Box>
-            <Chip color="primary" sx={{ width: '45px', mb: '5px' }} label={params?.row?.loyalty} size="small"/>
+            <Chip color={params?.row?.loyalty > 0 ? "primary" : "warning"} sx={{ width: '45px', mb: '5px' }} label={params?.row?.loyalty} size="small"/>
           </Box>
-        }
         </Box>
       ),
       sortable: false,

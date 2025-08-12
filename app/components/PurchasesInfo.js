@@ -23,7 +23,7 @@ const PurchasesInfo = ({ selectedUser, onClose }) => {
 
     return (
     <>
-    <Typography variant="h5" sx={{ p: 2 }}>{Constants.UI_TEXT.PURCHASES}</Typography>
+    <Typography variant="h5" sx={{ pl: 4, pt:2, pb: 2 }}>{Constants.UI_TEXT.PURCHASES}</Typography>
     <Stack direction="row" spacing={3} sx={{ pb:"25px", pl: 4, pr: 4 }}>
         
         <Stack sx={{ ml: 4, mr: 4, flex: 1, height: '400px', width: '100%' }}>

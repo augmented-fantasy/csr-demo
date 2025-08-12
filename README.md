@@ -1,8 +1,6 @@
 ## AMP Demo CSR Portal
 
 ### Frontend Features
-- **Search / Edit / Sort / Add / Filter / Delete**: Customers and Customer Info.
-- **View / Modify / Add / Remove**: Customer Purchases.
 - **NEXT**: Next.js React SPA framework.
 - **GraphQL**: GraphQL based data queries and mutations.
 - **MUI**: Material Design UI with Emotion CSS-in-JS styling.

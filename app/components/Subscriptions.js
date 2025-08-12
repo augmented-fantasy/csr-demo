@@ -5,6 +5,7 @@ import * as Constants from '../utils/Constants';
 import { DataGrid } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import { deleteSub } from '../utils/Utilities';
+import { createSubscription } from '../utils/Utilities';
 
 const Subscriptions = ({ selectedUser, onClose, setUsers, refetch }) => {
     const [localRows, setLocalRows] = useState([]);
@@ -12,7 +13,7 @@ const Subscriptions = ({ selectedUser, onClose, setUsers, refetch }) => {
     const columns = [
         { field: 'actions',
             headerName: '',
-            width: 200,
+            width: 150,
             renderCell: (params) => (
                 <Button 
                     sx={{ pl: 3 }} 
@@ -29,21 +30,22 @@ const Subscriptions = ({ selectedUser, onClose, setUsers, refetch }) => {
             filterable: false,
             disableColumnMenu: true
         },
-        { field: 'date', headerName: 'Date', width: 150 },
+        { field: 'date', headerName: 'Date', width: 175 },
         { field: 'product', headerName: 'Product', width: 150},
+        { field: 'price', headerName: 'Price', width: 100 },
         { field: 'vehicle',
             headerName: 'Vehicle',
             width: 250,
             renderCell: (params) => (
-            <>  {params.row.vehicle}
+            <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ width: '100%' }}>
+                <span>{params.row.vehicle}</span>
                 <Button size="small" color="primary" onClick={e => { e.stopPropagation(); }}>{Constants.BUTTONS.CHANGE_VEHICLE}</Button>
-            </>
+            </Stack>
             ),
             sortable: false,
             filterable: false,
             disableColumnMenu: true
-        },
-        { field: 'price', headerName: 'Price', width: 100 }
+        }
     ];
 
     useEffect(() => {
@@ -62,14 +64,13 @@ const Subscriptions = ({ selectedUser, onClose, setUsers, refetch }) => {
         const updatedSubscriptions = [...localRows];
         updatedSubscriptions.splice(id, 1);
         setLocalRows(updatedSubscriptions);
-        console.log('Updated Subscriptions:', updatedSubscriptions);
     };
 
     return (
     <>
     <Stack direction="row" spacing={3} >
-        <Typography variant="h5" sx={{ p: 2 }}>{Constants.UI_TEXT.SUBSCRIPTIONS}</Typography>
-        <Button sx={{ width: 200, height: 40, alignSelf: 'center' }} variant="contained" color="primary" onClick={e => { e.stopPropagation(); onDelete?.(params.row, setUsers, refetch); }}>{Constants.BUTTONS.ADD_SUBSCRIPTION}</Button>
+        <Typography variant="h5" sx={{ pl: 4, pt:2, pb: 2 }}>{Constants.UI_TEXT.SUBSCRIPTIONS}</Typography>
+        <Button sx={{ width: 200, height: 40, alignSelf: 'center' }} variant="contained" color="primary" onClick={e => { e.stopPropagation(); createSubscription(); }}>{Constants.BUTTONS.ADD_SUBSCRIPTION}</Button>
         </Stack>
         <Stack direction="row" spacing={3} sx={{ pb:"25px", pl: 4, pr: 4 }}>
             <Stack sx={{ ml: 4, mr: 4, flex: 1, height: '400px', width: '100%' }}>
