@@ -6,6 +6,8 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import * as Constants from '../utils/Constants';
 
 const UserFormInputs = ({ formValues, handleChange }) => {
+
+  console.log(formValues)
   return (
     <Grid container spacing={3}>
       <Grid>
@@ -55,7 +57,15 @@ const UserFormInputs = ({ formValues, handleChange }) => {
             <InputLabel>{Constants.UI_TEXT.PHONE}</InputLabel>
             <OutlinedInput value={formValues.phone} onChange={handleChange} label="Phone number" name="phone" type="tel" />
         </FormControl>
-        </Grid>
+      </Grid>
+
+      <Grid>
+        <FormControl fullWidth>
+          <InputLabel>{Constants.UI_TEXT.LOYALTY}</InputLabel>
+          <OutlinedInput value={formValues.loyalty} onChange={handleChange} label="Loyalty Points" name="loyalty" />
+        </FormControl>
+      </Grid>
+
     </Grid>
   );
 };

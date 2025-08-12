@@ -51,7 +51,8 @@ const UserDetails = ({
         state: selectedUser.address?.state || '',
         country: selectedUser.address?.country || '',
         phone: selectedUser.phone || '',
-        avatar: selectedUser.avatar || ''
+        avatar: selectedUser.avatar || '',
+        loyalty: selectedUser.loyalty || ''
       });
     }
   }, [selectedUser, open]);

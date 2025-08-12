@@ -1,13 +1,13 @@
 'use client';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import { DataGrid, gridClasses } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import UserDetails from './UserDetails';
 import * as Constants from '../utils/Constants';
+import Chip from '@mui/material/Chip';
 
 const CustomersList = ({ 
   rows = [], 
@@ -83,6 +83,23 @@ const CustomersList = ({
       filterable: false,
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
+    },
+    { field: 'loyalty',
+      headerName: 'Loyalty Points',
+      width: 120,
+      renderCell: (params) => (
+        <Box sx={{ ml: '30px' }}>
+          {params?.row?.loyalty && 
+          <Box sx={{ ml: '25px' }}>
+            <Chip color="primary" sx={{ width: '45px', mb: '5px' }} label={params?.row?.loyalty} size="small"/>
+          </Box>
+        }
+        </Box>
+      ),
+      sortable: false,
+      filterable: false,
+      disableColumnMenu: true,
+      cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     }
   ];
 
@@ -94,7 +111,7 @@ const CustomersList = ({
           opacity: 0.7;
         }
       `}</style>
-      <Box sx={{ height: '100%', width: '1200px' }}>
+      <Box sx={{ height: '100%', width: '1325px' }}>
         <DataGrid
           sx={{
             [`& .${gridClasses.cell}:focus`]: {

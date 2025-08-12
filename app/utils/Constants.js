@@ -1,10 +1,12 @@
 import { gql } from '@apollo/client';
 
 export const SUBSCRIPTIONS = {
+    "ANNUAL": "ANNUAL",
     "MONTHLY": "MONTHLY", 
+    "LIFETIME": "LIFETIME",
     "PUNCH": "PUNCH", 
     "SINGLE": "SINGLE",
-    "NONE": "NONE"
+    "NONE": "NONE",
 }
 
 export const BUTTONS = {
@@ -36,7 +38,8 @@ export const UI_TEXT = {
   "FORM_HEADER": "This information can be edited.",
   "CUSTOMER_PROFILE": "Customer Profile",
   "SUBSCRIPTIONS": "Subscriptions",
-  "PURCHASES": "Purchases"
+  "PURCHASES": "Purchases",
+  "LOYALTY": "Loyalty Points"
 }
 
 export const ON_CREATE_USER = gql`
@@ -48,6 +51,7 @@ export const ON_CREATE_USER = gql`
       id
       name
       phone
+      loyalty
       purchases {
         items {
           date
@@ -97,6 +101,7 @@ export const GET_USERS = gql`
         email
         id
         phone
+        loyalty
         address {
           city
           country
@@ -124,6 +129,7 @@ export const ADD_NEW_USER = gql`
       email
       phone
       avatar
+      loyalty
       createdAt
       updatedAt
       address {

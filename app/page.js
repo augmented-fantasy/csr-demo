@@ -51,7 +51,7 @@ import { GET_USERS } from "./utils/Constants";
   }, []);
 
   return (
-    <Box sx={{ display: 'flex', width: '100vw', maxWidth: '100%' }}>
+    <Box sx={{ display: 'flex', width: '100vw' }}>
       <MuiAppBar
         sx={{
           zIndex: theme.zIndex.drawer + 1,
@@ -95,14 +95,15 @@ import { GET_USERS } from "./utils/Constants";
             justifyContent: 'center',
           }}
         >
-          <Stack spacing={4} alignItems="stretch" sx={{ pt: '20px', width: '100%', maxWidth: 1200 }}>
-            <Stack direction="row" justifyContent="space-between" alignItems="center">
-              <Typography variant="h4">{Constants.UI_TEXT.CUSTOMERS}</Typography>
+          <Stack spacing={4} alignItems="stretch" sx={{ pt: '20px', width: '100%', maxWidth: 1500 }}>
+
+              
               <Stack direction="row" spacing={2}>
+                <Typography variant="h4">{Constants.UI_TEXT.CUSTOMERS}</Typography>
                 <Button variant="contained" onClick={handleOpenEdit}>{Constants.BUTTONS.ADD}</Button>
                 <Button variant="outlined" onClick={signOut}>{Constants.BUTTONS.LOGOUT}</Button>
               </Stack> 
-            </Stack>
+            
             <CustomerList
               rows={users}
               updateUser={updateUser}

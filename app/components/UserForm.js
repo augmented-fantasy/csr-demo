@@ -27,7 +27,8 @@ const UserForm = ({ onClose, open, refetch, setUsers }) => {
     state: '', 
     country: '', 
     phone: '', 
-    avatar: ''
+    avatar: '',
+    loyalty: ''
   });
   const handleChange = handleInputChanges(setFormValues);
 
@@ -46,7 +47,8 @@ const UserForm = ({ onClose, open, refetch, setUsers }) => {
         state: '', 
         country: '', 
         phone: '', 
-        avatar: '' 
+        avatar: '',
+        loyalty: ''
       });
     }
   }, [open]);
@@ -72,9 +74,9 @@ const UserForm = ({ onClose, open, refetch, setUsers }) => {
           </Stack>
         </Stack>
         
-        <Stack direction="row" justifyContent="space-between" sx={{ m: 2 }}>
+        <Stack direction="row" justifyContent="space-between" sx={{ m: 4 }}>
           <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
-            {Constants.BUTTONS.CANCEL}
+            {Constants.BUTTONS.CLOSE}
           </Button>
           <Button 
             variant="contained" 

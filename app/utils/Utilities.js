@@ -62,6 +62,7 @@ export const updateUser = async (formValues, refetch, setUsers) => {
       email: formValues.email,
       phone: formValues.phone,
       avatar: formValues.avatar ? parseInt(formValues.avatar, 10) : undefined,
+      loyalty: formValues.loyalty,
       address: {
         street: formValues.street,
         city: formValues.city,
