@@ -128,7 +128,6 @@ const CustomersList = ({
             },
           }}
           showToolbar
-          disableColumnFilter
           rows={rows}
           columns={columns}
           pageSize={10}

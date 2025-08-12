@@ -39,6 +39,7 @@ import { GET_USERS } from "./utils/Constants";
 
   const handleClose = () => {
     setOpenPurchases(false);
+    setOpenSubscriptions(false);
     setOpen(false);
   };
 

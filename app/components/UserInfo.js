@@ -39,8 +39,8 @@ const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases, openS
               {selectedUser?.purchases?.items.length != 0 &&
               <>
                 <Stack direction="row" justifyContent="space-between" sx={{ pt: '20px', cursor: 'pointer' }}>
-                  <Button onClick={() => openSubscriptions(true)}size="small" color={'error'} variant="outlined">{Constants.BUTTONS.SUBSCRIPTIONS}</Button>
-                  <Button onClick={() => openPurchases(true)}size="small" color={'error'} variant="outlined">{Constants.BUTTONS.PURCHASE_HISTORY}</Button>
+                  <Button onClick={() => openSubscriptions(true)}size="small" color='primary' variant="outlined">{Constants.BUTTONS.SUBSCRIPTIONS}</Button>
+                  <Button onClick={() => openPurchases(true)}size="small" color='primary' variant="outlined">{Constants.BUTTONS.PURCHASE_HISTORY}</Button>
                 </Stack>
                 <Stack direction="column" justifyContent="space-between" sx={{ pt: '20px' }}>
                   <Box sx={{ maxHeight: 130, overflowY: 'auto', pr: 1 }}>

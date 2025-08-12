@@ -45,14 +45,14 @@ const UserDetails = ({
       setFormValues({
         id: selectedUser.id || '',
         name: selectedUser.name || '',
-        email: selectedUser.email || '',
+        email: selectedUser.email || undefined,
         street: selectedUser.address?.street || '',
         city: selectedUser.address?.city || '',
         state: selectedUser.address?.state || '',
         country: selectedUser.address?.country || '',
-        phone: selectedUser.phone || '',
-        avatar: selectedUser.avatar || '',
-        loyalty: selectedUser.loyalty || ''
+        phone: selectedUser.phone || undefined,
+        avatar: selectedUser.avatar || undefined,
+        loyalty: selectedUser.loyalty || undefined
       });
     }
   }, [selectedUser, open]);

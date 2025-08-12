@@ -7,18 +7,41 @@ import Typography from '@mui/material/Typography';
 
 const Subscriptions = ({ selectedUser, onClose }) => {
    const columns = [
-        { field: 'date', headerName: 'Date', width: 250 },
-        { field: 'product', headerName: 'Product', width: 250},
-        { field: 'vehicle', headerName: 'Vehicle', width: 250 },
-        { field: 'price', headerName: 'Price', width: 100 },
+        { field: 'actions',
+            headerName: '',
+            width: 125,
+            renderCell: (params) => (
+            <>
+                <Button sx={{ pl: 3 }} size="small" color="error" onClick={e => { e.stopPropagation(); onDelete?.(params.row, setUsers, refetch); }}>{Constants.BUTTONS.REFUND}</Button>
+            </>
+            ),
+            sortable: false,
+            filterable: false,
+            disableColumnMenu: true
+        },
+        { field: 'date', headerName: 'Date', width: 150 },
+        { field: 'product', headerName: 'Product', width: 150},
+        { field: 'vehicle',
+            headerName: 'Vehicle',
+            width: 250,
+            renderCell: (params) => (
+            <>  {params.row.vehicle}
+                <Button size="small" color="primary" onClick={""} sx={{ pl: 4 }}>{Constants.BUTTONS.CHANGE_VEHICLE}</Button>
+            </>
+            ),
+            sortable: false,
+            filterable: false,
+            disableColumnMenu: true
+        },
+        { field: 'price', headerName: 'Price', width: 100 }
     ];
 
-    const rows = selectedUser.purchases.items.map((purchase, idx) => ({
+    const rows = selectedUser?.subscriptions?.items?.map((subscriptions, idx) => ({
       id: idx,
-      date: purchase.date,
-      product: purchase.product,
-      vehicle: purchase.vehicle,
-      price: purchase.price,
+      date: subscriptions.date,
+      product: subscriptions.product,
+      vehicle: subscriptions.vehicle,
+      price: subscriptions.price,
     }));
 
     return (

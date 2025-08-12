@@ -18,7 +18,9 @@ export const BUTTONS = {
     "SAVE": "Save",
     "CLOSE": "Close",
     "PURCHASE_HISTORY": "PURCHASE HISTORY",
-    "SUBSCRIPTIONS": "EDIT SUBSCRIPTIONS"
+    "SUBSCRIPTIONS": "EDIT SUBSCRIPTIONS",
+    "CHANGE_VEHICLE": "CHANGE VEHICLE",
+    "REFUND": "REFUND"
 }
 
 export const UI_TEXT = {
@@ -109,6 +111,14 @@ export const GET_USERS = gql`
           street
         }
         purchases {
+          items {
+            vehicle
+            date
+            price
+            product
+          }
+        }
+        subscriptions {
           items {
             vehicle
             date

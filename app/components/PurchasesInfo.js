@@ -13,7 +13,7 @@ const PurchasesInfo = ({ selectedUser, onClose }) => {
         { field: 'price', headerName: 'Price', width: 100 },
     ];
 
-    const rows = selectedUser.purchases.items.map((purchase, idx) => ({
+    const rows = selectedUser?.purchases?.items.map((purchase, idx) => ({
       id: idx,
       date: purchase.date,
       product: purchase.product,
