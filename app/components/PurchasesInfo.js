@@ -23,7 +23,7 @@ const PurchasesInfo = ({ selectedUser, onClose }) => {
 
     return (
     <>
-    <Typography variant="h6" sx={{ p: 2 }}>{Constants.UI_TEXT.PURCHASES}</Typography>
+    <Typography variant="h5" sx={{ p: 2 }}>{Constants.UI_TEXT.PURCHASES}</Typography>
     <Stack direction="row" spacing={3} sx={{ pb:"25px", pl: 4, pr: 4 }}>
         
         <Stack sx={{ ml: 4, mr: 4, flex: 1, height: '400px', width: '100%' }}>
@@ -37,14 +37,9 @@ const PurchasesInfo = ({ selectedUser, onClose }) => {
             />
         </Stack>
     </Stack>
-    <Stack direction="row" justifyContent="space-between" sx={{ ml: 4, mr: 4 }}>
-        <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
-            {Constants.BUTTONS.EXIT}
-        </Button>
-        <Button variant="contained" sx={{ width: 120 }}>
-            {Constants.BUTTONS.SAVE}
-        </Button>
-    </Stack>
+    <Button variant="outlined" onClick={onClose} sx={{ width: 120, ml:4 }}>
+        {Constants.BUTTONS.EXIT}
+    </Button>
     </>
   );
 };

@@ -126,6 +126,10 @@ export const createUser = async (addNewUser, formValues, close, refetch, setUser
   }
 }
 
+export const deleteSub = async (id) => {
+  await client.models.Subscriptions.delete({ id: id });
+}
+
 export const fetchUsers = async (refetch, setUsers) => {
   try {
     const { data } = await refetch();

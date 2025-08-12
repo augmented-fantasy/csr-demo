@@ -97,6 +97,8 @@ const UserDetails = ({
           <Subscriptions
             selectedUser={selectedUser}
             onClose={() => setOpenSubscriptions(false)}
+            setUsers={setUsers}
+            refetch={refetch}
           />
         )}
       </Popover>

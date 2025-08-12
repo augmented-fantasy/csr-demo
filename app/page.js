@@ -41,6 +41,7 @@ import { GET_USERS } from "./utils/Constants";
     setOpenPurchases(false);
     setOpenSubscriptions(false);
     setOpen(false);
+    fetchUsers(refetch, setUsers);
   };
 
   const handleCloseEdit = () => {

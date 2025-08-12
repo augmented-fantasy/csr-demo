@@ -20,7 +20,7 @@ export const BUTTONS = {
     "PURCHASE_HISTORY": "PURCHASE HISTORY",
     "SUBSCRIPTIONS": "EDIT SUBSCRIPTIONS",
     "CHANGE_VEHICLE": "CHANGE VEHICLE",
-    "REFUND": "REFUND"
+    "ADD_SUBSCRIPTION": "NEW SUBSCRIPTION"
 }
 
 export const UI_TEXT = {
@@ -124,6 +124,8 @@ export const GET_USERS = gql`
             date
             price
             product
+            userId
+            id
           }
         }
       }
