@@ -10,13 +10,12 @@ import Stack from '@mui/material/Stack';
 import { setupCenterPosition, handleInputChanges } from '../utils/Utilities';
 import * as Constants from '../utils/Constants';
 import { createUser } from "../utils/Utilities";
-import { ADD_NEW_USER } from "../utils/Constants";
 import { useMutation } from '@apollo/client';
 import UserFormInputs from './UserFormInputs';
 
 const UserForm = ({ onClose, open, refetch, setUsers }) => {
   const [width, height] = [300, 300];
-  const [addNewUser] = useMutation(ADD_NEW_USER);
+  const [addNewUser] = useMutation(Constants.ADD_NEW_USER);
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
   const [formValues, setFormValues] = useState({
     id: '', 

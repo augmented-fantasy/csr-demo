@@ -47,7 +47,7 @@ export const UI_TEXT = {
   "CREATE_SUBSCRIPTION": "Assign a new subscription",
   "VEHICLE": "Vehicle",
   "PRODUCT": "Product",
-  "VEHICLES": "Vehicles"
+  "VEHICLES": "Enter Vehicle Name"
 }
 
 export const ON_CREATE_USER = gql`
@@ -159,6 +159,19 @@ export const ADD_NEW_USER = gql`
         state
         street
       }
+    }
+  }`
+;
+
+export const GET_SUBSCRIPTIONS = gql`
+  query GetSubscriptions($input: GetSubscriptionsInput!) {
+    getSubscriptions(id: $input) {
+      date
+      id
+      price
+      product
+      userId
+      vehicle
     }
   }`
 ;

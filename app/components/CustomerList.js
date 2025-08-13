@@ -30,7 +30,7 @@ const CustomersList = ({
   const columns = [
     { field: 'actions',
       headerName: '',
-      width: 160,
+      width: 148,
       renderCell: (params) => (
         <>
           <Button disabled={open ? true : false} size="small" color="primary" onClick={e => { e.stopPropagation(); setSelectedUser(params.row); handleOpen(); }}>{Constants.BUTTONS.UPDATE}</Button>
@@ -44,7 +44,7 @@ const CustomersList = ({
     },
     { field: 'name',
       headerName: 'Name',
-      width: 250,
+      width: 220,
       renderCell: (params) => (
         <Stack direction="row" spacing={2} sx={{ alignItems: 'center', height: '100%' }}>
           <Avatar src={`/assets/avatar-${params.row?.avatar || "8"}.png`} />
@@ -56,10 +56,10 @@ const CustomersList = ({
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
-    { field: 'email', headerName: 'Email', width: 250, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : '' },
+    { field: 'email', headerName: 'Email', width: 200, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : '' },
     { field: 'location',
       headerName: 'Location',
-      width: 300,
+      width: 280,
       renderCell: (params) => (
         <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
           {`${params.row.address?.street || ''} ${params.row.address?.city || ''} ${params.row.address?.state || ''}, ${params.row.address?.country || ''}`}
@@ -70,12 +70,12 @@ const CustomersList = ({
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
-    { field: 'phone', headerName: 'Phone', width: 140, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''},
+    { field: 'phone', headerName: 'Phone', width: 120, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''},
     { field: 'purchases',
       headerName: 'Purchases',
       width: 90,
       renderCell: (params) => (
-        <Box sx={{ ml: '30px' }}>
+        <Box sx={{ ml: '32px' }}>
           {params?.row?.purchases?.items?.length || 0}
         </Box>
       ),
@@ -86,9 +86,9 @@ const CustomersList = ({
     },
     { field: 'vehicles',
       headerName: 'Vehicles',
-      width: 90,
+      width: 75,
       renderCell: (params) => (
-        <Box sx={{ ml: '30px' }}>
+        <Box sx={{ ml: '22px' }}>
           <Box>
               {params?.row?.vehicles?.length > 0 ? params?.row?.vehicles.length : 0 }
            </Box>
@@ -101,9 +101,9 @@ const CustomersList = ({
     },
     { field: 'subscriptions',
       headerName: 'Subscriptions',
-      width: 120,
+      width: 105,
       renderCell: (params) => (
-        <Box sx={{ ml: '30px' }}>
+        <Box sx={{ ml: '25px' }}>
           <Box>
               <Chip color={params?.row?.subscriptions?.items.length > 0 ? "primary" : "warning"} sx={{ width: '45px', mb: '5px' }} label={params?.row?.subscriptions?.items.length} size="small"/>
            </Box>
@@ -116,7 +116,7 @@ const CustomersList = ({
     },
     { field: 'loyalty',
       headerName: 'Loyalty Points',
-      width: 120,
+      width: 108,
       renderCell: (params) => (
         <Box sx={{ ml: '30px' }}>
           <Box>
@@ -139,7 +139,7 @@ const CustomersList = ({
           opacity: 0.7;
         }
       `}</style>
-      <Box sx={{ height: '675px', width: '1550px' }}>
+      <Box sx={{ height: '675px', width: '1375px', pl: '10px' }}>
         <DataGrid
           sx={{
             [`& .${gridClasses.cell}:focus`]: {
@@ -181,6 +181,7 @@ const CustomersList = ({
         setOpenPurchases={setOpenPurchases}
         openSubscriptions={openSubscriptions}
         setOpenSubscriptions={setOpenSubscriptions}
+        setSelectedUser={setSelectedUser}
       />
     </>
   );

@@ -197,3 +197,13 @@ export const createSubscription = (values) => {
     date: values.date
   });
 }
+
+export const deleteSubscription = async (values) => {
+  client.models.Subscriptions.delete({
+    userId: values.userId,
+    product: values.product,
+    price: values.price,
+    vehicle: values.vehicle,
+    date: values.date
+  });
+}

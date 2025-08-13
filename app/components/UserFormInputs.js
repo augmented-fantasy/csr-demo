@@ -81,6 +81,23 @@ const UserFormInputs = ({ formValues, handleChange, setFormValues, vehicleInput,
         </FormControl>
       </Grid>
 
+      <Box>
+        {formValues?.vehicles?.map((value, key) => (
+          <Chip
+            key={key}
+            label={value}
+            color='warning'
+            sx={{ mr: '10px' }}
+            onDelete={() =>
+              setFormValues((prev) => ({
+                ...prev,
+                vehicles: prev?.vehicles?.filter((vehicle, idx) => idx !== key)
+              }))
+            }
+          />
+        ))}
+      </Box>
+
       <Grid sx={{ width: '470px' }}>
       <FormControl fullWidth>
         <InputLabel>{Constants.UI_TEXT.VEHICLES}</InputLabel>
@@ -101,22 +118,6 @@ const UserFormInputs = ({ formValues, handleChange, setFormValues, vehicleInput,
         Add Vehicle
       </Button>
 
-      <Box sx={{ mt: 1 }}>
-        {formValues?.vehicles?.map((value, key) => (
-          <Chip
-            key={key}
-            label={value}
-            color='warning'
-            onDelete={() =>
-              setFormValues((prev) => ({
-                ...prev,
-                vehicles: prev?.vehicles?.filter((vehicle, idx) => idx !== key)
-              }))
-            }
-            sx={{ m: 0.5 }}
-          />
-        ))}
-      </Box>
     </Grid>
 
     </Grid>

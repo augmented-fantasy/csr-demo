@@ -15,7 +15,6 @@ import MuiAppBar from '@mui/material/AppBar';
 import { useTheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import { useQuery } from '@apollo/client';
-import { GET_USERS } from "./utils/Constants";
 
  const App = () => {
   const theme = useTheme();
@@ -25,15 +24,16 @@ import { GET_USERS } from "./utils/Constants";
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [openPurchases, setOpenPurchases] = useState(false);
-  const { refetch } = useQuery(GET_USERS);
+  const { refetch } = useQuery(Constants.GET_USERS);
   const { signOut } = useAuthenticator((context) => [context.user, context.signOut]);
 
   const handleOpen = () => {
-      fetchUsers(refetch, setUsers);
-      setOpen(true);
+    fetchUsers(refetch, setUsers);
+    setOpen(true);
   };
 
   const handleOpenEdit = () => {
+    fetchUsers(refetch, setUsers);
     setOpenEdit(true);
   };
 
@@ -46,6 +46,7 @@ import { GET_USERS } from "./utils/Constants";
 
   const handleCloseEdit = () => {
     setOpenEdit(false);
+    fetchUsers(refetch, setUsers);
   };
 
   useEffect(() => {
@@ -96,9 +97,9 @@ import { GET_USERS } from "./utils/Constants";
             justifyContent: 'center',
           }}
         >
-          <Stack spacing={4} alignItems="stretch" sx={{ pt: '20px', width: '100%', maxWidth: 1550 }}>
+          <Stack spacing={4} alignItems="stretch" sx={{ pl:'5px', pt: '20px', width: '1375px', maxWidth: 1375 }}>
               <Stack direction="row" spacing={2} justifyContent="flex-start">
-                <Typography variant="h4">{Constants.UI_TEXT.CUSTOMERS}</Typography>
+                <Typography sx={{ pl:'10px'}} variant="h4">{Constants.UI_TEXT.CUSTOMERS}</Typography>
                 <Button variant="contained" onClick={handleOpenEdit}>{Constants.BUTTONS.ADD}</Button>
                 <Button variant="outlined" onClick={signOut}>{Constants.BUTTONS.LOGOUT}</Button>
               </Stack> 

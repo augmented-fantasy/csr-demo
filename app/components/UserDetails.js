@@ -18,7 +18,8 @@ const UserDetails = ({
   openPurchases,
   setOpenPurchases,
   openSubscriptions,
-  setOpenSubscriptions
+  setOpenSubscriptions,
+  setSelectedUser
 }) => {
   const [width, height] = [485, 350];
   
@@ -35,6 +36,16 @@ const UserDetails = ({
     avatar: '',
     vehicles: []
   });
+
+  const [localRows, setLocalRows] = useState([]);
+  const [subscriptionValues, setSubscriptionValues] = useState({
+      userId: selectedUser?.id || '',
+      product: selectedUser?.product || "LIFETIME",
+      price: 9.99, // TODO set prices per product
+      vehicle: selectedUser?.vehicles?.[0] || "ANY",
+      date: new Date().toISOString().split('T')[0]
+  });
+
   const handleChange = handleInputChanges(setFormValues);
 
   const [vehicleInput, setVehicleInput] = useState('');
@@ -61,6 +72,18 @@ const UserDetails = ({
     }
   }, [selectedUser, open]);
 
+  useEffect(() => {
+    setLocalRows(selectedUser?.subscriptions?.items?.map((subscriptions, idx) => ({
+        id: idx,
+        subId: subscriptions.id,
+        userId: subscriptions.userId,
+        date: subscriptions.date,
+        product: subscriptions.product,
+        vehicle: subscriptions.vehicle,
+        price: subscriptions.price,
+        })));
+  }, [selectedUser?.subscriptions?.items]);
+
   return (
     <>
       <Popover
@@ -81,6 +104,7 @@ const UserDetails = ({
               vehicleInput={vehicleInput} 
               setVehicleInput={setVehicleInput}
               setFormValues={setFormValues}
+              setUsers={setUsers}
             />
 
             <Stack direction="row" justifyContent="space-between" sx={{ ml: 4, mr: 4 }}>
@@ -105,6 +129,11 @@ const UserDetails = ({
             onClose={() => setOpenSubscriptions(false)}
             setUsers={setUsers}
             refetch={refetch}
+            setSelectedUser={setSelectedUser}
+            localRows={localRows}
+            setLocalRows={setLocalRows}
+            subscriptionValues={subscriptionValues}
+            setSubscriptionValues={setSubscriptionValues}
           />
         )}
       </Popover>

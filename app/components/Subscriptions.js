@@ -16,16 +16,10 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
-const Subscriptions = ({ selectedUser, onClose }) => {
+
+
+const Subscriptions = ({ selectedUser, onClose, localRows, setLocalRows, subscriptionValues, setSubscriptionValues }) => {
     const [open, setOpen] = useState(false);
-    const [localRows, setLocalRows] = useState([]);
-    const [formValues, setFormValues] = useState({
-        userId: selectedUser.id,
-        product: selectedUser.product || "LIFETIME",
-        price: 9.99, // TODO set prices per product
-        vehicle: selectedUser?.vehicles?.[0] || "ANY",
-        date: new Date().toISOString().split('T')[0]
-    });
 
     const columns = [
         { field: 'actions',
@@ -58,10 +52,10 @@ const Subscriptions = ({ selectedUser, onClose }) => {
                 <FormControl fullWidth sx={{ width: 250 }}>
                         <InputLabel>{Constants.UI_TEXT.VEHICLE}</InputLabel>
                             <Select
-                                value={formValues.vehicle || (selectedUser?.vehicles?.[0] || "SELECT VEHICLE")}
+                                value={subscriptionValues.vehicle || (selectedUser?.vehicles?.[0] || "SELECT VEHICLE")}
                                 name=""
                                 onChange={(e) => {
-                                    setFormValues({ ...formValues, vehicle: e.target.value });
+                                    setSubscriptionValues({ ...subscriptionValues, vehicle: e.target.value });
                                 }}>
                                 {selectedUser?.vehicles?.map((vehicle, index) => (
                                 <MenuItem key={index} value={vehicle}>{vehicle}</MenuItem>
@@ -76,7 +70,7 @@ const Subscriptions = ({ selectedUser, onClose }) => {
         }
     ];
 
-    useEffect(() => {
+    /* useEffect(() => {
         setLocalRows(selectedUser?.subscriptions?.items?.map((subscriptions, idx) => ({
             id: idx,
             subId: subscriptions.id,
@@ -86,11 +80,26 @@ const Subscriptions = ({ selectedUser, onClose }) => {
             vehicle: subscriptions.vehicle,
             price: subscriptions.price,
             })));
-      }, [selectedUser?.subscriptions?.items]);
+      }, [selectedUser?.subscriptions?.items]); */
 
     const handleDelete = (id) => {
         const updatedSubscriptions = [...localRows];
         updatedSubscriptions.splice(id, 1);
+        setLocalRows(updatedSubscriptions);
+    };
+
+    const handleCreate = () => {
+        const newSubscription = {
+            id: localRows.length,
+            subId: subscriptionValues.id || `temp-${localRows.length}`,
+            userId: subscriptionValues.userId,
+            date: subscriptionValues.date,
+            product: subscriptionValues.product,
+            vehicle: subscriptionValues.vehicle,
+            price: subscriptionValues.price,
+        };
+
+        const updatedSubscriptions = [...localRows, newSubscription];
         setLocalRows(updatedSubscriptions);
     };
 
@@ -126,9 +135,9 @@ const Subscriptions = ({ selectedUser, onClose }) => {
                     <FormControl fullWidth sx={{ width: 250 }}>
                         <InputLabel>{Constants.UI_TEXT.VEHICLE}</InputLabel>
                             <Select
-                                value={formValues.vehicle || (selectedUser?.vehicles?.[0] || "SELECT VEHICLE")}
+                                value={subscriptionValues.vehicle || (selectedUser?.vehicles?.[0] || "SELECT VEHICLE")}
                                 onChange={(e) => {
-                                    setFormValues({ ...formValues, vehicle: e.target.value });
+                                    setSubscriptionValues({ ...subscriptionValues, vehicle: e.target.value });
                                 }}
                                 label={Constants.UI_TEXT.VEHICLE}
                                 name="vehicle">
@@ -143,9 +152,9 @@ const Subscriptions = ({ selectedUser, onClose }) => {
                     <FormControl fullWidth sx={{ width: 250 }}>
                         <InputLabel>{Constants.UI_TEXT.PRODUCT}</InputLabel>
                         <Select
-                          value={formValues.product || (selectedUser.product|| "LIFETIME")}
+                          value={subscriptionValues.product || (selectedUser.product|| "LIFETIME")}
                           onChange={(e) => {
-                            setFormValues({ ...formValues, product: e.target.value });
+                            setSubscriptionValues({ ...subscriptionValues, product: e.target.value });
                           }}
                           label={Constants.UI_TEXT.PRODUCT}
                           name="product">
@@ -163,7 +172,7 @@ const Subscriptions = ({ selectedUser, onClose }) => {
             <Button variant="outlined" onClick={() => setOpen(false)} sx={{ width: 120, ml:6, mt:4}}>
                 {Constants.BUTTONS.CANCEL}
             </Button>
-            <Button variant="contained" onClick={() => {setOpen(false); createSubscription(formValues);}} sx={{ width: 120, mr:6, mt:4 }}>
+            <Button variant="contained" onClick={() => {setOpen(false); createSubscription(subscriptionValues); handleCreate(subscriptionValues.id);}} sx={{ width: 120, mr:6, mt:4 }}>
                 {Constants.BUTTONS.SAVE}
             </Button>
         </Stack>
