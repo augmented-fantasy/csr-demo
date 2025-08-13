@@ -21,9 +21,9 @@ const Subscriptions = ({ selectedUser, onClose }) => {
     const [localRows, setLocalRows] = useState([]);
     const [formValues, setFormValues] = useState({
         userId: selectedUser.id,
-        product: "ANY",
-        price: 9.99,
-        vehicle: "ANY",
+        product: selectedUser.product || "LIFETIME",
+        price: 9.99, // TODO set prices per product
+        vehicle: selectedUser?.vehicles?.[0] || "ANY",
         date: new Date().toISOString().split('T')[0]
     });
 
@@ -47,16 +47,27 @@ const Subscriptions = ({ selectedUser, onClose }) => {
             filterable: false,
             disableColumnMenu: true
         },
-        { field: 'date', headerName: 'Date', width: 175 },
+        { field: 'date', headerName: 'Date', width: 150 },
         { field: 'product', headerName: 'Product', width: 150},
-        { field: 'price', headerName: 'Price', width: 100 },
+        { field: 'price', headerName: 'Price', width: 150 },
         { field: 'vehicle',
             headerName: 'Vehicle',
-            width: 250,
+            width: 300,
             renderCell: (params) => (
-            <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ width: '100%' }}>
-                <span>{params.row.vehicle}</span>
-                <Button size="small" color="primary" onClick={e => { e.stopPropagation(); }}>{Constants.BUTTONS.CHANGE_VEHICLE}</Button>
+            <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ width: '100%', pt:1 }}>
+                <FormControl fullWidth sx={{ width: 250 }}>
+                        <InputLabel>{Constants.UI_TEXT.VEHICLE}</InputLabel>
+                            <Select
+                                value={formValues.vehicle || (selectedUser?.vehicles?.[0] || "SELECT VEHICLE")}
+                                name=""
+                                onChange={(e) => {
+                                    setFormValues({ ...formValues, vehicle: e.target.value });
+                                }}>
+                                {selectedUser?.vehicles?.map((vehicle, index) => (
+                                <MenuItem key={index} value={vehicle}>{vehicle}</MenuItem>
+                                ))}
+                            </Select>
+                    </FormControl>
             </Stack>
             ),
             sortable: false,
@@ -100,6 +111,7 @@ const Subscriptions = ({ selectedUser, onClose }) => {
                 pageSize={5}
                 rowsPerPageOptions={[5, 10, 20]}
                 disableSelectionOnClick
+                rowHeight={75}
             />
         </Stack>
     </Stack>
@@ -111,36 +123,32 @@ const Subscriptions = ({ selectedUser, onClose }) => {
             <Grid container spacing={3}>
 
                 <Grid>
-                    <FormControl fullWidth>
+                    <FormControl fullWidth sx={{ width: 250 }}>
                         <InputLabel>{Constants.UI_TEXT.VEHICLE}</InputLabel>
-                        <Select
-                            value={formValues.vehicle}
-                           onChange={(e) => {
-                                setFormValues({ ...formValues, vehicle: e.target.value });
-                            }}
-                            label={Constants.UI_TEXT.VEHICLE}
-                            name="vehicle"
-                        >
-                            <MenuItem value="ANY">Any</MenuItem>
-                            <MenuItem value="CAR">Car</MenuItem>
-                            <MenuItem value="BIKE">Bike</MenuItem>
-                            <MenuItem value="TRUCK">Truck</MenuItem>
-                            <MenuItem value="OTHER">Other</MenuItem>
-                        </Select>
+                            <Select
+                                value={formValues.vehicle || (selectedUser?.vehicles?.[0] || "SELECT VEHICLE")}
+                                onChange={(e) => {
+                                    setFormValues({ ...formValues, vehicle: e.target.value });
+                                }}
+                                label={Constants.UI_TEXT.VEHICLE}
+                                name="vehicle">
+                                {selectedUser?.vehicles?.map((vehicle, index) => (
+                                <MenuItem key={index} value={vehicle}>{vehicle}</MenuItem>
+                                ))}
+                            </Select>
                     </FormControl>
                 </Grid>
                 
                 <Grid>
-                    <FormControl fullWidth sx={{ width: 200 }}>
+                    <FormControl fullWidth sx={{ width: 250 }}>
                         <InputLabel>{Constants.UI_TEXT.PRODUCT}</InputLabel>
                         <Select
-                          value={formValues.product}
+                          value={formValues.product || (selectedUser.product|| "LIFETIME")}
                           onChange={(e) => {
                             setFormValues({ ...formValues, product: e.target.value });
-                        }}
+                          }}
                           label={Constants.UI_TEXT.PRODUCT}
-                          name="product"
-                        >
+                          name="product">
                           <MenuItem value="LIFETIME">Lifetime</MenuItem>
                           <MenuItem value="ANNUAL">Annual</MenuItem>
                           <MenuItem value="MONTHLY">Monthly</MenuItem>
@@ -153,7 +161,7 @@ const Subscriptions = ({ selectedUser, onClose }) => {
         </Card>
         <Stack direction="row" justifyContent="space-between" sx={{ mt: 2 }}>
             <Button variant="outlined" onClick={() => setOpen(false)} sx={{ width: 120, ml:6, mt:4}}>
-                {Constants.BUTTONS.DONE}
+                {Constants.BUTTONS.CANCEL}
             </Button>
             <Button variant="contained" onClick={() => {setOpen(false); createSubscription(formValues);}} sx={{ width: 120, mr:6, mt:4 }}>
                 {Constants.BUTTONS.SAVE}

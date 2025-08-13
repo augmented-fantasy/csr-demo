@@ -21,7 +21,8 @@ export const BUTTONS = {
     "SUBSCRIPTIONS": "EDIT SUBSCRIPTIONS",
     "CHANGE_VEHICLE": "CHANGE VEHICLE",
     "ADD_SUBSCRIPTION": "NEW SUBSCRIPTION",
-    "DONE": "DONE"
+    "DONE": "DONE",
+    "CANCEL": "CANCEL"
 }
 
 export const UI_TEXT = {
