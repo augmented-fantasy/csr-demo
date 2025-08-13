@@ -29,11 +29,11 @@ const UserDetails = ({
    const handleChange = handleInputChanges(setFormValues);
 
   const [subscriptionValues, setSubscriptionValues] = useState({
-      userId: '',
-      product: selectedUser?.product || "LIFETIME",
-      price: 19.99, // TODO set prices per product
-      vehicle: selectedUser?.vehicles?.[0] || "ANY",
-      date: new Date().toISOString().split('T')[0]
+    userId: '',
+    product: selectedUser?.product || "LIFETIME",
+    price: 19.99, // TODO set prices per product
+    vehicle: selectedUser?.vehicles?.[0] || "ANY",
+    date: new Date().toISOString().split('T')[0]
   });
 
   useEffect(() => {
