@@ -6,9 +6,29 @@ import { DataGrid } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import { deleteSub } from '../utils/Utilities';
 import { createSubscription } from '../utils/Utilities';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import { handleInputChanges } from '../utils/Utilities';
 
-const Subscriptions = ({ selectedUser, onClose, setUsers, refetch }) => {
+const Subscriptions = ({ selectedUser, onClose }) => {
+    const [open, setOpen] = useState(false);
     const [localRows, setLocalRows] = useState([]);
+    const [formValues, setFormValues] = useState({
+        userId: selectedUser?.id,
+        product: undefined,
+        price: 0,
+        vehicle: undefined,
+    });
+
+    console.log(formValues);
 
     const columns = [
         { field: 'actions',
@@ -70,23 +90,75 @@ const Subscriptions = ({ selectedUser, onClose, setUsers, refetch }) => {
     <>
     <Stack direction="row" spacing={3} >
         <Typography variant="h5" sx={{ pl: 4, pt:2, pb: 2 }}>{Constants.UI_TEXT.SUBSCRIPTIONS}</Typography>
-        <Button sx={{ width: 200, height: 40, alignSelf: 'center' }} variant="contained" color="primary" onClick={e => { e.stopPropagation(); createSubscription(); }}>{Constants.BUTTONS.ADD_SUBSCRIPTION}</Button>
-        </Stack>
-        <Stack direction="row" spacing={3} sx={{ pb:"25px", pl: 4, pr: 4 }}>
-            <Stack sx={{ ml: 4, mr: 4, flex: 1, height: '400px', width: '100%' }}>
-                <DataGrid
-                    showToolbar
-                    rows={localRows}
-                    columns={columns}
-                    pageSize={5}
-                    rowsPerPageOptions={[5, 10, 20]}
-                    disableSelectionOnClick
-                />
-            </Stack>
+        {!open && <Button sx={{ width: 200, height: 40, alignSelf: 'center' }} variant="contained" color="primary" onClick={e => { e.stopPropagation();  setOpen(true); }}>{Constants.BUTTONS.ADD_SUBSCRIPTION}</Button>}
     </Stack>
+
+    {!open ? 
+    <Stack direction="row" spacing={3} sx={{ pb:"25px", pl: 4, pr: 4 }}>
+        <Stack sx={{ ml: 4, mr: 4, flex: 1, height: '400px', width: '100%' }}>
+            <DataGrid
+                showToolbar
+                rows={localRows}
+                columns={columns}
+                pageSize={5}
+                rowsPerPageOptions={[5, 10, 20]}
+                disableSelectionOnClick
+            />
+        </Stack>
+    </Stack>
+    : <Stack sx={{ flex: 2, mt: 4 }}>
+        <Card sx={{ pb:"25px", pl: 4, pr: 4 }}>
+            <CardHeader title={Constants.UI_TEXT.CREATE_SUBSCRIPTION} />
+            <Divider />
+            <CardContent>
+            <Grid container spacing={3}>
+
+                <Grid>
+                    <FormControl fullWidth>
+                    <InputLabel>{Constants.UI_TEXT.VEHICLE}</InputLabel>
+                    <OutlinedInput value={formValues.vehicle} onChange={handleInputChanges} label={Constants.UI_TEXT.VEHICLE} name="vehicle" />
+                    </FormControl>
+                </Grid>
+                
+                <Grid>
+                    <FormControl fullWidth sx={{ width: 200 }}>
+                        <InputLabel>{Constants.UI_TEXT.PRODUCT}</InputLabel>
+                        <Select
+                          value={formValues.product}
+                          onChange={(e) => setFormValues({ ...formValues, product: e.target.value })} 
+                          label={Constants.UI_TEXT.PRODUCT}
+                          name="product"
+                        >
+                          <MenuItem value="ANNUAL">Annual</MenuItem>
+                          <MenuItem value="MONTHLY">Monthly</MenuItem>
+                          <MenuItem value="LIFETIME">Lifetime</MenuItem>
+                          <MenuItem value="PUNCH">Punch</MenuItem>
+                          <MenuItem value="SINGLE">Single</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+
+                {/* createSubscription(values); */}
+
+                </Grid>
+            </CardContent>
+        </Card>
+        <Stack direction="row" justifyContent="space-between" sx={{ mt: 2 }}>
+            <Button variant="outlined" onClick={() => setOpen(false)} sx={{ width: 120, ml:6, mt:4}}>
+                {Constants.BUTTONS.DONE}
+            </Button>
+            <Button variant="contained" onClick={() => setOpen(false)} sx={{ width: 120, mr:6, mt:4 }}>
+                {Constants.BUTTONS.SAVE}
+            </Button>
+        </Stack>
+    </Stack>}
+
+    
+    {!open &&
     <Button variant="outlined" onClick={onClose} sx={{ width: 120, ml:4 }}>
-        {Constants.BUTTONS.EXIT}
+        {Constants.BUTTONS.CLOSE}
     </Button>
+    }
     </>
   );
 };

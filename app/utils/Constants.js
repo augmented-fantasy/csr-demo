@@ -20,7 +20,8 @@ export const BUTTONS = {
     "PURCHASE_HISTORY": "PURCHASE HISTORY",
     "SUBSCRIPTIONS": "EDIT SUBSCRIPTIONS",
     "CHANGE_VEHICLE": "CHANGE VEHICLE",
-    "ADD_SUBSCRIPTION": "NEW SUBSCRIPTION"
+    "ADD_SUBSCRIPTION": "NEW SUBSCRIPTION",
+    "DONE": "DONE"
 }
 
 export const UI_TEXT = {
@@ -41,7 +42,10 @@ export const UI_TEXT = {
   "CUSTOMER_PROFILE": "Customer Profile",
   "SUBSCRIPTIONS": "Subscriptions",
   "PURCHASES": "Purchases",
-  "LOYALTY": "Loyalty Points"
+  "LOYALTY": "Loyalty Points",
+  "CREATE_SUBSCRIPTION": "Assign a new subscription",
+  "VEHICLE": "Vehicle",
+  "PRODUCT": "Product"
 }
 
 export const ON_CREATE_USER = gql`

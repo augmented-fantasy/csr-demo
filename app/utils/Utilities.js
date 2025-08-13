@@ -192,7 +192,7 @@ export const wsClient = new ApolloClient({
 
 export const createSubscription = (values) => {
   client.models.Subscriptions.create({
-    userId: window.prompt("Enter user ID"),
+    userId: values.id,
     product: window.prompt("Enter product"),
     price: parseFloat(window.prompt("Enter price")),
     vehicle: window.prompt("Enter vehicle"),
