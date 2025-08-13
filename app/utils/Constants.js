@@ -46,7 +46,7 @@ export const UI_TEXT = {
   "CREATE_SUBSCRIPTION": "Assign a new subscription",
   "VEHICLE": "Vehicle",
   "PRODUCT": "Product",
-  "VEHICLES": "Vehicles (Comma Separated List)"
+  "VEHICLES": "Vehicles"
 }
 
 export const ON_CREATE_USER = gql`

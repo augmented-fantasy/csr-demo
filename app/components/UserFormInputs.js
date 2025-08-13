@@ -81,43 +81,43 @@ const UserFormInputs = ({ formValues, handleChange, setFormValues, vehicleInput,
         </FormControl>
       </Grid>
 
-      <Grid item sx={{ width: '470px' }}>
-  <FormControl fullWidth>
-    <InputLabel>{Constants.UI_TEXT.VEHICLES}</InputLabel>
-    <OutlinedInput
-      value={vehicleInput}
-      onChange={handleVehicleInputChange}
-      label="Vehicles"
-      name="vehicles"
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          handleAddVehicle();
-        }
-      }}
-    />
-  </FormControl>
-  <Button variant="contained" sx={{ mt: 1 }} onClick={handleAddVehicle}>
-    Add Vehicle
-  </Button>
+      <Grid sx={{ width: '470px' }}>
+      <FormControl fullWidth>
+        <InputLabel>{Constants.UI_TEXT.VEHICLES}</InputLabel>
+        <OutlinedInput
+          value={vehicleInput}
+          onChange={handleVehicleInputChange}
+          label="Vehicles"
+          name="vehicles"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              handleAddVehicle();
+            }
+          }}
+        />
+      </FormControl>
+      <Button variant="contained" sx={{ mt: 1 }} onClick={handleAddVehicle}>
+        Add Vehicle
+      </Button>
 
-  {/* Show current array */}
-  <Box sx={{ mt: 1 }}>
-    {formValues?.vehicles?.map((v, i) => (
-      <Chip
-        key={i}
-        label={v}
-        onDelete={() =>
-          setFormValues((prev) => ({
-            ...prev,
-            vehicles: prev?.vehicles?.filter((_, idx) => idx !== i)
-          }))
-        }
-        sx={{ m: 0.5 }}
-      />
-    ))}
-  </Box>
-</Grid>
+      <Box sx={{ mt: 1 }}>
+        {formValues?.vehicles?.map((value, key) => (
+          <Chip
+            key={key}
+            label={value}
+            color='warning'
+            onDelete={() =>
+              setFormValues((prev) => ({
+                ...prev,
+                vehicles: prev?.vehicles?.filter((vehicle, idx) => idx !== key)
+              }))
+            }
+            sx={{ m: 0.5 }}
+          />
+        ))}
+      </Box>
+    </Grid>
 
     </Grid>
   );

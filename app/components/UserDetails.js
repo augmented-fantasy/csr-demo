@@ -20,7 +20,7 @@ const UserDetails = ({
   openSubscriptions,
   setOpenSubscriptions
 }) => {
-  const [width, height] = [485, 250];
+  const [width, height] = [485, 350];
   
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
   const [formValues, setFormValues] = useState({
@@ -68,7 +68,7 @@ const UserDetails = ({
         anchorPosition={centerPosition}
         onClose={onClose}
         open={open}
-        slotProps={{ paper: { sx: { width: '975px', height: '550px'} } }}
+        slotProps={{ paper: { sx: { width: '975px', height: '720px'} } }}
       >
         {(!openPurchases && !openSubscriptions) && (
           <>
@@ -76,7 +76,6 @@ const UserDetails = ({
               selectedUser={selectedUser} 
               formValues={formValues} 
               handleChange={handleChange} 
-              updateUser={updateUser} 
               openPurchases={setOpenPurchases}
               openSubscriptions={setOpenSubscriptions}
               vehicleInput={vehicleInput} 
