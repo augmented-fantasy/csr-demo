@@ -45,7 +45,8 @@ export const UI_TEXT = {
   "LOYALTY": "Loyalty Points",
   "CREATE_SUBSCRIPTION": "Assign a new subscription",
   "VEHICLE": "Vehicle",
-  "PRODUCT": "Product"
+  "PRODUCT": "Product",
+  "VEHICLES": "Vehicles (Comma Separated List)"
 }
 
 export const ON_CREATE_USER = gql`
@@ -58,6 +59,7 @@ export const ON_CREATE_USER = gql`
       name
       phone
       loyalty
+      vehicles
       purchases {
         items {
           date
@@ -108,6 +110,7 @@ export const GET_USERS = gql`
         id
         phone
         loyalty
+        vehicles
         address {
           city
           country
@@ -146,6 +149,7 @@ export const ADD_NEW_USER = gql`
       phone
       avatar
       loyalty
+      vehicles
       createdAt
       updatedAt
       address {

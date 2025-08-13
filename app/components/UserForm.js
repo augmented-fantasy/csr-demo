@@ -15,7 +15,7 @@ import { useMutation } from '@apollo/client';
 import UserFormInputs from './UserFormInputs';
 
 const UserForm = ({ onClose, open, refetch, setUsers }) => {
-  const [width, height] = [300, 250];
+  const [width, height] = [300, 275];
   const [addNewUser] = useMutation(ADD_NEW_USER);
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
   const [formValues, setFormValues] = useState({
@@ -60,7 +60,7 @@ const UserForm = ({ onClose, open, refetch, setUsers }) => {
         anchorPosition={centerPosition}
         onClose={onClose}
         open={open}
-        slotProps={{ paper: { sx: { width: '600px', height: '550px'} } }}
+        slotProps={{ paper: { sx: { width: '600px', height: '620px'} } }}
       >
         <Stack direction="row" spacing={2} sx={{ m: 4 }}>
           <Stack sx={{ flex: 2 }}>

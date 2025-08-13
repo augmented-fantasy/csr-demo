@@ -65,6 +65,13 @@ const UserFormInputs = ({ formValues, handleChange }) => {
         </FormControl>
       </Grid>
 
+      <Grid item sx={{ width: '470px' }}>
+        <FormControl fullWidth>
+          <InputLabel>{Constants.UI_TEXT.VEHICLES}</InputLabel>
+          <OutlinedInput value={formValues.vehicles} onChange={handleChange} label="Vehicles" name="vehicles" />
+        </FormControl>
+      </Grid>
+
     </Grid>
   );
 };

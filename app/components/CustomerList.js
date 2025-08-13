@@ -84,6 +84,21 @@ const CustomersList = ({
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
+    { field: 'subscriptions',
+      headerName: 'Subscriptions',
+      width: 120,
+      renderCell: (params) => (
+        <Box sx={{ ml: '30px' }}>
+          <Box>
+              <Chip color={params?.row?.subscriptions?.items.length > 0 ? "primary" : "warning"} sx={{ width: '45px', mb: '5px' }} label={params?.row?.subscriptions?.items.length} size="small"/>
+           </Box>
+        </Box>
+      ),
+      sortable: false,
+      filterable: false,
+      disableColumnMenu: true,
+      cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
+    },
     { field: 'loyalty',
       headerName: 'Loyalty Points',
       width: 120,
@@ -109,7 +124,7 @@ const CustomersList = ({
           opacity: 0.7;
         }
       `}</style>
-      <Box sx={{ height: '675px', width: '1350px' }}>
+      <Box sx={{ height: '675px', width: '1450px' }}>
         <DataGrid
           sx={{
             [`& .${gridClasses.cell}:focus`]: {

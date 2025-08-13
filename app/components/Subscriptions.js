@@ -116,7 +116,6 @@ const Subscriptions = ({ selectedUser, onClose }) => {
                         <Select
                             value={formValues.vehicle}
                            onChange={(e) => {
-                                console.log(e.target.value);
                                 setFormValues({ ...formValues, vehicle: e.target.value });
                             }}
                             label={Constants.UI_TEXT.VEHICLE}
@@ -137,7 +136,6 @@ const Subscriptions = ({ selectedUser, onClose }) => {
                         <Select
                           value={formValues.product}
                           onChange={(e) => {
-                            console.log(e.target.value);
                             setFormValues({ ...formValues, product: e.target.value });
                         }}
                           label={Constants.UI_TEXT.PRODUCT}

@@ -14,6 +14,7 @@ const schema = a.schema({
       country: a.string()
     }),
     loyalty: a.integer(),
+    vehicles: a.string().array(),
     purchases: a.hasMany('Purchases', 'userId'),
     subscriptions: a.hasMany('Subscriptions', 'userId'),
   })
