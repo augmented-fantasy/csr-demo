@@ -70,18 +70,6 @@ const Subscriptions = ({ selectedUser, onClose, localRows, setLocalRows, subscri
         }
     ];
 
-    /* useEffect(() => {
-        setLocalRows(selectedUser?.subscriptions?.items?.map((subscriptions, idx) => ({
-            id: idx,
-            subId: subscriptions.id,
-            userId: subscriptions.userId,
-            date: subscriptions.date,
-            product: subscriptions.product,
-            vehicle: subscriptions.vehicle,
-            price: subscriptions.price,
-            })));
-      }, [selectedUser?.subscriptions?.items]); */
-
     const handleDelete = (id) => {
         const updatedSubscriptions = [...localRows];
         updatedSubscriptions.splice(id, 1);
