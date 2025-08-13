@@ -1,10 +1,6 @@
 import { generateClient } from "aws-amplify/data";
 import { Amplify } from 'aws-amplify';
-import { useSubscription } from '@apollo/client';
 import outputs from '@/amplify_outputs.json';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
-import { ON_CREATE_USER } from "./Constants";
 import {
   ApolloClient,
   InMemoryCache,
@@ -192,10 +188,10 @@ export const wsClient = new ApolloClient({
 
 export const createSubscription = (values) => {
   client.models.Subscriptions.create({
-    userId: values.id,
-    product: window.prompt("Enter product"),
-    price: parseFloat(window.prompt("Enter price")),
-    vehicle: window.prompt("Enter vehicle"),
-    date: new Date().toISOString().split('T')[0]
+    userId: values.userId,
+    product: values.product,
+    price: values.price,
+    vehicle: values.vehicle,
+    date: values.date
   });
 }

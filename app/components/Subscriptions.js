@@ -13,22 +13,19 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { handleInputChanges } from '../utils/Utilities';
 
 const Subscriptions = ({ selectedUser, onClose }) => {
     const [open, setOpen] = useState(false);
     const [localRows, setLocalRows] = useState([]);
     const [formValues, setFormValues] = useState({
-        userId: selectedUser?.id,
-        product: undefined,
-        price: 0,
-        vehicle: undefined,
+        userId: selectedUser.id,
+        product: "ANY",
+        price: 9.99,
+        vehicle: "ANY",
+        date: new Date().toISOString().split('T')[0]
     });
-
-    console.log(formValues);
 
     const columns = [
         { field: 'actions',
@@ -115,8 +112,22 @@ const Subscriptions = ({ selectedUser, onClose }) => {
 
                 <Grid>
                     <FormControl fullWidth>
-                    <InputLabel>{Constants.UI_TEXT.VEHICLE}</InputLabel>
-                    <OutlinedInput value={formValues.vehicle} onChange={handleInputChanges} label={Constants.UI_TEXT.VEHICLE} name="vehicle" />
+                        <InputLabel>{Constants.UI_TEXT.VEHICLE}</InputLabel>
+                        <Select
+                            value={formValues.vehicle}
+                           onChange={(e) => {
+                                console.log(e.target.value);
+                                setFormValues({ ...formValues, vehicle: e.target.value });
+                            }}
+                            label={Constants.UI_TEXT.VEHICLE}
+                            name="vehicle"
+                        >
+                            <MenuItem value="ANY">Any</MenuItem>
+                            <MenuItem value="CAR">Car</MenuItem>
+                            <MenuItem value="BIKE">Bike</MenuItem>
+                            <MenuItem value="TRUCK">Truck</MenuItem>
+                            <MenuItem value="OTHER">Other</MenuItem>
+                        </Select>
                     </FormControl>
                 </Grid>
                 
@@ -125,20 +136,19 @@ const Subscriptions = ({ selectedUser, onClose }) => {
                         <InputLabel>{Constants.UI_TEXT.PRODUCT}</InputLabel>
                         <Select
                           value={formValues.product}
-                          onChange={(e) => setFormValues({ ...formValues, product: e.target.value })} 
+                          onChange={(e) => {
+                            console.log(e.target.value);
+                            setFormValues({ ...formValues, product: e.target.value });
+                        }}
                           label={Constants.UI_TEXT.PRODUCT}
                           name="product"
                         >
+                          <MenuItem value="LIFETIME">Lifetime</MenuItem>
                           <MenuItem value="ANNUAL">Annual</MenuItem>
                           <MenuItem value="MONTHLY">Monthly</MenuItem>
-                          <MenuItem value="LIFETIME">Lifetime</MenuItem>
-                          <MenuItem value="PUNCH">Punch</MenuItem>
-                          <MenuItem value="SINGLE">Single</MenuItem>
                         </Select>
                     </FormControl>
                 </Grid>
-
-                {/* createSubscription(values); */}
 
                 </Grid>
             </CardContent>
@@ -147,7 +157,7 @@ const Subscriptions = ({ selectedUser, onClose }) => {
             <Button variant="outlined" onClick={() => setOpen(false)} sx={{ width: 120, ml:6, mt:4}}>
                 {Constants.BUTTONS.DONE}
             </Button>
-            <Button variant="contained" onClick={() => setOpen(false)} sx={{ width: 120, mr:6, mt:4 }}>
+            <Button variant="contained" onClick={() => {setOpen(false); createSubscription(formValues);}} sx={{ width: 120, mr:6, mt:4 }}>
                 {Constants.BUTTONS.SAVE}
             </Button>
         </Stack>
