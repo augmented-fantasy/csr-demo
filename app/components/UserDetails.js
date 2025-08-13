@@ -22,33 +22,19 @@ const UserDetails = ({
   setSelectedUser
 }) => {
   const [width, height] = [485, 350];
-  
+  const [localRows, setLocalRows] = useState({});
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
-  const [formValues, setFormValues] = useState({
-    id: '', 
-    name: '', 
-    email: '', 
-    street: '', 
-    city: '', 
-    state: '', 
-    country: '', 
-    phone: '', 
-    avatar: '',
-    vehicles: []
-  });
+  const [vehicleInput, setVehicleInput] = useState('');
+  const [formValues, setFormValues] = useState({});
+   const handleChange = handleInputChanges(setFormValues);
 
-  const [localRows, setLocalRows] = useState([]);
   const [subscriptionValues, setSubscriptionValues] = useState({
-      userId: selectedUser?.id || '',
+      userId: '',
       product: selectedUser?.product || "LIFETIME",
-      price: 9.99, // TODO set prices per product
+      price: 19.99, // TODO set prices per product
       vehicle: selectedUser?.vehicles?.[0] || "ANY",
       date: new Date().toISOString().split('T')[0]
   });
-
-  const handleChange = handleInputChanges(setFormValues);
-
-  const [vehicleInput, setVehicleInput] = useState('');
 
   useEffect(() => {
     setupCenterPosition(setCenterPosition, width, height);
@@ -57,7 +43,7 @@ const UserDetails = ({
   useEffect(() => {
     if (selectedUser) {
       setFormValues({
-        id: selectedUser.id || '',
+        id: selectedUser.id,
         name: selectedUser.name || '',
         email: selectedUser.email || undefined,
         street: selectedUser.address?.street || '',
@@ -67,22 +53,25 @@ const UserDetails = ({
         phone: selectedUser.phone || undefined,
         avatar: selectedUser.avatar || undefined,
         loyalty: selectedUser.loyalty || undefined,
-        vehicles: selectedUser.vehicles || []
+        vehicles: selectedUser.vehicles || [],
+        subscriptions: selectedUser.subscriptions || []
       });
     }
   }, [selectedUser, open]);
 
   useEffect(() => {
-    setLocalRows(selectedUser?.subscriptions?.items?.map((subscriptions, idx) => ({
+    if (selectedUser) {
+      setLocalRows(selectedUser?.subscriptions?.items?.map((subscriptions, idx) => ({
         id: idx,
         subId: subscriptions.id,
         userId: subscriptions.userId,
         date: subscriptions.date,
         product: subscriptions.product,
         vehicle: subscriptions.vehicle,
-        price: subscriptions.price,
-        })));
-  }, [selectedUser?.subscriptions?.items]);
+        price: subscriptions.price
+      })));
+    }
+  }, [selectedUser, selectedUser?.subscriptions?.items]);
 
   return (
     <>

@@ -77,16 +77,17 @@ const Subscriptions = ({ selectedUser, onClose, localRows, setLocalRows, subscri
     };
 
     const handleCreate = () => {
+        const user = selectedUser.id;
         const newSubscription = {
             id: localRows.length,
             subId: subscriptionValues.id || `temp-${localRows.length}`,
-            userId: subscriptionValues.userId,
+            userId: user,
             date: subscriptionValues.date,
             product: subscriptionValues.product,
             vehicle: subscriptionValues.vehicle,
             price: subscriptionValues.price,
         };
-
+        createSubscription(newSubscription);
         const updatedSubscriptions = [...localRows, newSubscription];
         setLocalRows(updatedSubscriptions);
     };
@@ -160,7 +161,7 @@ const Subscriptions = ({ selectedUser, onClose, localRows, setLocalRows, subscri
             <Button variant="outlined" onClick={() => setOpen(false)} sx={{ width: 120, ml:6, mt:4}}>
                 {Constants.BUTTONS.CANCEL}
             </Button>
-            <Button variant="contained" onClick={() => {setOpen(false); createSubscription(subscriptionValues); handleCreate(subscriptionValues.id);}} sx={{ width: 120, mr:6, mt:4 }}>
+            <Button variant="contained" onClick={() => {setOpen(false); handleCreate();}} sx={{ width: 120, mr:6, mt:4 }}>
                 {Constants.BUTTONS.SAVE}
             </Button>
         </Stack>

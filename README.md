@@ -8,18 +8,14 @@
 
 ### Backend Features
 
-- **CDN**: Hosted on AWS edge server content distribution network.
+- **CDN**: Deployed on AWS edge server content distribution network.
+- **DB**: Real-time NoSQL AWS DynamoDB includes Users, Purchases and Subscriptions tables with foreign key associations.
+- **API**: GraphQL endpoint with AWS AppSync.
+- **Auth**: Amazon Cognito user pool integration for secure user authentication.
 - **WAF**: Web application firewall enabled.
 - **SSL**: Secure socket layer encrypts data in transit.
-- **IaC**: AWS backend fully captured as Infrastructure-as-Code within the `/amplify` folder and `amplify_outputs.json` file.
-- **Auth**: Amazon Cognito user pool integration for secure user authentication.
-- **DB**: Real-time NoSQL AWS DynamoDB includes Users and Purchases tables with foreign key associations.
-- **API**: GraphQL endpoint with AWS AppSync.
+- **IaC**: Infrastructure-as-Code fully captures AWS backend within the `/amplify` folder and `amplify_outputs.json` file for integrated backend maintenance or redeployment.
 - **CICD**: Continuous integration / continuous deployment pipeline connected to GitHub `main` branch.
-
-TODO:
-- add ability to edit purchases
-- Add charts
 
 ### Getting Started
 
