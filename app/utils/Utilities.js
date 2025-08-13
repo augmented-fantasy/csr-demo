@@ -207,3 +207,14 @@ export const deleteSubscription = async (values) => {
     date: values.date
   });
 }
+
+export const modifySubscription = async (values) => {
+  client.models.Subscriptions.update({
+    id: values.id,
+    userId: values.userId,
+    product: values.product,
+    price: values.price,
+    vehicle: values.vehicle,
+    date: values.date
+  });
+}
