@@ -4,8 +4,24 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import * as Constants from '../utils/Constants';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
 
-const UserFormInputs = ({ formValues, handleChange }) => {
+const UserFormInputs = ({ formValues, handleChange, setFormValues, vehicleInput, setVehicleInput }) => {
+
+  const handleVehicleInputChange = (event) => {
+    setVehicleInput(event.target.value);
+  };
+
+  const handleAddVehicle = () => {
+    if (!vehicleInput?.trim()) return;
+    setFormValues((prev) => ({
+      ...prev,
+      vehicles: [...(prev.vehicles || []), vehicleInput.trim()]
+    }));
+    setVehicleInput('');
+  };
 
   return (
     <Grid container spacing={3}>
@@ -66,11 +82,42 @@ const UserFormInputs = ({ formValues, handleChange }) => {
       </Grid>
 
       <Grid item sx={{ width: '470px' }}>
-        <FormControl fullWidth>
-          <InputLabel>{Constants.UI_TEXT.VEHICLES}</InputLabel>
-          <OutlinedInput value={formValues.vehicles} onChange={handleChange} label="Vehicles" name="vehicles" />
-        </FormControl>
-      </Grid>
+  <FormControl fullWidth>
+    <InputLabel>{Constants.UI_TEXT.VEHICLES}</InputLabel>
+    <OutlinedInput
+      value={vehicleInput}
+      onChange={handleVehicleInputChange}
+      label="Vehicles"
+      name="vehicles"
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleAddVehicle();
+        }
+      }}
+    />
+  </FormControl>
+  <Button variant="contained" sx={{ mt: 1 }} onClick={handleAddVehicle}>
+    Add Vehicle
+  </Button>
+
+  {/* Show current array */}
+  <Box sx={{ mt: 1 }}>
+    {formValues?.vehicles?.map((v, i) => (
+      <Chip
+        key={i}
+        label={v}
+        onDelete={() =>
+          setFormValues((prev) => ({
+            ...prev,
+            vehicles: prev?.vehicles?.filter((_, idx) => idx !== i)
+          }))
+        }
+        sx={{ m: 0.5 }}
+      />
+    ))}
+  </Box>
+</Grid>
 
     </Grid>
   );

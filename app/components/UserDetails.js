@@ -32,9 +32,12 @@ const UserDetails = ({
     state: '', 
     country: '', 
     phone: '', 
-    avatar: ''
+    avatar: '',
+    vehicles: []
   });
   const handleChange = handleInputChanges(setFormValues);
+
+  const [vehicleInput, setVehicleInput] = useState('');
 
   useEffect(() => {
     setupCenterPosition(setCenterPosition, width, height);
@@ -52,7 +55,8 @@ const UserDetails = ({
         country: selectedUser.address?.country || '',
         phone: selectedUser.phone || undefined,
         avatar: selectedUser.avatar || undefined,
-        loyalty: selectedUser.loyalty || undefined
+        loyalty: selectedUser.loyalty || undefined,
+        vehicles: selectedUser.vehicles || []
       });
     }
   }, [selectedUser, open]);
@@ -75,6 +79,9 @@ const UserDetails = ({
               updateUser={updateUser} 
               openPurchases={setOpenPurchases}
               openSubscriptions={setOpenSubscriptions}
+              vehicleInput={vehicleInput} 
+              setVehicleInput={setVehicleInput}
+              setFormValues={setFormValues}
             />
 
             <Stack direction="row" justifyContent="space-between" sx={{ ml: 4, mr: 4 }}>

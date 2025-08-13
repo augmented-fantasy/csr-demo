@@ -75,7 +75,7 @@ const Subscriptions = ({ selectedUser, onClose }) => {
             vehicle: subscriptions.vehicle,
             price: subscriptions.price,
             })));
-      }, []);
+      }, [selectedUser?.subscriptions?.items]);
 
     const handleDelete = (id) => {
         const updatedSubscriptions = [...localRows];

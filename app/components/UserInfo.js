@@ -13,7 +13,7 @@ import Chip from '@mui/material/Chip';
 import UserFormInputs from './UserFormInputs';
 import Button from '@mui/material/Button';
 
-const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases, openSubscriptions }) => {
+const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases, openSubscriptions, vehicleInput, setVehicleInput, setFormValues }) => {
 
   return (
     <>
@@ -59,7 +59,7 @@ const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases, openS
             <CardHeader subheader={Constants.UI_TEXT.FORM_HEADER} title={Constants.UI_TEXT.CUSTOMER_PROFILE} />
             <Divider />
             <CardContent>
-              <UserFormInputs formValues={formValues} handleChange={handleChange} />
+              <UserFormInputs formValues={formValues} handleChange={handleChange} vehicleInput={vehicleInput} setVehicleInput={setVehicleInput} setFormValues={setFormValues} />
             </CardContent>
           </Card>
         </Stack>

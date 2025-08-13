@@ -28,9 +28,12 @@ const UserForm = ({ onClose, open, refetch, setUsers }) => {
     country: '', 
     phone: undefined, 
     avatar: '',
-    loyalty: undefined
+    loyalty: undefined,
+    vehicles: []
   });
   const handleChange = handleInputChanges(setFormValues);
+
+  const [vehicleInput, setVehicleInput] = useState('');
 
   useEffect(() => {
     setupCenterPosition(setCenterPosition, width, height);
@@ -49,6 +52,7 @@ const UserForm = ({ onClose, open, refetch, setUsers }) => {
         phone: undefined, 
         avatar: '',
         loyalty: undefined, 
+        vehicles: []
       });
     }
   }, [open]);
@@ -68,7 +72,7 @@ const UserForm = ({ onClose, open, refetch, setUsers }) => {
               <CardHeader title={Constants.UI_TEXT.ADD_NEW_USER} />
               <Divider />
               <CardContent>
-                <UserFormInputs formValues={formValues} handleChange={handleChange} />
+                <UserFormInputs formValues={formValues} handleChange={handleChange} setFormValues={setFormValues} vehicleInput={vehicleInput} setVehicleInput={setVehicleInput} />
               </CardContent>
             </Card>
           </Stack>
