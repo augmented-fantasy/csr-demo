@@ -40,7 +40,7 @@ const UserFormInputs = ({
       </Grid>
 
       <Grid>
-        <FormControl fullWidth required error={!formValues.email?.trim()}>
+        <FormControl fullWidth required error={!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formValues.email)}>
           <InputLabel>{Constants.UI_TEXT.EMAIL}</InputLabel>
           <OutlinedInput value={formValues.email} onChange={handleChange} label="Email address" name="email" />
         </FormControl>

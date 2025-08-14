@@ -61,7 +61,7 @@ export const updateUser = async (formValues, refetch, setUsers, onclose) => {
     alert('Name is required');
     return;
   }
-  if (formValues.email === '') {
+  if (formValues.email === '' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formValues.email)) {
     alert('Please enter a valid email format');
     return;
   }
