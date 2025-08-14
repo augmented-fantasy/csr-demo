@@ -107,7 +107,7 @@ const CustomersList = ({
     { 
       field: 'subscriptions',
       headerName: 'Subscriptions',
-      width: 105,
+      width: 115,
       renderCell: (params) => (
         <Box sx={{ ml: '25px' }}>
           <Box>
@@ -123,7 +123,7 @@ const CustomersList = ({
     { 
       field: 'loyalty',
       headerName: 'Loyalty Points',
-      width: 108,
+      width: 115,
       renderCell: (params) => (
         <Box sx={{ ml: '30px' }}>
           <Box>
@@ -147,7 +147,7 @@ const CustomersList = ({
           opacity: 0.7;
         }`}
     </style>
-      <Box sx={{ height: '675px', width: '1375px', pl: '10px' }}>
+      <Box sx={{ height: '700px', width: '1400px', pl: '10px' }}>
         <DataGrid
           sx={{
             [`& .${gridClasses.cell}:focus`]: {
