@@ -80,7 +80,7 @@ export const updateUser = async (formValues, refetch, setUsers) => {
 }
 
 export const deleteUser = async (user, setUsers, refetch) => {
-  if (!window.confirm(`Delete user ${user.name}?`)) return;
+  if (!window.confirm(`Are you sure you want to delete user ${user.name}?`)) return;
   await client.models.User.delete({ id: user.id });
   fetchUsers(refetch, setUsers);
 }
@@ -98,9 +98,8 @@ export const setupCenterPosition = (setCenterPosition, width, height) => {
 }
 
 export const createUser = async (addNewUser, formValues, close, refetch, setUsers) => {
-  if (!formValues?.name
-  ) {
-    alert('Name is required.');
+  if (!formValues?.name || formValues?.email) {
+    alert('Name and email are required.');
     return;
   }
   try {
@@ -125,7 +124,7 @@ export const createUser = async (addNewUser, formValues, close, refetch, setUser
     fetchUsers(refetch, setUsers);
     close();
   } catch (err) {
-    alert('Failed to add user: ' + (err.message === "Variable 'phone' has an invalid value." ? "Enter phone number format as 123-456-7890" : err.message));
+    alert('Failed to add user: ' + err.message);
     console.error(err);
   }
 }

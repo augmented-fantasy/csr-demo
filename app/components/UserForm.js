@@ -14,7 +14,7 @@ import { useMutation } from '@apollo/client';
 import UserFormInputs from './UserFormInputs';
 
 const UserForm = ({ onClose, open, refetch, setUsers }) => {
-  const [width, height] = [300, 300];
+  const [width, height] = [300, 350];
   const [addNewUser] = useMutation(Constants.ADD_NEW_USER);
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
   const [formValues, setFormValues] = useState({
@@ -31,7 +31,6 @@ const UserForm = ({ onClose, open, refetch, setUsers }) => {
     vehicles: []
   });
   const handleChange = handleInputChanges(setFormValues);
-
   const [vehicleInput, setVehicleInput] = useState('');
 
   useEffect(() => {
@@ -57,39 +56,38 @@ const UserForm = ({ onClose, open, refetch, setUsers }) => {
   }, [open]);
 
   return (
-    <>
-      <Popover
-        anchorReference="anchorPosition"
-        anchorPosition={centerPosition}
-        onClose={onClose}
-        open={open}
-        slotProps={{ paper: { sx: { width: '600px', height: '680px'} } }}
-      >
-        <Stack direction="row" spacing={2} sx={{ m: 4 }}>
-          <Stack sx={{ flex: 2 }}>
-            <Card>
-              <CardHeader title={Constants.UI_TEXT.ADD_NEW_USER} />
-              <Divider />
-              <CardContent>
-                <UserFormInputs formValues={formValues} handleChange={handleChange} setFormValues={setFormValues} vehicleInput={vehicleInput} setVehicleInput={setVehicleInput} />
-              </CardContent>
-            </Card>
-          </Stack>
+    <Popover
+      anchorReference="anchorPosition"
+      anchorPosition={centerPosition}
+      onClose={onClose}
+      open={open}
+      slotProps={{ paper: { sx: { width: '600px', height: '715px'} } }}
+    >
+      <Stack direction="row" spacing={2} sx={{ m: 4 }}>
+        <Stack sx={{ flex: 2 }}>
+          <Card>
+            <CardHeader title={Constants.UI_TEXT.ADD_NEW_USER} />
+            <Divider />
+            <CardContent>
+              <UserFormInputs formValues={formValues} handleChange={handleChange} setFormValues={setFormValues} vehicleInput={vehicleInput} setVehicleInput={setVehicleInput} />
+            </CardContent>
+          </Card>
         </Stack>
-        
-        <Stack direction="row" justifyContent="space-between" sx={{ m: 4 }}>
-          <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
-            {Constants.BUTTONS.CLOSE}
-          </Button>
-          <Button 
-            variant="contained" 
-            onClick={async () => { await createUser(addNewUser, formValues, onClose, refetch, setUsers); }} 
-            sx={{ width: 120 }}>
-            {Constants.BUTTONS.SAVE}
-          </Button>
-        </Stack>
-      </Popover>
-    </>
+      </Stack>
+      
+      <Stack direction="row" justifyContent="space-between" sx={{ m: 4 }}>
+        <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
+          {Constants.BUTTONS.CLOSE}
+        </Button>
+        <Button 
+          variant="contained" 
+          onClick={async () => { await createUser(addNewUser, formValues, onClose, refetch, setUsers); }} 
+          sx={{ width: 120 }}>
+          {Constants.BUTTONS.SAVE}
+        </Button>
+      </Stack>
+      
+    </Popover>
   );
 }
 

@@ -5,7 +5,7 @@ const schema = a.schema({
     id: a.id().required(),
     name: a.string(),
     email: a.email(),
-    phone: a.phone(),
+    phone: a.string(),
     avatar: a.integer(),
     address: a.customType({
       street: a.string(),

@@ -13,11 +13,21 @@ import Chip from '@mui/material/Chip';
 import UserFormInputs from './UserFormInputs';
 import Button from '@mui/material/Button';
 
-const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases, openSubscriptions, vehicleInput, setVehicleInput, setFormValues }) => {
+const UserInfo = ({ 
+  selectedUser, 
+  formValues, 
+  handleChange, 
+  openPurchases, 
+  openSubscriptions, 
+  vehicleInput, 
+  setVehicleInput, 
+  setFormValues 
+}) => {
 
   return (
     <>
       <Stack direction="row" spacing={3} sx={{ m: 4 }}>
+        
         <Stack sx={{ m: 4, flex: 1}}>
           <Card sx={{ height: '100%', width: '370px' }}>
             <CardContent>
@@ -35,10 +45,9 @@ const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases, openS
                   </Typography>
                 </Stack>
               </Stack>
-
                 <Stack direction="row" justifyContent="space-between" sx={{ pt: '20px', cursor: 'pointer' }}>
-                  <Button onClick={() => openSubscriptions(true)}size="small" color='primary' variant="outlined">{Constants.BUTTONS.SUBSCRIPTIONS}</Button>
-                  <Button onClick={() => openPurchases(true)}size="small" color='primary' variant="outlined">{Constants.BUTTONS.PURCHASE_HISTORY}</Button>
+                  <Button onClick={() => openSubscriptions(true)} size="small" color='primary' variant="outlined">{Constants.BUTTONS.SUBSCRIPTIONS}</Button>
+                  <Button onClick={() => openPurchases(true)} size="small" color='primary' variant="outlined">{Constants.BUTTONS.PURCHASE_HISTORY}</Button>
                 </Stack>
                 <Stack direction="column" justifyContent="space-between" sx={{ pt: '20px' }}>
                   <Box sx={{ maxHeight: 250, overflowY: 'auto', pr: 1 }}>
@@ -53,10 +62,10 @@ const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases, openS
                     )) : null}
                   </Box>
                 </Stack> 
-              
             </CardContent>
           </Card>
         </Stack>
+
         <Stack sx={{ flex: 2 }}>
           <Card>
             <CardHeader subheader={Constants.UI_TEXT.FORM_HEADER} title={Constants.UI_TEXT.CUSTOMER_PROFILE} />
@@ -66,6 +75,7 @@ const UserInfo = ({ selectedUser, formValues, handleChange, openPurchases, openS
             </CardContent>
           </Card>
         </Stack>
+        
       </Stack>
     </>
   );

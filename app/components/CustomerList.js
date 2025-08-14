@@ -28,7 +28,8 @@ const CustomersList = ({
 }) => {
 
   const columns = [
-    { field: 'actions',
+    { 
+      field: 'actions',
       headerName: '',
       width: 148,
       renderCell: (params) => (
@@ -42,7 +43,8 @@ const CustomersList = ({
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
-    { field: 'name',
+    { 
+      field: 'name',
       headerName: 'Name',
       width: 220,
       renderCell: (params) => (
@@ -57,7 +59,8 @@ const CustomersList = ({
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
     { field: 'email', headerName: 'Email', width: 200, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : '' },
-    { field: 'location',
+    { 
+      field: 'location',
       headerName: 'Location',
       width: 280,
       renderCell: (params) => (
@@ -71,7 +74,8 @@ const CustomersList = ({
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
     { field: 'phone', headerName: 'Phone', width: 120, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''},
-    { field: 'purchases',
+    { 
+      field: 'purchases',
       headerName: 'Purchases',
       width: 90,
       renderCell: (params) => (
@@ -84,7 +88,8 @@ const CustomersList = ({
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
-    { field: 'vehicles',
+    { 
+      field: 'vehicles',
       headerName: 'Vehicles',
       width: 75,
       renderCell: (params) => (
@@ -99,7 +104,8 @@ const CustomersList = ({
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
-    { field: 'subscriptions',
+    { 
+      field: 'subscriptions',
       headerName: 'Subscriptions',
       width: 105,
       renderCell: (params) => (
@@ -114,7 +120,8 @@ const CustomersList = ({
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
-    { field: 'loyalty',
+    { 
+      field: 'loyalty',
       headerName: 'Loyalty Points',
       width: 108,
       renderCell: (params) => (
@@ -132,13 +139,14 @@ const CustomersList = ({
   ];
 
   return (
-    <><style>{`
-        .MuiDataGrid-cell--disabled {
+  <>
+    <style>
+      {`.MuiDataGrid-cell--disabled {
           pointer-events: none !important;
           color: #bdbdbd !important;
           opacity: 0.7;
-        }
-      `}</style>
+        }`}
+    </style>
       <Box sx={{ height: '675px', width: '1375px', pl: '10px' }}>
         <DataGrid
           sx={{

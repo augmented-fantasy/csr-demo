@@ -16,7 +16,14 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
-const Subscriptions = ({ selectedUser, onClose, localRows, setLocalRows, subscriptionValues, setSubscriptionValues }) => {
+const Subscriptions = ({ 
+  selectedUser, 
+  onClose, 
+  localRows, 
+  setLocalRows, 
+  subscriptionValues, 
+  setSubscriptionValues 
+}) => {
  const [open, setOpen] = useState(false);
 
  const columns = [
@@ -124,7 +131,7 @@ const Subscriptions = ({ selectedUser, onClose, localRows, setLocalRows, subscri
     <Divider />
     <CardContent>
     <Grid container spacing={3}>
-
+     
      <Grid>
       <FormControl fullWidth sx={{ width: 250 }}>
        <InputLabel>{Constants.UI_TEXT.VEHICLE}</InputLabel>
@@ -158,10 +165,10 @@ const Subscriptions = ({ selectedUser, onClose, localRows, setLocalRows, subscri
        </Select>
       </FormControl>
      </Grid>
-
     </Grid>
     </CardContent>
    </Card>
+
    <Stack direction="row" justifyContent="space-between" sx={{ mt: 2 }}>
     <Button variant="outlined" onClick={() => setOpen(false)} sx={{ width: 120, ml:6, mt:4}}>
      {Constants.BUTTONS.CANCEL}
@@ -174,9 +181,9 @@ const Subscriptions = ({ selectedUser, onClose, localRows, setLocalRows, subscri
 
   
   {!open &&
-  <Button variant="outlined" onClick={onClose} sx={{ width: 120, ml:4 }}>
-   {Constants.BUTTONS.CLOSE}
-  </Button>
+    <Button variant="outlined" onClick={onClose} sx={{ width: 120, ml:4 }}>
+    {Constants.BUTTONS.CLOSE}
+    </Button>
   }
   </>
  );

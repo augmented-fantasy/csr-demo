@@ -26,13 +26,13 @@ const UserDetails = ({
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
   const [vehicleInput, setVehicleInput] = useState('');
   const [formValues, setFormValues] = useState({});
-   const handleChange = handleInputChanges(setFormValues);
+  const handleChange = handleInputChanges(setFormValues);
 
   const [subscriptionValues, setSubscriptionValues] = useState({
     userId: '',
-    product: selectedUser?.product || "LIFETIME",
+    product: selectedUser?.product || 'LIFETIME',
     price: 19.99, // TODO set prices per product
-    vehicle: selectedUser?.vehicles?.[0] || "ANY",
+    vehicle: selectedUser?.vehicles?.[0] || '',
     date: new Date().toISOString().split('T')[0]
   });
 
@@ -74,59 +74,57 @@ const UserDetails = ({
   }, [selectedUser, selectedUser?.subscriptions?.items]);
 
   return (
-    <>
-      <Popover
-        anchorReference="anchorPosition"
-        anchorPosition={centerPosition}
-        onClose={onClose}
-        open={open}
-        slotProps={{ paper: { sx: { width: '975px', height: '720px'} } }}
-      >
-        {(!openPurchases && !openSubscriptions) && (
-          <>
-            <UserInfo 
-              selectedUser={selectedUser} 
-              formValues={formValues} 
-              handleChange={handleChange} 
-              openPurchases={setOpenPurchases}
-              openSubscriptions={setOpenSubscriptions}
-              vehicleInput={vehicleInput} 
-              setVehicleInput={setVehicleInput}
-              setFormValues={setFormValues}
-              setUsers={setUsers}
-            />
-
-            <Stack direction="row" justifyContent="space-between" sx={{ ml: 4, mr: 4 }}>
-              <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
-                {Constants.BUTTONS.CLOSE}
-              </Button>
-              <Button variant="contained" onClick={() => { updateUser(formValues, refetch, setUsers); onClose(); }} sx={{ width: 120 }}>
-                {Constants.BUTTONS.SAVE}
-              </Button>
-            </Stack>
-          </>
-        )}
-        {openPurchases && (
-          <PurchasesInfo 
-            selectedUser={selectedUser}
-            onClose={() => setOpenPurchases(false)}
-          />
-        )}
-        {openSubscriptions && (
-          <Subscriptions
-            selectedUser={selectedUser}
-            onClose={() => setOpenSubscriptions(false)}
+    <Popover
+      anchorReference="anchorPosition"
+      anchorPosition={centerPosition}
+      onClose={onClose}
+      open={open}
+      slotProps={{ paper: { sx: { width: '975px', height: '720px'} } }}
+    >
+      {(!openPurchases && !openSubscriptions) && (
+        <>
+          <UserInfo 
+            selectedUser={selectedUser} 
+            formValues={formValues} 
+            handleChange={handleChange} 
+            openPurchases={setOpenPurchases}
+            openSubscriptions={setOpenSubscriptions}
+            vehicleInput={vehicleInput} 
+            setVehicleInput={setVehicleInput}
+            setFormValues={setFormValues}
             setUsers={setUsers}
-            refetch={refetch}
-            setSelectedUser={setSelectedUser}
-            localRows={localRows}
-            setLocalRows={setLocalRows}
-            subscriptionValues={subscriptionValues}
-            setSubscriptionValues={setSubscriptionValues}
           />
-        )}
-      </Popover>
-    </>
+
+          <Stack direction="row" justifyContent="space-between" sx={{ ml: 4, mr: 4 }}>
+            <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
+              {Constants.BUTTONS.CLOSE}
+            </Button>
+            <Button variant="contained" onClick={() => { updateUser(formValues, refetch, setUsers); onClose(); }} sx={{ width: 120 }}>
+              {Constants.BUTTONS.SAVE}
+            </Button>
+          </Stack>
+        </>
+      )}
+      {openPurchases && (
+        <PurchasesInfo 
+          selectedUser={selectedUser}
+          onClose={() => setOpenPurchases(false)}
+        />
+      )}
+      {openSubscriptions && (
+        <Subscriptions
+          selectedUser={selectedUser}
+          onClose={() => setOpenSubscriptions(false)}
+          setUsers={setUsers}
+          refetch={refetch}
+          setSelectedUser={setSelectedUser}
+          localRows={localRows}
+          setLocalRows={setLocalRows}
+          subscriptionValues={subscriptionValues}
+          setSubscriptionValues={setSubscriptionValues}
+        />
+      )}
+    </Popover>
   );
 }
 

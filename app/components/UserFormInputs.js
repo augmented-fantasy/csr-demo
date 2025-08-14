@@ -8,7 +8,13 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 
-const UserFormInputs = ({ formValues, handleChange, setFormValues, vehicleInput, setVehicleInput }) => {
+const UserFormInputs = ({ 
+  formValues, 
+  handleChange, 
+  setFormValues, 
+  vehicleInput, 
+  setVehicleInput 
+}) => {
 
   const handleVehicleInputChange = (event) => {
     setVehicleInput(event.target.value);
@@ -25,6 +31,7 @@ const UserFormInputs = ({ formValues, handleChange, setFormValues, vehicleInput,
 
   return (
     <Grid container spacing={3}>
+      
       <Grid>
         <FormControl fullWidth required error={!formValues.name?.trim()}>
           <InputLabel>{Constants.UI_TEXT.NAME}</InputLabel>
@@ -117,7 +124,6 @@ const UserFormInputs = ({ formValues, handleChange, setFormValues, vehicleInput,
       <Button variant="contained" sx={{ mt: 1 }} onClick={handleAddVehicle}>
         Add Vehicle
       </Button>
-
     </Grid>
 
     </Grid>

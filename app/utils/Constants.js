@@ -162,16 +162,3 @@ export const ADD_NEW_USER = gql`
     }
   }`
 ;
-
-export const GET_SUBSCRIPTIONS = gql`
-  query GetSubscriptions($input: GetSubscriptionsInput!) {
-    getSubscriptions(id: $input) {
-      date
-      id
-      price
-      product
-      userId
-      vehicle
-    }
-  }`
-;

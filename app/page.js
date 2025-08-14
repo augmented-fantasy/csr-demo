@@ -59,8 +59,7 @@ import { useQuery } from '@apollo/client';
         sx={{
           zIndex: theme.zIndex.drawer + 1,
           backgroundColor: '#000'
-        }}
-      >
+        }}>
         <Toolbar sx={{ justifyContent: 'center' }}>
           <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ textAlign: 'center', width: '100%' }}>
             {Constants.UI_TEXT.SITE_TITLE}
@@ -87,23 +86,20 @@ import { useQuery } from '@apollo/client';
           width: '100%',
           pt: `${theme.spacing(8)}`,
           boxSizing: 'border-box'
-        }}
-      >
+        }}>
         <Box
           sx={{
             flex: 1,
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
-          }}
-        >
+          }}>
           <Stack spacing={4} alignItems="stretch" sx={{ pl:'5px', pt: '20px', width: '1375px', maxWidth: 1375 }}>
               <Stack direction="row" spacing={2} justifyContent="flex-start">
                 <Typography sx={{ pl:'10px'}} variant="h4">{Constants.UI_TEXT.CUSTOMERS}</Typography>
                 <Button variant="contained" onClick={handleOpenEdit}>{Constants.BUTTONS.ADD}</Button>
                 <Button variant="outlined" onClick={signOut}>{Constants.BUTTONS.LOGOUT}</Button>
               </Stack> 
-            
             <CustomerList
               rows={users}
               updateUser={updateUser}
@@ -123,7 +119,13 @@ import { useQuery } from '@apollo/client';
           </Stack>
         </Box>
       </Box>
-      <UserForm onClose={handleCloseEdit} open={openEdit} signOut={signOut} refetch={refetch} setUsers={setUsers} />
+      <UserForm 
+        onClose={handleCloseEdit} 
+        open={openEdit} 
+        signOut={signOut} 
+        refetch={refetch} 
+        setUsers={setUsers} 
+      />
     </Box>
   );
 }
