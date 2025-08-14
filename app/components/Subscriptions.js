@@ -5,7 +5,7 @@ import * as Constants from '../utils/Constants';
 import { DataGrid } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import { deleteSub } from '../utils/Utilities';
-import { createSubscription, modifySubscription } from '../utils/Utilities';
+import { createSubscription, modifySubscription, deleteSubscription } from '../utils/Utilities';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -83,10 +83,9 @@ const Subscriptions = ({
  ];
 
  const handleDelete = (id) => {
-  const updatedSubscriptions = [...localRows];
-  updatedSubscriptions.splice(id, 1);
+  const updatedSubscriptions = localRows.filter(item => item.id !== id);
   setLocalRows(updatedSubscriptions);
- };
+};
 
  const handleCreate = () => {
   const newSubscription = {
