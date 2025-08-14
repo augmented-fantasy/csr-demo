@@ -94,7 +94,7 @@ import { useQuery } from '@apollo/client';
             alignItems: 'flex-start',
             justifyContent: 'center',
           }}>
-          <Stack spacing={4} alignItems="stretch" sx={{ pl:'5px', pt: '20px', width: '1400px', maxWidth: 1375 }}>
+          <Stack spacing={4} alignItems="stretch" sx={{ pl:'5px', pt: '20px', width: '1400px', maxWidth: 1400 }}>
               <Stack direction="row" spacing={2} justifyContent="flex-start">
                 <Typography sx={{ pl:'10px'}} variant="h4">{Constants.UI_TEXT.CUSTOMERS}</Typography>
                 <Button variant="contained" onClick={handleOpenEdit}>{Constants.BUTTONS.ADD}</Button>
