@@ -65,7 +65,7 @@ export const updateUser = async (formValues, refetch, setUsers, onclose) => {
     alert('Please enter a valid email format');
     return;
   }
-  if (formValues.loyalty === '' || !Number.isInteger(Number(formValues.loyalty))) {
+  if (formValues?.loyalty && !Number.isInteger(Number(formValues.loyalty))) {
     alert('Please enter a valid integer for loyalty points');
     return;
   }
@@ -119,7 +119,7 @@ export const createUser = async (addNewUser, formValues, close, refetch, setUser
     alert('Email is required.');
     return;
   }
-  if (formValues.loyalty === '' || !Number.isInteger(Number(formValues.loyalty))) {
+  if (formValues?.loyalty && !Number.isInteger(Number(formValues.loyalty))) {
     alert('Please enter a valid integer for loyalty points');
     return;
   }
