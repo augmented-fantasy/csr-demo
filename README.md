@@ -17,11 +17,6 @@
 - **IaC**: Infrastructure-as-Code fully captures AWS backend within the `/amplify` folder and `amplify_outputs.json` file for integrated backend maintenance or redeployment.
 - **CICD**: Continuous integration / continuous deployment pipeline connected to GitHub `main` branch.
 
-### TODO
-- Purchase window scrollable height
-- Add custom alerts (enter name, enter email, add vehicle)
-- Form out of range values warnings
-
 ### Getting Started
 
 Install dependencies: `npm i`
