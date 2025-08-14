@@ -91,14 +91,14 @@ const Subscriptions = ({
  const handleCreate = () => {
   const newSubscription = {
    id: localRows.length,
-   subId: subscriptionValues.id,
+   subId: subscriptionValues.subId,
    userId: selectedUser.id,
    date: subscriptionValues.date,
    product: subscriptionValues.product,
    vehicle: subscriptionValues.vehicle || selectedUser.vehicles[0],
    price: subscriptionValues.price,
   };
-  createSubscription(newSubscription);
+  console.log('Creating subscription local:', newSubscription);
   const updatedSubscriptions = [...localRows, newSubscription];
   setLocalRows(updatedSubscriptions);
  };

@@ -192,7 +192,6 @@ export const wsClient = new ApolloClient({
 });
 
 export const createSubscription = (values) => {
-  console.log('Creating subscription:', values);
   client.models.Subscriptions.create({
     userId: values.userId,
     product: values.product,
@@ -213,9 +212,8 @@ export const deleteSubscription = async (values) => {
 }
 
 export const modifySubscription = async (values) => {
-  console.log('Modifying subscription:', values);
   client.models.Subscriptions.update({
-    id: values.id,
+    id: values.subId,
     userId: values.userId,
     product: values.product,
     price: values.price,

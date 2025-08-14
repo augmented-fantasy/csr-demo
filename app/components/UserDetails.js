@@ -30,7 +30,7 @@ const UserDetails = ({
 
   const testForVehicles = () => {
     if (selectedUser?.vehicles.length === 0) {
-      alert('First enter a vehicle and click SAVE.');
+      alert('First enter a new vehicle, click ADD VEHICLE then SAVE.');
       return;
     }
     setOpenSubscriptions(true);
