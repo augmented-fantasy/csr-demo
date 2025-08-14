@@ -18,7 +18,7 @@ const UserInfo = ({
   formValues, 
   handleChange, 
   openPurchases, 
-  openSubscriptions, 
+  testForVehicles, 
   vehicleInput, 
   setVehicleInput, 
   setFormValues 
@@ -46,7 +46,7 @@ const UserInfo = ({
                 </Stack>
               </Stack>
                 <Stack direction="row" justifyContent="space-between" sx={{ pt: '20px', cursor: 'pointer' }}>
-                  <Button onClick={() => openSubscriptions(true)} size="small" color='primary' variant="outlined">{Constants.BUTTONS.SUBSCRIPTIONS}</Button>
+                  <Button onClick={testForVehicles} size="small" color='primary' variant="outlined">{Constants.BUTTONS.SUBSCRIPTIONS}</Button>
                   <Button onClick={() => openPurchases(true)} size="small" color='primary' variant="outlined">{Constants.BUTTONS.PURCHASE_HISTORY}</Button>
                 </Stack>
                 <Stack direction="column" justifyContent="space-between" sx={{ pt: '20px' }}>

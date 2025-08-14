@@ -28,6 +28,14 @@ const UserDetails = ({
   const [formValues, setFormValues] = useState({});
   const handleChange = handleInputChanges(setFormValues);
 
+  const testForVehicles = () => {
+    if (selectedUser?.vehicles.length === 0) {
+      alert('First enter a vehicle and click SAVE.');
+      return;
+    }
+    setOpenSubscriptions(true);
+  };
+
   const [subscriptionValues, setSubscriptionValues] = useState({
     userId: '',
     product: selectedUser?.product || 'LIFETIME',
@@ -88,7 +96,7 @@ const UserDetails = ({
             formValues={formValues} 
             handleChange={handleChange} 
             openPurchases={setOpenPurchases}
-            openSubscriptions={setOpenSubscriptions}
+            testForVehicles={testForVehicles}
             vehicleInput={vehicleInput} 
             setVehicleInput={setVehicleInput}
             setFormValues={setFormValues}

@@ -19,7 +19,7 @@ const UserForm = ({ onClose, open, refetch, setUsers }) => {
   const [centerPosition, setCenterPosition] = useState({ top: 0, left: 0 });
   const [formValues, setFormValues] = useState({
     id: '', 
-    name: '', 
+    name: undefined, 
     email: undefined,
     street: '', 
     city: '', 

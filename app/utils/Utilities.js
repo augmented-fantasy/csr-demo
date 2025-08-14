@@ -98,8 +98,13 @@ export const setupCenterPosition = (setCenterPosition, width, height) => {
 }
 
 export const createUser = async (addNewUser, formValues, close, refetch, setUsers) => {
-  if (!formValues?.name || formValues?.email) {
-    alert('Name and email are required.');
+  console.log(formValues);
+  if (formValues.name == '' || formValues.name == undefined) {
+    alert('Name is required.');
+    return;
+  }
+  if (formValues.email == '' || formValues.email == undefined) {
+    alert('Email is required.');
     return;
   }
   try {
@@ -124,7 +129,7 @@ export const createUser = async (addNewUser, formValues, close, refetch, setUser
     fetchUsers(refetch, setUsers);
     close();
   } catch (err) {
-    alert('Failed to add user: ' + err.message);
+    alert('Please enter a valid email format');
     console.error(err);
   }
 }
@@ -208,6 +213,7 @@ export const deleteSubscription = async (values) => {
 }
 
 export const modifySubscription = async (values) => {
+  console.log('Modifying subscription:', values);
   client.models.Subscriptions.update({
     id: values.id,
     userId: values.userId,

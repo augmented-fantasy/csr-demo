@@ -18,8 +18,8 @@
 - **CICD**: Continuous integration / continuous deployment pipeline connected to GitHub `main` branch.
 
 ### TODO
-
-- Phone validation
+- Purchase window scrollable height
+- Add custom alerts (enter name, enter email, add vehicle)
 
 ### Getting Started
 
