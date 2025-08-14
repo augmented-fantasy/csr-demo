@@ -56,7 +56,15 @@ export const handleInputChanges = (setForm) => (event) => {
   setForm(prev => ({ ...prev, [name]: value }));
 };
 
-export const updateUser = async (formValues, refetch, setUsers) => {
+export const updateUser = async (formValues, refetch, setUsers, onclose) => {
+  if (formValues.name === '') {
+    alert('Name is required');
+    return;
+  }
+  if (formValues.email === '') {
+    alert('Please enter a valid email format');
+    return;
+  }
   try {
     await client.models.User.update({
       id: formValues.id,
@@ -74,8 +82,9 @@ export const updateUser = async (formValues, refetch, setUsers) => {
       }
     });
     fetchUsers(refetch, setUsers);
+    onclose();
   } catch (e) {
-    console.error('Failed to update user', e);
+      alert(e.message);
   }
 }
 

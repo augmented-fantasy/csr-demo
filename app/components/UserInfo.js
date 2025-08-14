@@ -31,10 +31,9 @@ const UserInfo = ({
         <Stack sx={{ m: 4, flex: 1}}>
           <Card sx={{ height: '100%', width: '370px' }}>
             <CardContent>
+              
               <Stack spacing={2} sx={{ alignItems: 'center' }}>
-                <div>
                   <Avatar src={`/assets/avatar-${selectedUser?.avatar || getAvatar()}.png`} sx={{ height: '80px', width: '80px' }} />
-                </div>
                 <Stack spacing={1} sx={{ textAlign: 'center' }}>
                   <Typography variant="h5">{selectedUser?.name}</Typography>
                   <Typography color="text.secondary" variant="body2">
@@ -45,12 +44,14 @@ const UserInfo = ({
                   </Typography>
                 </Stack>
               </Stack>
+
                 <Stack direction="row" justifyContent="space-between" sx={{ pt: '20px', cursor: 'pointer' }}>
                   <Button onClick={testForVehicles} size="small" color='primary' variant="outlined">{Constants.BUTTONS.SUBSCRIPTIONS}</Button>
                   <Button onClick={() => openPurchases(true)} size="small" color='primary' variant="outlined">{Constants.BUTTONS.PURCHASE_HISTORY}</Button>
                 </Stack>
+
                 <Stack direction="column" justifyContent="space-between" sx={{ pt: '20px' }}>
-                  <Box sx={{ maxHeight: 250, overflowY: 'auto', pr: 1 }}>
+                  <Box sx={{ maxHeight: 310, overflowY: 'auto', pr: 1}}>
                     {selectedUser ? [
                       ...(selectedUser?.purchases?.items || []),
                       ...(selectedUser?.subscriptions?.items || [])
@@ -61,7 +62,8 @@ const UserInfo = ({
                       </Stack>
                     )) : null}
                   </Box>
-                </Stack> 
+                </Stack>
+
             </CardContent>
           </Card>
         </Stack>

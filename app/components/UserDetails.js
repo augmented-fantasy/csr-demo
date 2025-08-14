@@ -107,7 +107,7 @@ const UserDetails = ({
             <Button variant="outlined" onClick={onClose} sx={{ width: 120 }}>
               {Constants.BUTTONS.CLOSE}
             </Button>
-            <Button variant="contained" onClick={() => { updateUser(formValues, refetch, setUsers); onClose(); }} sx={{ width: 120 }}>
+            <Button variant="contained" onClick={() => { updateUser(formValues, refetch, setUsers, onClose) }} sx={{ width: 120 }}>
               {Constants.BUTTONS.SAVE}
             </Button>
           </Stack>

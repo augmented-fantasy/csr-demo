@@ -54,11 +54,11 @@ const CustomersList = ({
         </Stack>
       ),
       sortable: true,
-      filterable: false,
+      filterable: true,
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
-    { field: 'email', headerName: 'Email', width: 200, sortable: false, filterable: false, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : '' },
+    { field: 'email', headerName: 'Email', width: 200, sortable: false, filterable: true, disableColumnMenu: true, cellClassName: open ? 'MuiDataGrid-cell--disabled' : '' },
     { 
       field: 'location',
       headerName: 'Location',
@@ -69,7 +69,7 @@ const CustomersList = ({
         </Box>
       ),
       sortable: false,
-      filterable: false,
+      filterable: true,
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
@@ -84,7 +84,7 @@ const CustomersList = ({
         </Box>
       ),
       sortable: false,
-      filterable: false,
+      filterable: true,
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
@@ -100,7 +100,7 @@ const CustomersList = ({
         </Box>
       ),
       sortable: false,
-      filterable: false,
+      filterable: true,
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
@@ -116,7 +116,7 @@ const CustomersList = ({
         </Box>
       ),
       sortable: false,
-      filterable: false,
+      filterable: true,
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     },
@@ -132,7 +132,7 @@ const CustomersList = ({
         </Box>
       ),
       sortable: false,
-      filterable: false,
+      filterable: true,
       disableColumnMenu: true,
       cellClassName: open ? 'MuiDataGrid-cell--disabled' : ''
     }
