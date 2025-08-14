@@ -65,6 +65,10 @@ export const updateUser = async (formValues, refetch, setUsers, onclose) => {
     alert('Please enter a valid email format');
     return;
   }
+  if (formValues.loyalty === '' || !Number.isInteger(Number(formValues.loyalty))) {
+    alert('Please enter a valid integer for loyalty points');
+    return;
+  }
   try {
     await client.models.User.update({
       id: formValues.id,
@@ -115,6 +119,10 @@ export const createUser = async (addNewUser, formValues, close, refetch, setUser
     alert('Email is required.');
     return;
   }
+  if (formValues.loyalty === '' || !Number.isInteger(Number(formValues.loyalty))) {
+    alert('Please enter a valid integer for loyalty points');
+    return;
+  }
   try {
     await addNewUser({
       variables: {
@@ -137,7 +145,7 @@ export const createUser = async (addNewUser, formValues, close, refetch, setUser
     fetchUsers(refetch, setUsers);
     close();
   } catch (err) {
-    alert('Please enter a valid email format');
+    alert(err.message);
     console.error(err);
   }
 }
