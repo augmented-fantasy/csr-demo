@@ -98,7 +98,7 @@ const Subscriptions = ({
    vehicle: subscriptionValues.vehicle || selectedUser.vehicles[0],
    price: subscriptionValues.price,
   };
-  console.log('Creating subscription local:', newSubscription);
+  createSubscription(newSubscription);
   const updatedSubscriptions = [...localRows, newSubscription];
   setLocalRows(updatedSubscriptions);
  };
