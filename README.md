@@ -20,6 +20,7 @@
 ### TODO
 - Purchase window scrollable height
 - Add custom alerts (enter name, enter email, add vehicle)
+- Form out of range values warnings
 
 ### Getting Started
 

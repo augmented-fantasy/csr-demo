@@ -89,14 +89,13 @@ const Subscriptions = ({
  };
 
  const handleCreate = () => {
-  const user = selectedUser.id;
   const newSubscription = {
    id: localRows.length,
-   subId: subscriptionValues.id || `temp-${localRows.length}`,
-   userId: user,
+   subId: subscriptionValues.id,
+   userId: selectedUser.id,
    date: subscriptionValues.date,
    product: subscriptionValues.product,
-   vehicle: subscriptionValues.vehicle,
+   vehicle: subscriptionValues.vehicle || selectedUser.vehicles[0],
    price: subscriptionValues.price,
   };
   createSubscription(newSubscription);
@@ -136,15 +135,15 @@ const Subscriptions = ({
       <FormControl fullWidth sx={{ width: 250 }}>
        <InputLabel>{Constants.UI_TEXT.VEHICLE}</InputLabel>
        <Select
-        value={subscriptionValues.vehicle || (selectedUser?.vehicles?.[0] || "SELECT VEHICLE")}
-        onChange={(e) => {
-         setSubscriptionValues({ ...subscriptionValues, vehicle: e.target.value });
-        }}
-        label={Constants.UI_TEXT.VEHICLE}
-        name="vehicle">
-        {selectedUser?.vehicles?.map((vehicle, index) => (
-        <MenuItem key={index} value={vehicle}>{vehicle}</MenuItem>
-        ))}
+          value={subscriptionValues.vehicle || (selectedUser.vehicles[0] || "SELECT VEHICLE")}
+          onChange={(e) => {
+          setSubscriptionValues({ ...subscriptionValues, vehicle: e.target.value });
+          }}
+          label={Constants.UI_TEXT.VEHICLE}
+          name="vehicle">
+          {selectedUser?.vehicles?.map((vehicle, index) => (
+            <MenuItem key={index} value={vehicle}>{vehicle}</MenuItem>
+          ))}
        </Select>
       </FormControl>
      </Grid>
@@ -153,7 +152,7 @@ const Subscriptions = ({
       <FormControl fullWidth sx={{ width: 250 }}>
        <InputLabel>{Constants.UI_TEXT.PRODUCT}</InputLabel>
        <Select
-        value={subscriptionValues.product || (selectedUser.product|| "LIFETIME")}
+        value={subscriptionValues.product || (selectedUser.product || "LIFETIME")}
         onChange={(e) => {
          setSubscriptionValues({ ...subscriptionValues, product: e.target.value });
         }}

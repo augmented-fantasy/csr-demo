@@ -98,7 +98,6 @@ export const setupCenterPosition = (setCenterPosition, width, height) => {
 }
 
 export const createUser = async (addNewUser, formValues, close, refetch, setUsers) => {
-  console.log(formValues);
   if (formValues.name == '' || formValues.name == undefined) {
     alert('Name is required.');
     return;
@@ -193,6 +192,7 @@ export const wsClient = new ApolloClient({
 });
 
 export const createSubscription = (values) => {
+  console.log('Creating subscription:', values);
   client.models.Subscriptions.create({
     userId: values.userId,
     product: values.product,

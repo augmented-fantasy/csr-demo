@@ -40,7 +40,7 @@ const UserDetails = ({
     userId: '',
     product: selectedUser?.product || 'LIFETIME',
     price: 19.99, // TODO set prices per product
-    vehicle: selectedUser?.vehicles?.[0] || '',
+    vehicle: selectedUser?.vehicles[0] || '',
     date: new Date().toISOString().split('T')[0]
   });
 
