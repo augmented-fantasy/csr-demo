@@ -1,4 +1,4 @@
-## AMP Demo CSR Portal
+## Demo CSR Portal
 
 ### Frontend Features
 - **NEXT**: Next.js React SPA framework.
